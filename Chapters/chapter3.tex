@@ -3,262 +3,65 @@
 %% chapter3.tex
 %% NOVA thesis document file
 %%
-%% Chapter with a short laext tutorial and examples
+%% Chapter with the literature review
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{A Short \LaTeX\ Tutorial with Examples}
-\label{cha:a_short_latex_tutorial_with_examples}
 
-This Chapter aims at exemplifying how to do common stuff with \LaTeX. We also show some stuff which is not that common! ;)
+\chapter{Literature Review}
+\label{cha:literature_review}
 
-Please, use these examples as a starting point, but you should always consider using the \emph{Big Oracle} (aka, \href{http://www.google.com}{Google}, your best friend) to search for additional information or alternative ways for achieving similar results.
+3D Bioprinting is a promising technology to solve the increasing demand for organ donation, full-thickness skin replacements and in vitro tissue models. However, it still faces a few limitations throughout its three stages of the bioprinting process. This work intends to propose a solution to some of the problems associated with the bioprinting stage, in particular, the way the bioprinter works.
 
-\section{Document Structure} % (fold)
-\label{sec:document_structure}
+This chapter will focus on presenting the state-of-the-art on the positioning systems used for 3D bioprinting (both external and internal), and how that relates to resolution, speed and in situ bioprinting. It will also focus on the state-of-the-art of using vision systems to increase the system's autonomy by detecting the printing site or evaluating the printing process in real-time. Finally, it will discuss the state-of-the-art on path generation for 3D bioprinting.
 
-% section document_structure (end)
+% ==========================
+% = 3D Positioning Systems =
+% ==========================
 
+\section{3D Positioning systems}
+\label{sec:3d_positioning_systems}
 
-\section{Dealing with Bibliogrpahy} % (fold)
-\label{sec:dealing_with_bibliogrpahy}
+Three dimensional bioprinters come in different shapes and sizes. There exists commercial bioprinters, bioprinters developed solely for research purposes, and open source bioprinters. Although all different, there is something that unite most of the existing systems. Most of them use a gantry system as the positioning system, i.e., use a Cartesian system. This only allows printing to occur horizontally and mostly on planar surfaces. Despite their limitations to work on non-planar surfaces, there were some success cases reported {\color{red} Referencias}.
 
-% section dealing_with_bibliogrpahy (end)
+In 2016, \citeauthor{Ozbolat2017_evaluation_bioprinter_tech}, made a comprehensive review of existing bioprinter technologies. They mentioned ten capabilities of an ideal bioprinter. These are high \gls{dof} in motion; high resolution and accuracy; high speed motion; the ability to dispense various bioink solutions simultaneously; ease of use; compact size; ease of sterilization; full-automation capability; affordability; and versatility. None of the bioprinters assessed had all these capabilities.
 
+Altogether, fifty-eight bioprinters were evaluated, 17 \gls{ebb}, 33 \gls{dbb} and 8 \gls{lbb} systems. \gls{ebb} systems were all commercial. \gls{dbb} systems were 7 commercial and the rest non-commercial systems. \gls{lbb} systems were all non-commercial. No commercial \gls{lbb} system was available on the market at that time.
 
-\section{Inserting Tables} % (fold)
-\label{sec:inserting_tables}
+Of all bioprinters analysed only one had more than 3 \gls{dof}. This bioprinter was BioAssemblyBot\textregistered which is a commercial system developed by US-based company Advanced Solutions, Inc. It uses a custom-made 6 \gls{dof} robotic arm as its 3D positioning system \cite{Advanced2020_bioassemblybot}. Another interesting aspect is that none of the bioprinters assessed were used for in situ bioprinting. All of them bioprint the construct inside their building volume, which is later transferred to its final destination.
 
-% section inserting_tables (end)
+Using multi-axis robotic manipulators for 3D printing is a new trend in additive manufacturing \cite{Urhal2019_robot_assisted_additive_manufacturing_review}. Having positioning systems with more than 3 \gls{dof} has several advantages to the printing process. The most obvious advantage is the ability to print onto non-planar surfaces. In the case of bioprinting, for systems to be able to print in situ they must be able to handle the natural curves of the human body. On most of the body surface only an area of a few squared millimeters could be approximated to a planar surface {\color{red} Referencias}. This means the body is a highly non-planar surface.
 
+Another advantage is dealing with patient positioning. If a system has to bioprint skin tissue in situ to an extensive burn wound, the system may need to adapt to the patient and not the opposite. This means it must adjust to the patient position and relative position of the bioprinting site. If the bioprinting site has an inclined orientation, a 3 \gls{dof} system will not be able to change its orientation and correctly do the printing work.
 
-\section{Importing Images} % (fold)
-\label{sec:importing_images}
+One last advantage to mention, is considering the possibility of internal bioprinting, i.e., the capability to bioprint directly onto an internal structure like an organ or joint during a surgical procedure. The body's internal environment is highly populated with different structures. This means many obstacles to position correctly the bioprinter deposition system. Having higher degrees of freedom helps the system to evade obstacles more efficiently.
 
-% section importing_images (end)
+Some research efforts tried to use the capabilities of robotic manipulators to enhance the bioprinting process, both in vitro and in situ (internally and externally).
 
+In 2018, a conference paper by \citeauthor{Jafari2018_robot_system_automated_wound_filling}\cite{Jafari2018_robot_system_automated_wound_filling}, presented the use of a robotic manipulator to do automated wound filling. The system consisted on Staubli TX90 6 \gls{dof} industrial robotic manipulator paired with a camera to detect the wounds and plan the printing path.
 
-\section{Floats, Figures and Captions} % (fold)
-\label{sec:floats_figures_and_captions}
+A group from UK, \citeauthor{Lipskas2019_robotic_assisted_3dbioprint_repairing_bone_cartilage}\cite{Lipskas2019_robotic_assisted_3dbioprint_repairing_bone_cartilage}, developed a robotic-assisted 3D bioprinting system for bone and cartilage repairing using a minimally invasive approach. They built a custom robotic manipulator specially designed to be used on a \gls{mis} like arthroscopy. The manipulator has 6 \gls{dof}, with some range limits on the end-effector orientation. The system has three different end-effector, one for bone machining, another for surface registration and another for bioprinting.
 
-% \subsection{Inserting Figures Wrapped with text} % (fold)
-% \label{ssec:inserting_images_wrapped_with_text}
-% 
-% You should only use this feature is \emph{really} necessary. This means, you have a very small image, that will look lonely just with text above and below.
-% 
-% In this case, you must use the \verb!wrapfiure! package.  To use \verb!wrapfig!, you must first add this to the preamble:
-% 
-% \begin{wrapfigure}{l}{2.5cm}
-%   \centering
-%     \includegraphics[width=2cm]{snowman-vectorial}
-%   \caption{A snow-man}
-% \end{wrapfigure}	
-% 
-% \noindent\verb!\usepackage{wrapfig}!\\
-% This then gives you access to:\\
-% \verb!\begin{wrapfigure}[lineheight]{alignment}{width}!\\
-% Alignment can normally be either ``l'' for left, or ``r'' for right. Lowercase ``l'' or ``r'' forces the figure to start precisely where specified (and may cause it to run over page breaks), while capital ``L'' or ``R'' allows the figure to float. If you defined your document as twosided, the alignment can also be ``i'' for inside or ``o'' for outside, as well as ``I'' or ``O''. The width is obviously the width of the figure. The example above was introduced with:
-% \lstset{language=TeX, morekeywords={\begin,\includegraphics,\caption}, caption=Wrapfig Example, label=lst:latex_example}
-% \begin{lstlisting}
-% 	\begin{wrapfigure}{l}{2.5cm}
-% 	  \centering
-% 	    \includegraphics[width=2cm]{snowman-vectorial}
-% 	  \caption{A snow-man}
-% 	\end{wrapfigure}	
-% \end{lstlisting}
+Another example, focused on \gls{mis}, is the Endo AM system which is an endoscopic additive manufacturing tool \cite{Simeunovic2019_endoscopic_additive_manufacturing}. Conceived by \citeauthor{Simeunovic2019_endoscopic_additive_manufacturing}, the system consists on a 9 \gls{dof} robotic manipulator and an extruder. It is based on the Da Vinci Xi system. \\
 
-% subsection inserting_images_wrapped_with_text (end)
+As stated before, having more than 3 \gls{dof} is useful for in situ bioprinting. A review of in situ bioprinting studies from \citeauthor{Singh2020a_in_situ_bioprinting}\cite{Singh2020a_in_situ_bioprinting} presents a few approaches that handle the difficulties posed by the body contour, without multi-axis robots. The review focuses on robotic arm solutions and handheld solutions. Two examples for skin bioprinting are worth mentioning.
 
-% section floats_figures_and_captions (end)
+The first example is a handheld system developed by \citeauthor{Hakimi2018_handheld_skin_printer}\cite{Hakimi2018_handheld_skin_printer}. The system allows real-time bioprinting of skin-compatible biomaterials sheets on to the skin. Being handheld it can be controlled by the user which will take care of its positioning. Because it prints sheets the positioning does not require high precision and it can done by a person.
 
-\lipsum[1-3]
+The other example, developed by \citeauthor{Albanna2019_in_situ_bioprinting_mobile_gantry}\cite{Albanna2019_in_situ_bioprinting_mobile_gantry}, is a robotic system that uses a gantry system fixed on a mobile platform to bioprint skin constructs. The system is uncapable of dealing with inclined surfaces but the mobile plaform allows it to reach most parts of the patient and print in situ. A positive aspect of this system is that it can deal with extensive excisional full-thickness wounds.
 
-\begin{figure}[htbp]
-  \centering
-  \subcaptionbox{One sub-figure\label{fig:leftsubfig}}%
-    {\includegraphics[width=0.5\linewidth]{knitting-vectorial}}%
-  \subcaptionbox{Another sub-figure\label{fig:rightsubfig}}%
-    {\includegraphics[width=0.5\linewidth]{knitting-vectorial}}%
-  \caption{A figure with two sub-figures!}
-  \label{fig:fig2subfig}
-\end{figure}
+% section 3d_positioning_systems
 
-\textbf{And this is a small text that references the Figure~\ref{fig:fig2subfig} and its Subfigures~\ref{fig:leftsubfig} and~\ref{fig:rightsubfig}.}
+\section{Computer Vision and image processing}
+\label{sec:computer_vision_and_image_processing}
 
-\lipsum[1-3]
+Falar do processamento de imagem para:
+- Segmentação de feridas
+- Quantificação da TBSA
 
+% subsection computer_vision_and_image_processing
 
-\section{Text Formatting} % (fold)
-\label{sec:text_formatting}
+\section{Collaborative robotics control architectures}
+\label{sec:collaborative_robotics_control_architectures}
 
-% section text_formatting (end)
+Contextualizar o papel da robótica na cirurgia com a apresentação de vários exemplos de sucesso e apresentação das vantagens destes sistemas no contexto cirúrgico.
 
-
-\section{Generating PDFs from \LaTeX} % (fold)
-\label{sec:generating_pdfs_from_latex}
-
-\subsection{Generating PDFs with pdflatex} % (fold)
-\label{ssec:generating_pdfs_with_pdflatex}
-
-You may create PDF files either by using \verb!latex! to generate a DVI file, and then use one of the many DVI-2-PDF converters, such as \verb!dvipdfm!.
-
-Alternatively, you may use \verb!pdflatex!, which will immediately generate a PDF with no intermediate DVI or PS files. In some systems, such as Apple, PDF is already the default format for \LaTeX. I strongly recommend you to use this approach, unless you have a very good argument to go for \verb!latex! + \verb!dvipdfm!.
-
-A typical pass for a document with figures, cross-references and a bibliography would be:
-\begin{verbatim}
-$ pdflatex template
-$ bibtex template
-$ pdflatex template
-$ pdflatex template
-\end{verbatim}
-You will notice that there is a new PDF file in the working directory called \verb!template.pdf!. Simple :)
-
-Please note that, to be sure all table of contents, cross-references and bibliographic citations are up-to-date, you must run \verb!latex! once, then \verb!bibtex!, and then \verb!latex! twice.
-% section generating_pdfs_with_pdflatex (end)
-
-\subsection{Dealing with Images} % (fold)
-\label{sub:dealing_with_images}
-
-You may process the same source files with both \verb!latex! or \verb!pdflatex!. But, if your text include images, you must be careful. \verb!latex! and \verb!pdflatex! accept images in different (exclusive) formats.  For \verb!latex! you may use EPS ou PS figures. For \verb!pdflatex! you may use JPG, PNG or PDF figures.  I strongly recommend you to use PDF figures in vectorial format (do not use bitmap images unless you have no other choice).
-% subsection dealing_with_images (end)
-
-
-\subsection{Creating Source Files Compatible with both latex and pdflatex} % (fold)
-\label{ssec:creating_source_files_compatible_with_both_latex_and_pdflatex}
-
-Do not include the extension of the file in the \verb!\includegraphics! command. E.g., use\\
-\verb!\includegraphics{sonwman}!\\
-and not\\
-\verb!\includegraphics{sonwman.eps}!.\\
-If you use the first form, \verb!latex! or \verb!pdflatex! will add an appropriate file extension.
-
-This means that, if you plan to use only \verb!pdflatex!, you need only to keep (preferably) a PDF version of all the images. If you plan to use also \verb!latex!, then you also need an EPS version of each image.
-% subsection creating_source_files_compatible_with_both_latex_and_pdflatex (end)
-
-% section generating_pdfs_from_latex (end)
-
-
-\newpage
-
-{\Large To be included in the sections above}\\
-
-Para fazer citações, deverá usar-se a chave da referência no ficheiro BibTeX. Se for uma única referência~\cite{Artho04}, usar um ``\verb!~!'' para ligar o \verb!\cite{...}! à palavra que o precede (\ldots\verb!referência~\cite{Artho04}!).  Caso queira fazer múltiplas citações~\cite{Shavit95,Silberschatz06,Moss85}, deverá agrupá-las dentro de um úinico \verb!\cite{...}!.
-
-Note que o ficheiro de bibliografia pode ter tantas entradas quantas quiser. Apenas aquelas cuja chave seja referenciada no texto é que serão incluidas na listagem de bibliografia.
-
-
-Footnotes\footnote{This is a simple footnote.} will be numbered and shown in the bottom of the page.
-
-
-A Tabela~\ref{tab:hla:results} ilustra alguns conceitos importantes associados à contrução de tabelas:
-\begin{asparaenum}[i)]
-	\item Não usar linhas verticais;
-	\item A legenda deve ficar por cima da tabela;
-	\item Usar as macros \verb!\toprule!, \verb!\midrule! e \verb!\bottomrule! para fazer a linha horizontal superior, interiores e inferior, respectivamente.
-\end{asparaenum}
- 
-\begin{table}[ht]
-	\caption{Test results summary.}
-	\label{tab:hla:results}
-\centering
-\begin{tabular}{lccccc}
-	\toprule
-	\multicolumn{1}{c}{\textbf{Test}} 	& \textbf{Anomalies}	& \textbf{Warnings}	& \textbf{Correct} 	& \textbf{Categories}		& \textbf{Missed} \\
-	\midrule
-\cite{Beckman08}~Connection 	& 2 & 2	& 1	& \emph{C}				& 1 \\
-\cite{Artho03}~Coordinates'03 	& 1	& 4	& 1	& \emph{2B, 1C}			& 0 \\
-\cite{Artho03}~Local Variable	& 1	& 2	& 1	& \emph{A}				& 0 \\
-\cite{Artho03}~NASA				& 1	& 1	& 1	& ---					& 0 \\
-\cite{Artho04}~Coordinates'04	& 1	& 4	& 1	& \emph{3C}				& 0 \\
-\cite{Artho04}~Buffer			& 0	& 7	& 0	& \emph{2A, 1B, 2C, 2D}	& 0 \\
-\cite{Artho04}~Double-Check		& 0	& 2	& 0	& \emph{1A, 1B}			& 0 \\
-\cite{Flanagan04}~StringBuffer	& 1	& 0	& 0	& ---					& 1 \\
-\cite{Praun03}~Account			& 1	& 1	& 1	& ---					& 0 \\
-\cite{Praun03}~Jigsaw			& 1	& 2	& 1	& \emph{C}				& 0 \\
-\cite{Praun03}~Over-reporting	& 0	& 2	& 0	& \emph{1A, 1C}			& 0 \\
-\cite{Praun03}~Under-reporting	& 1	& 1	& 1	& ---					& 0 \\
-\cite{IBM-Rep}~Allocate Vector	& 1	& 2	& 1	& \emph{C}				& 0 \\
-Knight Moves					& 1	& 3	& 1	& \emph{2B}				& 0 \\
-	\midrule
-	\textbf{Total}			& \textbf{12}		& \textbf{33}		& \textbf{10}			& \textbf{5A, 6B, 10C, 2D}	& \textbf{2} \\
-	\bottomrule
-\end{tabular}
-\end{table}
-
-
-As figuras a inserir no documento deverão ser de qualidade, preferencialmente em formato vectorial (PDF vectorial) e não em \emph{bitmap} (PNG, JPG, etc). As imagens \emph{bitmap} (Figura~\ref{fig:Figuras_Tree_silhouettes-bitmap}) não escalam bem e têm reflexos negativos na qualidade do seu docuemnto.  Pelo contrário, as imagens \emph{vectoriais} {Figura~\ref{fig:Figuras_Tree_silhouettes-vectorial}} escalam muito tanto quanto o necessário sem degradar a qualidade da imagem.
-
-Só deve usar \emph{screenshots} se não tive mesmo nenhuma alternativa.  Em vez e gerar um \emph{screenshot}, tente usar uma impressora virtual PDF e imprimir para um ficheiro PDF. Regra geral obterá um PDF vetorial. Mesmo que o seu PDF contenha imagens, elas terão sempre qualidade maior ou igual à que obteria com um \emph{screenshot}.
-
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[height=1in]{snowman-bitmap}
-	\includegraphics[height=3in]{snowman-bitmap}
-	\includegraphics[height=6in]{snowman-bitmap}
-	\caption{Imagem em formato \emph{bitmap} (JPG)}
-	\label{fig:Figuras_Tree_silhouettes-bitmap}
-\end{figure}
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[height=1in]{snowman-vectorial}
-	\includegraphics[height=3in]{snowman-vectorial}
-	\includegraphics[height=6in]{snowman-vectorial}
-	\caption{Imagem em formato PDF vectorial}
-	\label{fig:Figuras_Tree_silhouettes-vectorial}
-\end{figure}
-
-Para agregar várias figuras numa única… Poderá assim referenciar o conjunto~\ref{fig:figura-completa}, a priemira delas~\ref{fig:novelo} ou a segunda~\ref{fig:nuvem}.
-
-
-\begin{figure}[htbp]
-	\centering
-    \subbottom[Novelo de lã] {%
-		\label{fig:novelo}
-		\includegraphics[height=1in]{knitting-vectorial}
-    }
-\qquad\qquad
-    \subbottom[Tempestade com neve] {%
-		\label{fig:nuvem}
-		\includegraphics[height=1in]{snowstorm-vectorial}
-    }
-  \caption{Exemplo de utilização de \emph{subbottom}}
-  \label{fig:figura-completa}
-\end{figure}
-
-
-Para incluir listagens de código no seu documento, deverá incluir o pacote \emph{listings} e depois usar o ambiente \emph{lstlisting}, como exemplificado na Listagem~\ref{lst:HelloWorld}.
-
-\lstset{language=Java, caption=Hello World, label=lst:HelloWorld}
-\begin{lstlisting}
-/** 
- * The HelloWorldApp class implements an application that
- * simply prints "Hello World!" to standard output.
- */
-class HelloWorldApp {%
-    public static void main(String[] args) {%
-        System.out.println("Hello World!"); // Display the string.
-    }
-}
-\end{lstlisting}
-
-\section{Equações}
-
-O LaTeX é uma ferramenta poderosa para escrever em estilo matemático. Permite inserir fórmulas no meio do texto como por exemplo esta: $ax^2 + bx + c = 0$. Também permite que as fórmulas sejam destacadas numa linha separada e centradas na página 
-$$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$$
-\[x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}\]
-ou numeradas 
-\begin{equation}
-aaa
-\label{eq:1}
-\end{equation}
-que depois pode ser referida no texto como sendo a equação~\ref{eq:1}
-$$\begin{array}{l}
-aa
-\end{array}
-$$
-
-\begin{eqnarray}
-a\\
-b\\
-c\\
-\end{eqnarray}
+% subsection collaborative_robotics_control_architectures

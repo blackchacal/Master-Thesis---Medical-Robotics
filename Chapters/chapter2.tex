@@ -3,325 +3,586 @@
 %% chapter2.tex
 %% NOVA thesis document file
 %%
-%% Chapter with the state-of-the-art
+%% Chapter with the theoretical concepts
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{State of the Art}
-\label{cha:state_of_the_art}
+\chapter{Theoretical Concepts}
+\label{cha:theoretical_concepts}
 
-% ================
-% = Introduction =
-% ================
-Now, each area will be developed further with the respective state-of-the-art. A broader view will be used for the sake of context and to support potential future applications. A more focused and detailed view will frame the proposed goals.
+\begin{quotation}
+\begin{flushright}
+\itshape
+«He who loves practice without theory is like the sailor who boards ship without a rudder and compass and never knows where he may cast.»\\
+\textbf{- Leonardo da Vinci}
+\end{flushright}
+\end{quotation}
 
-\section{Tissue engineering}
-\label{sec:tissue_engineering}
+On this chapter, the fundamental theorical concepts necessary to understand this thesis work will be presented.
 
-Abordar os novos desenvolvimentos no contexto da engenharia de células e tecidos e regeneração da pele:
-- Reconstrução e impressão de orgãos
-- Pele artificial
-- Cultura de células para regeneração da pele
+It will start by introducing the basic concepts about 3D bioprinting systems. It continues with robotics concepts like kinematics, dynamics, trajectory planning and control theory. Afterwards, computer vision concepts will be exposed. From camera systems, image processing and segmentation, all the way to visual servoing control.
 
-% subsection tissue_engineering
+% ==========================
+% = 3D Bioprinting Systems =
+% ==========================
 
-\section{Computer Vision and image processing}
-\label{sec:computer_vision_and_image_processing}
+\section{3D Bioprinting systems}
+\label{sec:3d_bioprinting_systems}
 
-Falar do processamento de imagem para:
-- Segmentação de feridas
-- Quantificação da TBSA
+Three dimensional bioprinting systems, also known as bioprinters, are the workhorses of the bioprinting revolution. They are the machines responsible for carrying out the actual organ or tissue bioprinting. 
 
-% subsection computer_vision_and_image_processing
+The first bioprinter, developed in 1988, was an adaptation of an inkjet printer used for micro-positioning biologics including collagen and fibronecti \cite{Klebe1988_first_bioprinter}. Nowadays, the typical design is similar to a consumer-grade desktop 3D printer used to print thermoplastics. The main concept is having a \emph{print head} coupled to a 3D \emph{positioning system}. The bioprinters are basically 3D printers with a print head prepared to print bioinks, as opposed to thermoplastics. Lately, a few different concepts have emerged that use different positioning systems and print heads. 
 
-\section{Collaborative robotics control architectures}
-\label{sec:collaborative_robotics_control_architectures}
+Next, the positioning systems and print heads will be described in more detail.
 
-Contextualizar o papel da robótica na cirurgia com a apresentação de vários exemplos de sucesso e apresentação das vantagens destes sistemas no contexto cirúrgico.
+% = Positioning system =
+\subsection{Positioning system}
+\label{subsec:positioning_system}
 
-% subsection collaborative_robotics_control_architectures
+A 3D positioning system is an electromechanical system, also called a robotic arm, that is able to precisely position the print head on 3D space. The system in place on bioprinters is a \emph{gantry} or cartesian system.
 
-\section{Introduction} % (fold)
-\label{sec:introduction}
-{\LARGE \textbf{~\\These instructions are outdated! Please see also the “template.tex” file!\\}}
+A gantry is a three-axis, x, y and z, robotic arm. It has three degrees of freedom based on prismatic joints. This system allows the positioning in 3D space but it does not allow a change in orientation. The x and y axes are horizontal and parallel to the base of the printer, and the z axes is vertical and perpendicular to the base.
 
-This chapter describes how to use the \LaTeX\ \novathesis\ template (and the “\novathesisclass” class file).
+Although the bioprinters have a gantry, each one has its own electromechanical implementation. For example, on some devices the print head moves in z. On others the print head is stationary and the it is printing table that moves.
 
-Let's start with some simple suggestions:
+One limitation of the gantry is the workspace, or build volume. The bioprinter can only print within the space defined by the axis limits. Increasing the workspace means increasing the overall printer size. This can be a limiting factor on the adoption of the bioprinter for a specific workspace. Even more, it turns the process of sterilising the machine harder. 
 
-\begin{enumerate}
-  \item No! You don't have to use this template to write your thesis.  You don't even have to use \LaTeX.  However, writing a thesis is serious stuff, and which tool you shall use to write it is not a decision to make lighthearted.
-  \item \LaTeX\ is hard enough by itself.  This template aims at making your life easier, but not easy. If you choose to use this template to write your thesis, you are very welcome.  However, don't expect me to provide you help with \LaTeX.  Look for help with your friends (you have some friends, don't you?), or search the web, or try even to read some book(s) on \LaTeX. In the end you will certainly find the experience rewarding.
-  \item So, don't forget, when you come to the point of “\emph{How do I do this with \LaTeX?}” look for help!  Google is your best friend. 
-  \item If you believe the difficulty is related with the \novathesis\ template itself (and not with \LaTeX), please \textbf{do not} send me an email asking for help.  Please look for help in the \novathesis\ Google Group (URL) and the \novathesis\ Facebook group (URL).  If you can't find help there from previous posts/messages, then post your own question. Hopefully someone will answer you.
-\end{enumerate}
+The gantry system is a common positioning system within the manufacturing realm. Its simplicity and precision capabilities makes it a good option for 2D and 3D positioning where the orientation is fixed. The setup is also good to deal with heavy payloads. Some examples of machines that use this system are: \gls{cnc} machines, laser cutters, and heavy loads transportation in factories.
 
-Now, let's go to a major issue for Windows users.  Characters have to be encoded in files as numbers, and that is how character encodings were born. ASCII and EBCDIC standards are long lost in the past.  The world now uses UTF-8.  Well, not all the world… Windows is still stick in its \emph{codepages}, and “latin1” is what windows uses as the codepage for Western Europe. This messes up with the template. Please be sure you use an editor with UTF-8 support.  \emph{Go to the preferences/options/… of your text editor and set up its default file encoding as UTF-8.}
+{\color{red}Usar imagem base do livro e fazer uma de uma bioimpressora.} 
 
-% section introduction (end)
+% subsection positioning_system
 
-% ====================
-% = Folder Structure =
-% ====================
-\section{Folder Structure} % (fold)
-\label{sec:folder_structure}
+% = Print head =
+\subsection{Print head}
+\label{subsec:print_head}
 
-The \novathesis\ template is organized into files and folders. At the main level it includes the following files and folders:
+The print head is the bioprinter component responsible for dispensing the bioink. It is the main difference between a 3D bioprinter and a 3D printer.
 
-\noindent
-\begin{tabularx}{\linewidth}{>{\ttfamily}l>{\itshape}l>{\upshape}X}
-novathesis.cls     & file    & 
-The main class file. It will include additional files from \texttt{novathesis-files} folder. 
-\\ 
-template.tex      & file    & 
-The main user file. Use this file as the main file for your thesis. 
-\\
-bibliography.bib  & file    & 
-An example of a bibliography file. You may have has many as you want. \\
-template.pdf      & file    & 
-A possible result of applying pdf\LaTeX\ to the \texttt{template.tex} file. The template supports multiple types of documents (e.g., MSc dissertation, PhD thesis, …) and multiple Schools (e.g., FCT-NOVA, FCSH-NOVA, IST-UL, FC-UL, …) and each will produce different results.
-\\
-Chapters          & folder  & Examples of thesis chapters. Replace them with your own chapters. 
-\\
-Examples          & folder  & Some more examples of the use of the template for different document types and Schools. 
-\\
-Scripts           & folder  & Some (possibly useful) scripts for Unix-based systems (Linux, Mac OSx). If you are a windows user, ignore this folder (you may safely delete it if you want). 
-\\
-novathesis-files   & folder  & 
-Additional files for the \novathesisclass\ file.  Unless you know what you are doing, avoid messing up with the files and folders inside this folder (except for deleting the unused Schools, see below). 
-\\
-\end{tabularx}
+Some printers have a single print head, while others have two or more. The most common design are single or double print heads. There exists also cases were two robotic arms are used, each one with a print head \cite{Ozbolat2014_multi_arm_bioprinter}. This is a design concept useful to improve the printing speed.
 
-The \texttt{novathesis-files} folder contains additional files and folders that complement the main \novathesisclass\ file.  These are:
+However, the most important aspect of the print head is the printing method it uses. Currently, there exists three main printing methods: Laser-based bioprinting (\gls{lbb}), Droplet-based bioprinting (\gls{dbb}), and Extrusion-based bioprinting (\gls{ebb}). The \gls{lbb} and \gls{dbb} methods will be only briefly introduced. The \gls{ebb} will be described more thoroughly be cause it will be the one used on this thesis.
 
-\noindent
-\begin{tabularx}{\linewidth}{>{\ttfamily}l>{\itshape}l>{\upshape}X}
-README.txt      & file    &
-A file that should be read!  :) 
-\\
-fix-babel.clo   & file    &
-Simple fixes to the \texttt{babel} package.
-\\
-lang-text.clo   & file    &
-Translations of important strings used in the template.  Currently fully supported are Portuguese and English, but French is on the way.  If you add translations for your own language, please be so kind and send them to me. Thank you!
-\\
-options.clo     & file    &
-Processing of \novathesisclass\ options.  \emph{Don't mess with this!}
-\\
-packages.clo    & file    &
-Additional packages to be loaded into the \novathesis\ template. \emph{You should not mess with this!}
-\\
-spine.clo       & file    &
-This file is loaded only if the option \texttt{spine=true}, and includes the typesetting of the book spine.
-\\
-ChapStyles      & folder  &
-Contains a lot of files, one for each chapter style.  If you really know what you are doing, you may add your own chapter style here.
-\\
-FontStyles      & folder  &
-Contains a few files, one for each set of fonts (main text font, chapter font, section font, subsection font, etc).  If you really know what you are doing, you may add your own set here.
-\\
-Schools         & folder  &
-Configuration files for each school.  This folder is organized into subfolders, one for each university.  \emph{You may safely delete all the subfolders except the one for your University.}  Then open the subfolder of your University and \emph{you may safely delete all the subfolders except the one for your School/Faculty}.
-\\
-\end{tabularx}
+% = Laser-based bioprinting =
+\subsubsection{Laser-based bioprinting}
+\label{subsubsec:laser_based_bioprinting}
 
-As stated above, the \texttt{Schools} folder contains per-university folders and per-school (faculty) subfolders.  Currently these are the available folders:
+As the name implies, laser-based bioprinting uses laser energy to dispense a bioink on a three dimensional spatial arrangement. It has a high spatial resolution of \numrange{1}{3} \si{\micro\meter}. According to the laser and print ribbon used, the process as slight variations that have different names: LIFT, AFA-LIFT, BioLP, MAPLE DW, and LG DW \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
-\noindent
-\begin{tabularx}{\linewidth}{>{\ttfamily}r@{~/~}>{\ttfamily}l>{\itshape}l>{\upshape}X}
-ul     & ist    & folder  & 
-The folder for the \href{http://www.tecnico.ulisboa.pt}{\emph{Instituto Superior Técnico}} of the \emph{University of Lisbon}.
-\\
-nova    & fcsh   & folder  & 
-The folder for the \href{http:www.fcsh.unl.pt}{\emph{Faculty of Human and Social Sciences}}  of the \emph{NOVA University of Lisbon}.
-\\
-nova    & fct    & folder  & 
-The folder for the \href{http:www.fct.unl.pt}{\emph{Faculty of Sciences and Technology}} of the \emph{NOVA University of Lisbon}.
-\\
-nova    & novaims    & folder  & 
-The folder for the \href{http:www.novaims.unl.pt}{\emph{Information and Management School}} of the \emph{NOVA University of Lisbon}.
-\\
-\end{tabularx}
+\gls{lbb} has several advantages like being a non-contact process, which enables it to have post-printing cell viabilities greater than 95 \%. It also eliminates the nozzle clogging problem. With this method it is possible to print very high cell densities bioinks and low viscosity cell suspensions \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
-% section folder_structure (end)
+% subsubsection laser_based_bioprinting
 
-% ===================
-% = Package options =
-% ===================
-\section{\novathesisclass\ Class Options} % (fold)
-\label{sec:package_options}
+% = Droplet-based bioprinting =
+\subsubsection{Droplet-based bioprinting}
+\label{subsubsec:droplet_based_bioprinting}
 
-The \novathesis\ class can be customized with the options listed below.
+Droplet-based print heads dispense bioinks in the form of droplets. According to the droplet formation method, \gls{dbb} processes can be classified into inkjet bioprinting, \gls{ehdj}, acoustic bioprinting and microvalve-based bioprinting \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
-\newcommand{\classoption}[3]{\textbf{#1=OPT}\qquad #2\\\qquad\emph{#3}\\}
+Inkjet bioprinting is an adaptation from inkjet printing technology. It can be \gls{cij} or \gls{dod} inkjet printing. Furthermore, \gls{dod} systems can be divided into thermal, piezo-electric or electrostatic, based on the trigger system used \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. This method has several advantages like "high resolution (\textasciitilde 50 \si{\micro\meter}), high printing speed (up to 10,000 droplets per second), affordability, and the ability to introduce cell concentration gradients" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. Regarding its limitations, inkjet bioprinting can only use low-viscosity bioinks (\textasciitilde \numrange{3}{12} \si{\milli\pascal\second}) and cell concentrations lower than \num{e6} cells \si{\per\milli\litre} because of nozzle clogging \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
-\noindent
-\begin{ctabular}{@{}p{\linewidth}@{}}
-  \toprule
-  \classoption{docdegree}%
-    {phd(*), phdplan, phdprop, msc, mscplan, bsc}%
-    {The type of the document: PhD Thesis (default), PhD Plan, PhD Proposal, MSc Disseration, MSc Plan, BSc Report}
-    \midrule
-  \classoption{school}%
-		{nova/fct(*), nova/fcsh, nova/ims, ul/ist, ul/fc}%
-    {The name of the school. This option changes the typesetting of the cover and some School specific formating, like margins, fonts, paragraph spacing and indentation, etc…}
-    \midrule
-  \classoption{lang}%
-    {en(*), pt}%
-    {The main language for the document.  Currently only Portuguese and English are supported.  Other languages are expected to be support in forthcoming versions.}
-    \midrule
-  \classoption{fontstyle}%
-    {bookman, charter, fourier, kpfonts(*), mathpazo1, mathpazo2, newcent}%
-    {The font set to be used in the document.  Please note that a font set include definitions for the main text, headings, maths, etc.}
-    \midrule
-  \classoption{chapstyle}%
-    {bianchi, bluebox, brotherton, dash, default, elegant(*), ell, ger, hansen, ist, jenor, lyhne, madsen, pedersen, veelo, vz14, vz34, vz43}%
-    {The chapter style, i.e., the look of the chapter beginning.}
-    \midrule
-  \classoption{converlang}%
-    {en, pt(*)}%
-    {The language to be used when typesetting the cover page.}
-    \midrule
-  \classoption{otherlistsat}%
-    {front(*), back}%
-    {Where to put the other lists besides the table of contents. The default is (\texttt{front}) before the main text.  But some scientific areas prefer them at the end of the document (\texttt{back}), just before the Appendixes.}
-    \midrule
-  \classoption{aftercover}%
-    {true, false(*)}%
-    {Include or don't include the contents of the “\texttt{aftercover}” file. The default is for this file to be ignored (if if it exists).}
-    \midrule
-  \classoption{linkscolor}%
-    {darkblue(*), black}%
-    {The color for all the hyperlinks in the PDF file.  The “\texttt{media=paper}” option (see below) will override this option to “\texttt{black}”}
-    \midrule
-  \classoption{spine}%
-    {true, false(*)}%
-    {Generate the book spine and the last page in the PDF.}
-    \midrule
-  \classoption{biblatex}%
-    {OPT=\{list of options for \texttt{biblatex}\}}%
-    {Customize \texttt{biblatex}, the bibliography management system used in this class. Probably you will want to change the value of the \texttt{biblatex} “\texttt{style}” option. For other customizations of \texttt{biblatex} check its manual.}
-    \midrule
-  \classoption{memoir}%
-    {OPT=\{list of options for \texttt{memoir}\}}%
-    {Customize the base class \texttt{memoir}. The \texttt{memoir} manual should be the first document to be consulted when looking for “\textbf{how can I do this?}” You may wnat to change the base font size from 11pt to a smaller (10pt) or larger (12pt) size.  Also, remember to change the “\texttt{draft}” to final when your document is finished.}
-    \midrule
-  \classoption{media}%
-    {screen(*), paper}%
-    {Behavior to be customized in the school options/configuration. Expected definitions for screen are: left and right margins are equal and use colored links. Expected definitions for paper are: left and right margins are different and use black links.}
-    \bottomrule
-\end{ctabular}
+\gls{ehdj} applies a high voltage (\numrange{0.6}{20} \si{\kilo\volt}) "between the nozzle and the substrate as a back-pressure supply delivers the bioink to the nozzle tip" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. This method's greatest advantage is the high resolution. "A nano-scale resolution of \textasciitilde 100 \si{\nano\meter} had been achieved using this method" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. It can also bioprint very high viscosity bioinks (up to 20 \% w/v). One limitation is the cell viability on the long-term because of the high voltage applied. Another is the fact that it produces continuous stream of droplets limiting the precision of spatial placement \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
-\section{Additional considerations about the class options} % (fold)
-\label{sec:additional_considerations}
+Acoustic bioprinting can eject bioink droplets on demand using an acoustic actuator. The advantages of this method are high resolution (\textasciitilde 37 \si{\micro\meter}) and high printing speed (up to 10,000 droplets per second). Another advantage is the fact that "the
+bioink is an open pool rather than in a nozzle, thus eliminating the exposure of cells to detrimental stressors such as heat, high pressure, and high voltage" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
-In this section we will provide some additional considerations about some of the customizations available as class options.
+Microvalve-based bioprinting uses an electromechanical or solenoid valve to control the ejection of bioink droplets. Some limitations of this method are its moderate printing speeds of up to 1000 droplets per second, and nozzle clogging. The nozzle problem is such a challenge that limits the bioink viscosity to a range of \numrange{1}{200} \si{\milli\pascal\second} and a cell concentration less than 106 \si{\per\milli\litre}. Its greatest advantage is the ability of synchronising different print heads, in case multiple are used. This aids "in the printing of co-culture, and multi-culture tissue constructs" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
-\subsection{The main language} % (fold)
-\label{sub:the_main_language}
+% subsubsection droplet_based_bioprinting
 
-The choice of the main language with the option “\texttt{lang=OPT}” affects:
+% = Extrusion-based bioprinting =
+\subsubsection{Extrusion-based bioprinting}
+\label{subsubsec:extrusion_based_bioprinting}
+
+On this method, "the bioink is extruded out of the nozzle using pneumatic pressure or mechanical force by means of a piston or screw" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. This method is the most widely used, with uses spanning different applications like bioprinting "cells, tissues, organ modules, and organ-on-a-chip devices, for tissue engineering, cancer research, drug testing, and transplantation" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. The range of tissue types include "bone, cartilage, skeletal muscle, skin, cardiac tissue, nervous tissue, and liver" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
+
+Extrusion-based bioprinting has many advantages. The most important one is the scalability. It can print human-scale tissue, "which is impossible with any of the other bioprinting methods" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. It also works with high viscosity bioinks (\textasciitilde 600 \si{\kilo\pascal\second}) and high cell concentrations, enhancing the printability of natural tissues. In the meanwhile, not everything is perfect. Its resolution is the lowest of all methods (\textasciitilde 100 \si{\micro\meter}). Post-printing cell viability varies from 40 \% to 95 \%, depending on the bioink viscosity, cell concentration and nozzle size. Problems with nozzle clogging is an inherent hurdle of this method. Another limitation is the requirement of "bioinks with shear-thinning property for successful printing, which limits the versatility of the bioinks that could be used" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
+
+% subsubsection extrusion_based_bioprinting
+
+{\color{red}Usar imagem do artigo com os vários métodos de impressão.} 
+
+% subsection printing_head
+
+% = CAD and toolpath design =
+\subsection{CAD and toolpath design}
+\label{subsec:cad_toolpath_design}
+
+% subsection cad_toolpath_design
+
+% section 3d_bioprinting_systems
+
+% ============
+% = Robotics =
+% =============
+
+\section{Robotics}
+\label{sec:robotics}
+
+There exists many types of robotics systems in use today. On this thesis, the topic of robotics will be restricted to the modelling, planning and control of robotic manipulators.
+
+A robotic manipulator is an electromechanical device composed of a sequence of rigid bodies, or \emph{links}, by means of articulations called \emph{joints}. The mobility of the manipulator is conferred by the number of its joints. At the end of the manipulator a tool can be coupled for a specific task. This tool is also known as the robot \emph{end-effector} \cite{Siciliano2009_robotics_modelling_planning_control}.
+
+To correctly control a robotic manipulator it is important to have a model capable of describing the robot state, movement and dynamics. First, the mathematical tools and concepts necessary to model the robot will be presented. Afterwards, the analysis of robot kinematics, i.e., position and velocity, will be presented. It will be followed the the dynamic model, were forces and torques are considered. The concepts continue through path and trajectory planning, and end with control concepts for free space movement and movement with environment interaction.
+
+The majority of the concepts introduced in this section are based on \cite{Siciliano2009_robotics_modelling_planning_control}. When other sources are used they will be explicitly cited.
+
+% = Rigid motions and homogeneous transformations =
+\subsection{Rigid motions and homogeneous transformations}
+\label{subsec:rigid_motions_homogeneous_transformations}
+
+The first concept that must be presented is \emph{pose}. Pose is a precise description of a rigid body position and orientation in space, with respect to a reference frame.  
+
+Since a robotic manipulator is a chain of connected rigid bodies, knowing the pose of each link, is important to know the robot state at any time. The main goal regarding the control of robotic manipulators is to control its end-effector. The necessary mathematical concepts to precisely describe the pose of the end-effector are rotation matrices and homogeneous transformations.
+
+% = Rotation matrices =
+\subsubsection{Rotation matrices}
+\label{subsubsec:rotation_matrices}
+
+A rotation matrix, is a geometrical tool, heavily used in computer graphics and robotics, that represents the rotation between two different reference frames. On 3D space it is a $3\times3$ matrix, with each column representing the x, y and z vectors of one frame represented on another frame. If $\boldsymbol{R}$ is a rotation matrix then
+
+\begin{equation}
+    \boldsymbol{R} = \begin{bmatrix} \boldsymbol{x'} & \boldsymbol{y'} & \boldsymbol{z'}\end{bmatrix} = \begin{bmatrix} r_{11} & r_{12} & r_{13}\\
+    r_{21} & r_{22} & r_{23}\\
+    r_{31} & r_{32} & r_{33}\end{bmatrix},
+\end{equation}
+
+were $\boldsymbol{x'}$, $\boldsymbol{y'}$ and $\boldsymbol{z'}$ are given by
+
+\begin{equation}
+    \left\{
+    \begin{aligned}
+        \boldsymbol{x'} &= x'_x\boldsymbol{x} + x'_y\boldsymbol{y} + x'_z\boldsymbol{z} \\
+        \boldsymbol{y'} &= y'_x\boldsymbol{x} + y'_y\boldsymbol{y} + y'_z\boldsymbol{z} \\
+        \boldsymbol{z'} &= z'_x\boldsymbol{x} + z'_y\boldsymbol{y} + z'_z\boldsymbol{z}
+    \end{aligned}
+    \right.
+\end{equation}
+
+Rotation matrices are orthogonal, meaning the product between the matrix and its transposed is the identity matrix. This also means that the transpose matrix is equal to the inverse.
+
+\begin{equation}
+    \boldsymbol{R}^T \boldsymbol{R} = \boldsymbol{I}_3 \Leftrightarrow \boldsymbol{R}^T = \boldsymbol{R}^{-1}
+\end{equation}
+
+The rotation matrices represent general rotations between reference frames. Sometimes it is important to do a rotation just about one of the axis of the main reference frame. These rotations are called \emph{elementary rotations} and represented by $\boldsymbol{R}_{\text{x}}(\alpha)$, $\boldsymbol{R}_{\text{y}}(\alpha)$ and $\boldsymbol{R}_{\text{z}}(\alpha)$. The subscript represents the rotation axis and $\alpha$ is the rotation angle. The matrices are
+
+\begin{equation}
+    \boldsymbol{R}_{\text{x}}(\alpha) = 
+    \begin{bmatrix} 1 & 0 & 0\\
+    0 & \cos{\alpha} & -\sin{\alpha}\\
+    0 & \sin{\alpha} & \cos{\alpha}
+    \end{bmatrix},
+\end{equation}
+
+\begin{equation}
+    \boldsymbol{R}_{\text{y}}(\alpha) = \begin{bmatrix} \cos{\alpha} & 0 & \sin{\alpha}\\
+    0 & 1 & 0\\
+    -\sin{\alpha} & 0 & \cos{\alpha}
+    \end{bmatrix},
+\end{equation}
+
+\begin{equation}
+    \boldsymbol{R}_{\text{z}}(\alpha) = 
+    \begin{bmatrix} \cos{\alpha} & -\sin{\alpha} & 0\\
+    \sin{\alpha} & \cos{\alpha} & 0\\
+    0 & 0 & 1
+    \end{bmatrix}.
+\end{equation}
+
+Elementary rotations are useful to describe rotations about an arbitrary axis and hold the following properties \cite{Siciliano2009_robotics_modelling_planning_control, Spong2005_robot_dynamics_control} 
+
+\begin{align}
+    \boldsymbol{R}_{k}(-\alpha) &= \boldsymbol{R}_{k}^{T}(\alpha) & k = \text{x, y, z}\\
+    \boldsymbol{R}_{k}(0) &= \boldsymbol{I}_3 & \\
+    \boldsymbol{R}_{k}(\alpha)\boldsymbol{R}_{k}(\beta) &= \boldsymbol{R}_{k}(\alpha+\beta) &
+\end{align}
+
+Rotation matrices have three equivalent geometrical meanings \cite{Siciliano2009_robotics_modelling_planning_control}:
 
 \begin{itemize}
-	\item \textbf{The order of the summaries.} First is printed the abstract in the main language and then in the foreign language. This means that if your main language for the document in English, you will see first the “abstract” (in English) and then the “resumo” (in Portuguese). If you switch the main language for the document for Portuguese, it will also automatically switch the order of the summaries to “resumo” and then “abstract”.
-	\item \textbf{The names for document sectioning.} E.g., ``Chapter'' vs.\ ``Capítulo'', ``Table of Contents'' vs.\ ``Índice'', ``Figure'' vs.\ ``Figura'', etc.
-	\item \textbf{The type of documents in the bibliogrpahy.} E.g., ``Technical Report'' vs.\ ``Relatório Técnico'', ``PhD Thesis'' vs.\ ``Tese de Doutoramento'', etc.
-\end{itemize} 
-
-No mater which language you chose, you will always have the appropriate hyphenation rules according to the language at that point. You always get Portuguese hyphenation rules in the ``Resumo'', english hyphenation rules in the ``Abstract'', and then the main language hyphenation rules for the rest of the document.
-
-% subsection the_main_language (end).
-
-% section additional_consideration (end)
-
-
-\subsection{Class of Text} % (fold)
-\label{sub:class_of_text}
-
-You must choose the class of text for the document. The available options are:
-
-\begin{enumerate}
-	\item \textbf{bsc} --- BSc graduation report.
-	\item \textbf{*mscplan} --- Preparation of MSc dissertation. This is a preliminary report graduate students at DI-FCT-NOVA must prepare to conclude the first semester of the two-semesters MSc work. The files specified by \verb!\dedicatoryfile! and \verb!\acknowledgmentsfile! are ignored, even if present, for this class of document.
-	\item \textbf{msc} --- MSc dissertation.
-	\item \textbf{phdprop} ---  Proposal for a PhD work. The files specified by \verb!\dedicatoryfile! and \verb!\acknowledgmentsfile! are ignored, even if present, for this class of document.
-	\item \textbf{prepphd} ---  Preparation of a PhD thesis. This is a preliminary report PhD students at DI-FCT-NOVA must prepare before the end of the third semester of PhD work. The files specified by \verb!\dedicatoryfile! and \verb!\acknowledgmentsfile! are ignored, even if present, for this class of document.
-	\item \textbf{phd} --- PhD dissertation.
-\end{enumerate}
-% subsection class_of_text (end)
-
-% ============
-% = Printing =
-% ============
-\subsection{Printing} % (fold)
-\label{sub:printing}
-
-You must choose how your document will be printed. The available options are:
-\begin{enumerate}
-	\item \textbf{oneside} --- Single side page printing.
-	\item \textbf{*twoside} --- Double sided page printing.
-\end{enumerate}
-% subsection printing (end)
-
-% =============
-% = Font Size =
-% =============
-\subsection{Font Size} % (fold)
-\label{ssec:font_size}
-
-You must select the encoding for your text. The available options are:
-\begin{enumerate}
-	\item \textbf{11pt} --- Eleven (11) points font size.
-	\item \textbf{*12pt} --- Twelve (12) points font size. You should really stick to 12pt\ldots
-\end{enumerate}
-% subsection font_size (end)
-
-% =================
-% = Text encoding =
-% =================
-\subsection{Text Encoding} % (fold)
-\label{ssec:text_encoding}
-
-You must choose the font size for your document. The available options are:
-\begin{enumerate}
-	\item \textbf{latin1} --- Use Latin-1 (\href{http://en.wikipedia.org/wiki/ISO/IEC_8859-1}{ISO 8859-1}) encoding.  Most probably you should use this option if you use Windows;
-	\item \textbf{utf8} --- Use \href{http://en.wikipedia.org/wiki/UTF-8}{UTF8} encoding.    Most probably you should use this option if you are not using Windows.
-\end{enumerate}
-% subsection font_size (end)
-
-% ============
-% = Examples =
-% ============
-\subsection{Examples} % (fold)
-\label{ssec:examples}
-
-Let's have a look at a couple of examples:
-
-\begin{itemize}
-	\item Preparation of PhD thesis, in portuguese, with 11pt size and to be printed single sided (I wonder why one would do this!)\\
-	\verb!\documentclass[prepphd,pt,11pt,oneside,latin1]{thesisdifct-nova}!
-	\item MSc dissertation, in english, with 12pt size and to be printed double sided\\
-	\verb!\documentclass[msc,en,12pt,twoside,utf8]{thesisdifct-nova}!
+    \item They describe "the mutual orientation between two coordinate frames; its column vectors are the direction cosines of the axes of the rotated frame with respect to the original frame".
+    \item They represent "the coordinate transformation between the coordinates of a point expressed in two different frames (with common origin)".
+    \item They are "the operator that allows the rotation of a vector in the same coordinate frame".
 \end{itemize}
-% subsection examples (end)
 
-\section{How to Write Using \LaTeX} % (fold)
-\label{sec:how_to_write_using_latex}
+Another important aspect of rotation matrices is the fact that they can be combined in order to represent complex rotations. Considering that $\boldsymbol{R}^{i}_{j}$ represents the rotation of reference frame $j$ in relation to reference $i$, rotation matrices composition is given by
 
-Please have a look at Chapter~\ref{cha:a_short_latex_tutorial_with_examples}, where you may find many examples of \LaTeX constructs, such as Sectioning, inserting Figures and Tables, writing Equations, Theorems and algorithms, exhibit code listings, etc.
+\begin{equation}
+    \boldsymbol{R}^{0}_{2} = \boldsymbol{R}^{0}_{1}\boldsymbol{R}^{1}_{2}
+\end{equation}
 
-% section how_to_write_using_latex (end)
+if the rotation are in relation to the \emph{current frame}, or
 
+\begin{equation}
+    \boldsymbol{R}^{0}_{2} = \boldsymbol{R}^{1}_{2}\boldsymbol{R}^{0}_{1}
+\end{equation}
 
+if they are in relation to a fixed frame.
 
-\section{Exmaple glossary and acronyms}
-%
-% \todo[inline]{A a note in a line by itself.}
-%
-This is the first occurrence of an abbreviation: \gls{abbrev}. And now the second occurrence of the same abbreviation: \gls{abbrev}. And a new acronym with capital letter: \Gls{xpt} and reused \gls{xpt}.  Let's also use a few other acronyms such as \gls{aaa}, \gls{aab}, \gls{aba}, \gls{bbb} and \gls{xpt}.
+Finally, sometimes its is convenient to use a simplified representation of rotations based on less parameters. There are exist four representations commonly used:
 
+\begin{itemize}
+    \item Euler angles
+    \item Roll, Pitch, Yaw
+    \item Axis/Angle
+    \item Unit Quaternion
+\end{itemize}
 
-Lets add the term ``\gls{computer}'' to the glossary!
-%
-% Please note that
-% \begin{center}
-%   \textbf{\large this package and template are not official for FCT/NOVA}.
-% \end{center}
+% subsubsection rotation_matrices
+
+% = Homogeneous transformations =
+\subsubsection{Homogeneous transformations}
+\label{subsubsec:homogeneous_transformations}
+
+To properly represent the position and orientation of a rigid body we use the pose. But we also need to represent a pose change given by a translation, a rotation or a combination of both. The mathematical tool to represent this change in pose is a $4\times4$ matrix, in 3D space, called homogeneous transformation. This matrix, represented by $\boldsymbol{T}$ in (\ref{eq:homogeneous_transformation}), is composed by a rotation matrix and a translation vector that describe the pose.
+
+\begin{equation}
+    \label{eq:homogeneous_transformation}
+    \boldsymbol{T} = \begin{bmatrix} \boldsymbol{R} & \boldsymbol{p} \\ 
+    \boldsymbol{0}^{T} & 1\end{bmatrix} = \begin{bmatrix} r_{11} & r_{12} & r_{13} & p_x\\
+    r_{21} & r_{22} & r_{23} & p_y\\
+    r_{31} & r_{32} & r_{33} & p_z\\
+    0 & 0 & 0 & 1\end{bmatrix}
+\end{equation}
+
+In general, homogeneous transformation matrix is not orthogonal so 
+\begin{equation}
+    \boldsymbol{T}^{T} \neq \boldsymbol{T}^{-1}.
+\end{equation}
+
+Homogeneous transformations follow the some composition rules of rotations matrices. Considering that $\boldsymbol{T}^{i}_{j}$ represents the homogeneous transformation of reference frame $j$ in relation to reference $i$, the composition is given by
+
+\begin{equation}
+    \boldsymbol{T}^{0}_{2} = \boldsymbol{T}^{0}_{1}\boldsymbol{T}^{1}_{2}
+\end{equation}
+
+if the transformations are in relation to the \emph{current frame}, or
+
+\begin{equation}
+    \boldsymbol{T}^{0}_{2} = \boldsymbol{T}^{1}_{2}\boldsymbol{T}^{0}_{1}
+\end{equation}
+
+if they are in relation to a fixed frame.
+
+% subsubsection Homogeneous transformations
+
+% subsection rigid_motions_homogeneous_transformations
+
+% = Kinematics =
+\subsection{Kinematics}
+\label{subsec:kinematics}
+
+The study of robot kinematics is fundamental to understand how a robotic manipulator moves in space. Kinematics study is divided into three branches: (a) Direct or \gls{fk}; (b) \gls{ik}; and (c) Differential Kinematics.\\
+
+Before we jump on to the different branches it is important to introduce a few other concepts about manipulators. A manipulator is considered to be an \emph{open chain} from the kinematic point-of-view if there is only a single sequence of links connecting the base link to the end-effector. We have a \emph{closed chain} when a sequence of links form a loop. The robot joints can be \emph{revolute} or \emph{prismatic} when the movement between consecutive links is rotational or translational, respectively. The robot \emph{posture}, or the pose of all the links, is mecanically defined by a number of degrees-of-freedom (\gls{dof}). Each \gls{dof} is associated to a robot joint and represents a \emph{joint variable}.
+
+% = Forward Kinematics =
+\subsubsection{Forward kinematics}
+\label{subsubsec:forward_kinematics}
+
+The goal of forward kinematics is to find the pose of the end-effector according to the state of the joint variables.
+
+Mathematically, its is represented by the homogeneous transformation of the \emph{end-effector frame}, $O_{\text{e}}x_{\text{e}}y_{\text{e}}z_{\text{e}}$, in relation to the \emph{base frame}, $O_{\text{b}}x_{\text{b}}y_{\text{b}}z_{\text{b}}$, $\boldsymbol{T}^{\text{b}}_{\text{e}}$. 
+
+\begin{equation}
+    \boldsymbol{T}^{\text{b}}_{\text{e}}(\boldsymbol{q}) =
+    \begin{bmatrix}
+    \boldsymbol{n}^{\text{b}}_{\text{e}}(\boldsymbol{q}) & \boldsymbol{s}^{\text{b}}_{\text{e}}(\boldsymbol{q}) & \boldsymbol{a}^{\text{b}}_{\text{e}}(\boldsymbol{q}) & \boldsymbol{p}^{\text{b}}_{\text{e}}(\boldsymbol{q})\\
+    0 & 0 & 0 & 1
+    \end{bmatrix},
+\end{equation}
+
+where $\boldsymbol{q}$ is the vector of the joint variables, $\boldsymbol{n}_{\text{e}}$, $\boldsymbol{s}_{\text{e}}$, $\boldsymbol{a}_{\text{e}}$ are the unit vectors that form the end-effector frame, and $\boldsymbol{p}_{\text{e}}$ is the position vector of the end-effector frame origin.
+
+This open chain homogeneous transformation (\ref{eq:homogeneous_transformation_b_e}) is a composition of homegeneous transformations between consecutive frames attached to each link and end-effector.
+
+\begin{align}
+    \label{eq:homogeneous_transformation_b_e}
+    \boldsymbol{T}^{\text{b}}_{\text{e}}(\boldsymbol{q}) &= \boldsymbol{T}^{\text{b}}_{\text{0}}\boldsymbol{T}^{\text{0}}_{\text{n}}(\boldsymbol{q})\boldsymbol{T}^{\text{n}}_{\text{e}} \\
+    \boldsymbol{T}^{\text{0}}_{\text{n}}(\boldsymbol{q}) &= \boldsymbol{T}^{\text{0}}_{\text{1}}(q_1)\boldsymbol{T}^{\text{1}}_{\text{2}}(q_2)\boldsymbol{T}^{\text{2}}_{\text{3}}(q_3)\ldots\boldsymbol{T}^{\text{n-1}}_{\text{n}}(q_n)
+\end{align}
+
+$\boldsymbol{T}^{\text{b}}_{\text{0}}$ and $\boldsymbol{T}^{\text{n}}_{\text{e}}$ represent transformations between the first chain link and the base frame, and the last chain link and the end-effector frame, respectively. These two transformations are typically constant.
+
+Although equation (\ref{eq:homogeneous_transformation_b_e}) mathematically defines the way to compute the transformation between the end-effector frame and the base frame, the actual process is highly dependent on the way the reference frames for each link are defined. Because there is freedom on the choice of the reference frames, sometimes the process becomes too laborious when the choice is not convenient. Taking this into consideration the \gls{dh} convention was created. This convention defines a systematic approach to the process of choosing the reference frames. Despite that fact that it eases the process, it still does not present a unique solution. It is possible to have various different reference frame choices still valid according to the \gls{dh} rules.
+
+Following the \gls{dh} convention, the homogeneous transformation between consecutive links is given by (\ref{eq:homogeneous_transformation_dh}).
+
+\begin{equation}
+    \label{eq:homogeneous_transformation_dh}
+    \boldsymbol{T}^{i-1}_{i}(q_i) = \begin{bmatrix}
+        c_{\theta_i} & -s_{\theta_i}c_{\alpha_i} & s_{\theta_i}s_{\alpha_i} & a_{i}c_{\theta_i}\\
+        s_{\theta_i} & c_{\theta_i}c_{\alpha_i} & -c_{\theta_i}s_{\alpha_i} & a_{i}s_{\theta_i}\\
+        0 & s_{\alpha_i} & c_{\alpha_i} & d_{i}\\
+        0 & 0 & 0 & 1
+    \end{bmatrix}
+\end{equation}
+
+$c_k$ and $s_k$ represent, respectively, the cosine of $k$ and the sine of $k$. The variables $\theta_i$, $\alpha_i$, $d_i$ and $a_i$ are the \gls{dh} parameters that define the relation between links $i-1$ and $i$. The meaning of these parameters are defined as \cite{Siciliano2009_robotics_modelling_planning_control}:
+
+\begin{itemize}
+    \item $a_i$ distance between the reference frames origins, $O_i$ and $O_{i'}$.
+    \item $d_i$ coordinate of $O_{i'}$ along $z_{i-1}$
+    \item $\alpha_i$ angle between axes $z_{i-1}$ and $z_i$ about axis $x_i$ to be taken positive when rotation is made counter-clockwise.
+    \item $\theta_i$ angle between axes $x_{i-1}$ and $x_i$ about axis $z_{i-1}$ to be taken positive when rotation is made counter-clockwise.
+\end{itemize}
+
+% subsubsection forward_kinematics
+
+% = Inverse Kinematics =
+\subsubsection{Inverse kinematics}
+\label{subsubsec:inverse_kinematics}
+
+Inverse kinematics has the inverse goal of direct kinematics. It intends to define the joint variables, or robot posture, based on the end-effector pose. This is generally a problem with a non-unique solution, which is its greatest limitation.
+
+Because this thesis does not use \gls{ik}, its theoretical concepts will not be further developed.
+
+% subsubsection inverse_kinematics
+
+% = Differential Kinematics =
+\subsubsection{Differential kinematics}
+\label{subsubsec:differential_kinematics}
+
+Differential kinematics establishes the relation between joint velocities and end-effector linear and angular velocities. The mapping between velocities described by a matrix, \emph{geometric jacobian}, or jacobian for short. This matrix depends on the posture of the robot. The jacobian matrix is very important tool to characterise a robotic manipulator. Some examples of its application are to find \emph{singularities}, analyse \emph{redundancy}, for inverse kinematics, and to relate joint torques to end-effector forces.
+
+Defining $\boldsymbol{v}_e$ as the end-effector velocity, the jacobian is defined by the following equation
+
+\begin{equation}
+    \boldsymbol{v}_e = \begin{bmatrix}
+    \dot{\boldsymbol{p}}_e\\
+    \boldsymbol{\omega}_e
+    \end{bmatrix} = \boldsymbol{J}(\boldsymbol{q})\dot{\boldsymbol{q}}.
+\end{equation}
+
+The matrix $\boldsymbol{J}$ is the manipulator jacobian and is a $6 \times n$ matrix. The jacobian can be defined as being composed of two jacobians, the linear jacobian $\boldsymbol{J}_\text{P}$, and the angular jacobian $\boldsymbol{J}_\text{O}$, like
+
+\begin{equation}
+    \boldsymbol{J} = \begin{bmatrix}
+    \boldsymbol{J}_\text{P}\\
+    \boldsymbol{J}_\text{O}
+    \end{bmatrix}.
+\end{equation}
+
+In general, the jacobian can be partitioned into column vectors ($3\times1$), $\boldsymbol{J}_{\text{P}i}$ and $\boldsymbol{J}_{\text{O}i}$ as
+
+\begin{equation}
+    \boldsymbol{J} = \begin{bmatrix}
+    \boldsymbol{J}_{\text{P}1} & \ldots & \boldsymbol{J}_{\text{P}n} \\
+    \boldsymbol{J}_{\text{O}1} & \ldots & \boldsymbol{J}_{\text{O}n}
+    \end{bmatrix},
+\end{equation}
+
+where each column is defined as
+
+\begin{equation}
+    \label{eq:jacobian_column}
+    \boldsymbol{J} = \begin{bmatrix}
+    \boldsymbol{J}_{\text{P}i}\\
+    \boldsymbol{J}_{\text{O}i}
+    \end{bmatrix} = \left\{ \begin{array}{cc}
+        \begin{bmatrix}
+            \boldsymbol{z}_{i-1}\\
+            \boldsymbol{0}
+        \end{bmatrix} & \text{for prismatic joint} \\
+        \begin{bmatrix}
+        \boldsymbol{z}_{i-1} \times (\boldsymbol{p}_\text{e} - \boldsymbol{p}_{i-1})\\
+        \boldsymbol{z}_{i-1}
+        \end{bmatrix} & \text{for revolute joint}.
+    \end{array}\right.
+\end{equation}
+
+Using only the relations from \gls{fk} and the expressions in (\ref{eq:jacobian_column}) the jacobian is easily computed.
+
+% subsubsection differential_kinematics
+
+% subsection kinematics
+
+% = Dynamics =
+\subsection{Dynamics}
+\label{subsec:dynamics}
+
+The study of the robot dynamics is concerned with the analysis of motion taking into consideration the forces and moments that generate that motion. The robotic manipulator's equations of motion will be introduced from the \gls{el} equations. These concepts follow the notation from \cite{Spong2005_robot_dynamics_control}.
+
+The \gls{el} equations are defined as
+
+\begin{equation}
+    \label{eq:euler_lagrange_equations}
+    \frac{d}{dt}\frac{\partial L}{\partial\dot{q}_j}-\frac{\partial L}{\partial q_j} = \tau_j ,
+\end{equation}
+
+\begin{equation}
+    L = K - P,
+\end{equation}
+
+where $L$ is the Lagrangian and $K$ and $P$ are the kinetic and potential energies, respectively. The variables $\dot{q}_j$, $q_j$ and $\tau_j$ represent, respectively, the $j$-th joint's velocity, displacement and torque.
+
+For an $n$-link robot manipulator, the kinetic and potential energies are defined as followed:
+
+\begin{equation}
+    \label{eq:kinetic_energy}
+    K = \frac{1}{2}\dot{\boldsymbol{q}}^T D(\boldsymbol{q}) \dot{\boldsymbol{q}},
+\end{equation}
+
+\begin{equation}
+    \label{eq:potential_energy}
+    P = \sum^{n}_{i=1} P_i = \sum^{n}_{i=1} \boldsymbol{g}^T \boldsymbol{r}_{\text{c}i} m_i .
+\end{equation}
+
+On the definition of the kinetic energy, $D(\boldsymbol{q})$ is the \emph{inertia matrix}, which is a positive definite matrix dependent on the robot configuration. $\dot{\boldsymbol{q}}$ is the vector of the joint velocities.
+The potential energy is a function of the gravity vector, $\boldsymbol{g}$, the center of mass vectors for each link, $\boldsymbol{r}_{\text{c}i}$, and the links mass $m_i$.
+
+By substituting the kinetic (\ref{eq:kinetic_energy}) and potential (\ref{eq:potential_energy}) energies on the \gls{el} equations (\ref{eq:euler_lagrange_equations}), and applying some algebraic operations, we obtain the robotic manipulator equations of motion. These equations in matrix form are defined as
+
+\begin{equation}
+    \label{eq:equations_motion}
+    D(\boldsymbol{q})\ddot{\boldsymbol{q}} + C(\boldsymbol{q}, \dot{\boldsymbol{q}})\dot{\boldsymbol{q}} + \boldsymbol{g}(\boldsymbol{q}) = \boldsymbol{\tau}.
+\end{equation}
+
+$C(\boldsymbol{q}, \dot{\boldsymbol{q}})$ is a $n \times n$ matrix, with \emph{centrifugal} and \emph{Coriolis} terms. Its $k$,$j$-th element is defined as
+
+\begin{align}
+    c_{kj} &= \sum^n_{i=1} c_{ijk}(\boldsymbol{q})\dot{q}_i \\
+    &= \sum^n_{i=1} \frac{1}{2} \left\{ \frac{\partial d_{kj}}{\partial q_j} + \frac{\partial d_{ki}}{\partial q_j} - \frac{\partial d_{ij}}{\partial q_k} \right\}.
+\end{align}
+
+The terms $c_{ijk}$ are known as the \emph{Christoffel symbols} of the first kind.
+
+% subsection dynamics
+
+% = Path and trajectory planning =
+\subsection{Path and trajectory planning}
+\label{subsec:path_trajectory_planning}
+
+The execution of a robot task is normally associated with movement of the end-effector in space. For proper and safe execution of the movements, obstacle avoidance and the application of the right velocities and accelerations must be considered. For this, path and trajectory planning are essential.
+
+Path and trajectory are terms commonly used interchangeably, but on this context are different. A path are the points in space that the robot should occupy while executing the task. Its merely a geometric concept. A trajectory, associates a timing law to a path, i.e., it defines velocities and accelerations. It defines how the robot should move from the start to the end of the path.
+
+The main goal of path and trajectory planning is to guarantee that the robot does not violate its physical limits during the task execution. This planning can be done on the \emph{configuration space} or the \emph{operational space}. The configuration space is the space defined by the joint variables. The operational or task space is defined by the task \gls{dof}, generally, a six dimensional space (three for position and three for orientation).
+
+Besides the space used, another option for planning is to use \emph{point-to-point motion}, or \emph{motion through a sequence of points}. Both will be briefly discussed later.
+
+% = Joint space trajectories =
+\subsubsection{Joint space trajectories}
+\label{subsubsec:joint_space_trajectories}
+
+Joint space trajectory planning is the most efficient on guaranteeing that the robot stays within its own limits. It is intended that the robot executes smooth trajectories, meaning that the velocities and accelerations are continuous functions. There exist several functions that guarantee this continuity. In order to interpolate between two path points, the most simple and common function used is a 3rd degree polynomial.
+
+If $q(t)$ represents a single joint motion in time, the cubic polynomial that defines it is
+
+\begin{equation}
+    q(t) = a_3 t^3 + a_2 t^2 + a_1 t + a_0 \text{.}
+\end{equation}
+
+This trajectory will originate a parabolic velocity profile
+
+\begin{equation}
+    \dot{q}(t) = 3 a_3 t^2 + 2 a_2 t + a_1\text{,}
+\end{equation}
+
+and a linear acceleration profile
+
+\begin{equation}
+    \ddot{q}(t) = 6 a_3 t + 2 a_2\text{.}
+\end{equation}
+
+Since four coefficients are available, it is possible to impose the initial and final positions and velocities (\ref{eq:cubic_polynomial_coefficients}). Typically the initial and final velocities are chosen to be zero.
+
+\begin{equation}
+    \label{eq:cubic_polynomial_coefficients}
+    \begin{aligned}
+        a_0 &= q_i\\
+        a_1 &= \dot{q}_i \\
+        a_3 t_f^3 + a_2 t_f^2 + a_1 t + a_0 &= q_f \\
+        3 a_3 t_f^2 + 2 a_2 t_f + a_1 &= \dot{q}_f 
+    \end{aligned}
+\end{equation}
+
+{\color{red} colocar gráficos do livro}
+
+% subsubsection joint_space_trajectories
+
+% = Task space trajectories =
+\subsubsection{Task space trajectories}
+\label{subsubsec:task_space_trajectories}
+
+Configuration space trajectories strategies are effective to guarantee a smooth trajectory between two different robot configurations. However, with this approach it is not easy to predicte the end-effector movement. Because most of the times the task is related to the end-effector position and movement, it is important to be able to plan a trajectory explicitly for the end-effector \cite{Siciliano2009_robotics_modelling_planning_control}.
+
+As in the case of joint space trajectories, the planning must generate some trajectories of the end-effector. On a point-to-point approach, the trajectory is an interpolation of the robot pose between an initial and a final pose.
+
+The rational can be used for task space trajectories. It means that we can also use a cubic polynomial to represent the 6 degrees of freedom of the end-effector (\ref{eq:cubic_polynomial_coefficients_task_space}). An important note is that, to interpolate the orientation a parametric representation must be used, like axis/angle or unit quaternion.
+
+\begin{equation}
+    \label{eq:cubic_polynomial_coefficients_task_space}
+    \boldsymbol{X}(t) = \left\{
+    \begin{aligned}
+        x(t) &= a_3 t^3 + a_2 t^2 + a_1 t + a_0\\
+        y(t) &= b_3 t^3 + b_2 t^2 + b_1 t + b_0\\
+        z(t) &= c_3 t^3 + c_2 t^2 + c_1 t + c_0\\
+        rx(t) &= e_3 t^3 + e_2 t^2 + e_1 t + e_0\\
+        ry(t) &= f_3 t^3 + f_2 t^2 + f_1 t + f_0\\
+        rz(t) &= g_3 t^3 + g_2 t^2 + g_1 t + g_0
+    \end{aligned}
+    \right.
+\end{equation}
+
+The notation used for orientation is axis/angle. The trajectory time is equal for each degree of freedom.
+
+% subsubsection task_space_trajectories
+
+% subsection path_trajectory_planning
+
+% = Free space and interaction control =
+\subsection{Free space and interaction control}
+\label{subsec:free_space_interaction_control}
+
+After the trajectories are planned, the robot must execute them and evaluate or track the execution. This is the responsibility of the control algorithm.
+
+Robot control is part of the general theory of control. Control algorithms are vital for many different type of systems, from airplanes to air conditioning systems. The control can be done in \emph{open-loop} or \emph{close-loop}. Open-loop control inputs a control signal to the system, but does not observe the system's output. It is a \emph{fire-and-forget} type of control. On the contrary, close-loop control has a feedback system where the system's output is combined with the control signal. This new signal affects the system in order for it to asymptotically reach the desired state.  
+
+On the case of robot manipulators, control can be related to free space motion (\emph{motion control}) or robot interaction with the environment (\emph{interaction control}) \cite{Siciliano1999_robot_force_control}. 
+
+Motion control should only be used on task were the robot is moving in free space. If this approach is used when the robot is in interaction with environment, a small tracking error can lead to high forces and eventually damage to the robot and/or environment. 
+
+Interaction control was especially conceived to deal with interactions forces from the environment. This control also subdivides into {indirect force control} and {direct force control}. The difference between the two, is that the former achieves force control via motion control. The latter controls the contact force directly \cite{Siciliano1999_robot_force_control}.
+
+% subsection free_space_interaction_control
+
+% section robotics
+
+% ===================
+% = Computer Vision =
+% ===================
+
+\section{Computer vision}
+\label{sec:computer_vision}
+
+% = Stereo cameras =
+\subsection{Stereo cameras}
+\label{subsec:stereo_cameras}
+
+% subsection stereo_cameras
+
+% = Point clouds =
+\subsection{Point clouds}
+\label{subsec:point_clouds}
+
+% subsection point_clouds
+
+% = Image processing =
+\subsection{Image processing}
+\label{subsec:image_processing}
+
+% subsection image_processing
+
+% = Image segmentation =
+\subsection{Image segmentation}
+\label{subsec:image_segmentation}
+
+% subsection image_segmentation
+
+% = Visual servoing =
+\subsection{Visual servoing}
+\label{subsec:visual_servoing}
+
+% subsection visual_servoing
+
+% section computer_vision

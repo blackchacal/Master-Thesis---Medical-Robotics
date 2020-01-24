@@ -35,7 +35,7 @@
 
 % The default option marked with (*)
 \documentclass[
-  docdegree=mscplan,        % phd(*), phdplan, phdprop, msc, mscplan, bsc
+  docdegree=msc,        % phd(*), phdplan, phdprop, msc, mscplan, bsc
   school=nova/fct,      % nova/fct(*), nova/fcsh, nova/ims, ul/ist, ul/fc
   lang=en,              % en(*), fr, it, pt
   coverlang=en,         % defaults to main language
@@ -67,20 +67,27 @@
     % sorting=none,       % none, nyt(*), ynt
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% uncomment for 'numeric-by-order-of-citation' like citations
-    backend=bibtex,     % use bibtex if possible
-    style=numeric-comp, % numeric(*), alphabetic, authoryear, bwl-FU
-    sortcites=true,     % If numeric, sort cites by crescent order
-    sorting=ynt,        % none, nyt(*), ynt
+    %backend=bibtex,     % use bibtex if possible
+    %style=numeric-comp, % numeric(*), alphabetic, authoryear, bwl-FU
+    %sortcites=true,     % If numeric, sort cites by crescent order
+    %sorting=none,        % none, nyt(*), ynt
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% uncomment for 'numeric-by-order-of-citation' like citations
     % backend=bibtex,   % use bibtex if possible
     % style=alphabetic, % numeric(*), alphabetic, authoryear, bwl-FU
     % sorting=nyt,      % none, nyt(*), ynt
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     %%% uncomment for 'ieee' like citations
+    backend=bibtex,   % use bibtex if possible
+    style=ieee, % numeric(*), alphabetic, authoryear, bwl-FU
+    sortcites=true
+    sorting=none,      % none, nyt(*), ynt
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%% other options for biblatex
-    maxbibnames=99,     % Never use 'et al' in the bibliography
+    maxbibnames=5,     % Never use 'et al' in the bibliography
     giveninits=true,    % render all first and middle names as initials
-    hyperref=true       % Hyperlinks in citations: true(*) false
+    hyperref=true,       % Hyperlinks in citations: true(*) false
+    issn=false          % Hide ISSN from references
   },
   memoir={              % See the 'memoir' documentation
     % showtrims,          % DEBUG
@@ -110,6 +117,8 @@
 %% VERY IMPORTANT
 \usepackage{booktabs}    % Beautiful simple tables
 \usepackage{paralist}    % To enable customizble enumerates
+\usepackage{comment}     % To comment blocks of text
+\usepackage{siunitx}     % Use SI units
 
 %% IMPORTANT (consider removing/commenting)
 %\usepackage{colortbl}    % Use colors in background of table cells
@@ -169,8 +178,8 @@
 % }
 % \makeatother
 
-\title[Topical Application of Antimicrobial Drugs \\on Extensive Burn Wounds \\Using Autonomous Collaborative Robotics]{}
-\subtitle{Science is beautiful}
+\title[Semi-Autonomous 3D Positioning System \\Using Collaborative Robotics for 3D Bioprinting \\Directly on Burn Wounds]{}
+%\subtitle{Science is beautiful}
 
 % Autor
 % use [f] for female and [m] for male
@@ -229,7 +238,7 @@
 % \quotefile{quote}    % Quote
 \abstractfile[pt]{abstract-pt}  % Abstract in Portuguese
 \abstractfile[en]{abstract-en}  % Abstract in English
-\abstractfile[fr]{abstract-fr}  % Abstract in French
+%\abstractfile[fr]{abstract-fr}  % Abstract in French
 \glossaryfile{glossary}
 \setglossarystyle{super}
 \acronymsfile{acronyms}
@@ -250,9 +259,15 @@
 % syntax: \chapterfile{file}
 \chapterfile{chapter1}
 \chapterfile{chapter2}
-\chapterfile{chapter3}
-% \chapterfile{chapter4}
-
+%\chapterfile{chapter3}
+%\chapterfile{chapter4}
+%\chapterfile{chapter5}
+%\chapterfile{chapter6}
+%\chapterfile{chapter7}
+%\chapterfile{chapter8}
+%\chapterfile{chapter9}
+%\chapterfile{chapter10}
+%\chapterfile{chapter11}
 
 % Text appendixes
 % sintax: \appendixfile{file}
@@ -265,8 +280,11 @@
 
 % BibTeX bibliography files. Can be used multiple times with a single file nae each time.
 \addbibfile{references.bib}
-
-
+% Remove "In" from article references.
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+% Remove issn field from article references.
+\AtEveryBibitem{\clearfield{issn}}
 
 %%==== DANGER ==== DANGER ==== DANGER ==== DANGER ==== DANGER ====
 %%==== DANGER ==== DANGER ==== DANGER ==== DANGER ==== DANGER ====
