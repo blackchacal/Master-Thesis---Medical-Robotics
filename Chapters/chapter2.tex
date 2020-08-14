@@ -233,11 +233,11 @@ Finally, sometimes its is convenient to use a simplified representation of rotat
 \subsubsection{Homogeneous transformations}
 \label{subsubsec:homogeneous_transformations}
 
-To properly represent the position and orientation of a rigid body we use the pose. But we also need to represent a pose change given by a translation, a rotation or a combination of both. The mathematical tool to represent this change in pose is a $4\times4$ matrix, in 3D space, called homogeneous transformation. This matrix, represented by $\boldsymbol{T}$ in (\ref{eq:homogeneous_transformation}), is composed by a rotation matrix and a translation vector that describe the pose.
+To properly represent the position and orientation of a rigid body we use the pose. But we also need to represent a pose change given by a translation, a rotation or a combination of both. The mathematical tool to represent this change in pose is a $4\times4$ matrix, in 3D space, called homogeneous transformation. This matrix, represented by $\boldsymbol{H}$ in (\ref{eq:homogeneous_transformation}), is composed by a rotation matrix and a translation vector that describe the pose.
 
 \begin{equation}
     \label{eq:homogeneous_transformation}
-    \boldsymbol{T} = \begin{bmatrix} \boldsymbol{R} & \boldsymbol{p} \\ 
+    \boldsymbol{H} = \begin{bmatrix} \boldsymbol{R} & \boldsymbol{p} \\ 
     \boldsymbol{0}^{T} & 1\end{bmatrix} = \begin{bmatrix} r_{11} & r_{12} & r_{13} & p_x\\
     r_{21} & r_{22} & r_{23} & p_y\\
     r_{31} & r_{32} & r_{33} & p_z\\
@@ -246,19 +246,19 @@ To properly represent the position and orientation of a rigid body we use the po
 
 In general, homogeneous transformation matrix is not orthogonal so 
 \begin{equation}
-    \boldsymbol{T}^{T} \neq \boldsymbol{T}^{-1}.
+    \boldsymbol{H}^{T} \neq \boldsymbol{H}^{-1}.
 \end{equation}
 
-Homogeneous transformations follow the some composition rules of rotations matrices. Considering that $\boldsymbol{T}^{i}_{j}$ represents the homogeneous transformation of reference frame $j$ in relation to reference $i$, the composition is given by
+Homogeneous transformations follow the some composition rules of rotations matrices. Considering that $\boldsymbol{H}^{i}_{j}$ represents the homogeneous transformation of reference frame $j$ in relation to reference $i$, the composition is given by
 
 \begin{equation}
-    \boldsymbol{T}^{0}_{2} = \boldsymbol{T}^{0}_{1}\boldsymbol{T}^{1}_{2}
+    \boldsymbol{H}^{0}_{2} = \boldsymbol{H}^{0}_{1}\boldsymbol{H}^{1}_{2}
 \end{equation}
 
 if the transformations are in relation to the \emph{current frame}, or
 
 \begin{equation}
-    \boldsymbol{T}^{0}_{2} = \boldsymbol{T}^{1}_{2}\boldsymbol{T}^{0}_{1}
+    \boldsymbol{H}^{0}_{2} = \boldsymbol{H}^{1}_{2}\boldsymbol{H}^{0}_{1}
 \end{equation}
 
 if they are in relation to a fixed frame.
@@ -281,10 +281,10 @@ Before we jump on to the different branches it is important to introduce a few o
 
 The goal of forward kinematics is to find the pose of the end-effector according to the state of the joint variables.
 
-Mathematically, its is represented by the homogeneous transformation of the \emph{end-effector frame}, $O_{\text{e}}x_{\text{e}}y_{\text{e}}z_{\text{e}}$, in relation to the \emph{base frame}, $O_{\text{b}}x_{\text{b}}y_{\text{b}}z_{\text{b}}$, $\boldsymbol{T}^{\text{b}}_{\text{e}}$. 
+Mathematically, its is represented by the homogeneous transformation of the \emph{end-effector frame}, $O_{\text{e}}x_{\text{e}}y_{\text{e}}z_{\text{e}}$, in relation to the \emph{base frame}, $O_{\text{b}}x_{\text{b}}y_{\text{b}}z_{\text{b}}$, $\boldsymbol{H}^{\text{b}}_{\text{e}}$. 
 
 \begin{equation}
-    \boldsymbol{T}^{\text{b}}_{\text{e}}(\boldsymbol{q}) =
+    \boldsymbol{H}^{\text{b}}_{\text{e}}(\boldsymbol{q}) =
     \begin{bmatrix}
     \boldsymbol{n}^{\text{b}}_{\text{e}}(\boldsymbol{q}) & \boldsymbol{s}^{\text{b}}_{\text{e}}(\boldsymbol{q}) & \boldsymbol{a}^{\text{b}}_{\text{e}}(\boldsymbol{q}) & \boldsymbol{p}^{\text{b}}_{\text{e}}(\boldsymbol{q})\\
     0 & 0 & 0 & 1
@@ -297,11 +297,11 @@ This open chain homogeneous transformation (\ref{eq:homogeneous_transformation_b
 
 \begin{align}
     \label{eq:homogeneous_transformation_b_e}
-    \boldsymbol{T}^{\text{b}}_{\text{e}}(\boldsymbol{q}) &= \boldsymbol{T}^{\text{b}}_{\text{0}}\boldsymbol{T}^{\text{0}}_{\text{n}}(\boldsymbol{q})\boldsymbol{T}^{\text{n}}_{\text{e}} \\
-    \boldsymbol{T}^{\text{0}}_{\text{n}}(\boldsymbol{q}) &= \boldsymbol{T}^{\text{0}}_{\text{1}}(q_1)\boldsymbol{T}^{\text{1}}_{\text{2}}(q_2)\boldsymbol{T}^{\text{2}}_{\text{3}}(q_3)\ldots\boldsymbol{T}^{\text{n-1}}_{\text{n}}(q_n)
+    \boldsymbol{H}^{\text{b}}_{\text{e}}(\boldsymbol{q}) &= \boldsymbol{H}^{\text{b}}_{\text{0}}\boldsymbol{H}^{\text{0}}_{\text{n}}(\boldsymbol{q})\boldsymbol{H}^{\text{n}}_{\text{e}} \\
+    \boldsymbol{H}^{\text{0}}_{\text{n}}(\boldsymbol{q}) &= \boldsymbol{H}^{\text{0}}_{\text{1}}(q_1)\boldsymbol{H}^{\text{1}}_{\text{2}}(q_2)\boldsymbol{H}^{\text{2}}_{\text{3}}(q_3)\ldots\boldsymbol{H}^{\text{n-1}}_{\text{n}}(q_n)
 \end{align}
 
-$\boldsymbol{T}^{\text{b}}_{\text{0}}$ and $\boldsymbol{T}^{\text{n}}_{\text{e}}$ represent transformations between the first chain link and the base frame, and the last chain link and the end-effector frame, respectively. These two transformations are typically constant.
+$\boldsymbol{H}^{\text{b}}_{\text{0}}$ and $\boldsymbol{H}^{\text{n}}_{\text{e}}$ represent transformations between the first chain link and the base frame, and the last chain link and the end-effector frame, respectively. These two transformations are typically constant.
 
 Although equation (\ref{eq:homogeneous_transformation_b_e}) mathematically defines the way to compute the transformation between the end-effector frame and the base frame, the actual process is highly dependent on the way the reference frames for each link are defined. Because there is freedom on the choice of the reference frames, sometimes the process becomes too laborious when the choice is not convenient. Taking this into consideration the \gls{dh} convention was created. This convention defines a systematic approach to the process of choosing the reference frames. Despite that fact that it eases the process, it still does not present a unique solution. It is possible to have various different reference frame choices still valid according to the \gls{dh} rules.
 
@@ -309,7 +309,7 @@ Following the \gls{dh} convention, the homogeneous transformation between consec
 
 \begin{equation}
     \label{eq:homogeneous_transformation_dh}
-    \boldsymbol{T}^{i-1}_{i}(q_i) = \begin{bmatrix}
+    \boldsymbol{H}^{i-1}_{i}(q_i) = \begin{bmatrix}
         c_{\theta_i} & -s_{\theta_i}c_{\alpha_i} & s_{\theta_i}s_{\alpha_i} & a_{i}c_{\theta_i}\\
         s_{\theta_i} & c_{\theta_i}c_{\alpha_i} & -c_{\theta_i}s_{\alpha_i} & a_{i}s_{\theta_i}\\
         0 & s_{\alpha_i} & c_{\alpha_i} & d_{i}\\
@@ -353,7 +353,7 @@ Defining $\boldsymbol{v}_e$ as the end-effector velocity, the jacobian is define
     \end{bmatrix} = \boldsymbol{J}(\boldsymbol{q})\dot{\boldsymbol{q}}.
 \end{equation}
 
-The matrix $\boldsymbol{J}$ is the manipulator jacobian and is a $6 \times n$ matrix. The jacobian can be defined as being composed of two jacobians, the linear jacobian $\boldsymbol{J}_\text{P}$, and the angular jacobian $\boldsymbol{J}_\text{O}$, like
+The matrix $\boldsymbol{J}$ is the manipulator jacobian and is a $6 \times n$ matrix, where $n$ is the number of joints. The jacobian can be defined as being composed of two jacobians, the linear jacobian $\boldsymbol{J}_\text{P}$, and the angular jacobian $\boldsymbol{J}_\text{O}$, like
 
 \begin{equation}
     \boldsymbol{J} = \begin{bmatrix}

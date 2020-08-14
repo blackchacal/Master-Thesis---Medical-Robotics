@@ -103,7 +103,7 @@ On the bioprinting phase the bioinks are prepared for printing and the actual pr
 
 The post-bioprinting, or post-processing, stage is when the tissue maturation occurs before patient transplantation or usage as an in vitro model. Several techniques can used depending on the tissue construct printed. Bioreactors are commonly used to provide a controlled environment for tissue maturation \cite{Datta2018_essential_steps_bioprinting, Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
-All three stages have their limitations and a concerted effort of the whole community is needed to take this technology from bench to bedside. On the actual bioprinting step of the bioprinting stage some of the improvements needed are a higher number of degrees of freedom of the bioprinting system; higher printing speeds without compromising the cells viability and construct shape; and increased automation of the printing process. \cite{Ozbolat2017_evaluation_bioprinter_tech, Datta2018_essential_steps_bioprinting}. Collaborative robotics and computer vision can help solve these limitations. Next, these two fields will be introduced and some examples will be presented to show their potential to solve the aforementioned problems.
+All three stages have their limitations and a concerted effort of the whole community is needed to take this technology from bench to bedside. On the actual bioprinting step of the bioprinting stage some of the improvements needed are a higher number of degrees of freedom of the bioprinting system; higher printing speeds without compromising the cells viability and construct shape; and increased automation of the printing process \cite{Ozbolat2017_evaluation_bioprinter_tech, Datta2018_essential_steps_bioprinting}. Collaborative robotics and computer vision can help solve these limitations. Next, these two fields will be introduced and some examples will be presented to show their potential to solve the aforementioned problems.
 
 % subsection 3D_bioprinting (end)
 
@@ -147,9 +147,9 @@ Computer vision tries to extract information from an image just like a human wou
 
 Computer vision algorithms have been used in many different scientific and engineering fields. Two important examples is its use in medicine and robotics.
 
-Computer vision is a fundamental branch of robotics. Many robotic systems do not have vision capabilities, but when autonomy is important, vision is a common sensory option. From mobile to humanoid robots, vision adds a human-like skill to analyse the environment. Robotics as contributed positively for the development of computer vision. The computer algorithms within the robotic realm have been used for inspection, for the detection of objects, people and faces.
+Computer vision is a fundamental branch of robotics. Many robotic systems do not have vision capabilities, but when autonomy is important, vision is a common sensory option. From mobile to humanoid robots, vision adds a human-like skill to analyse the environment. Robotics has contributed positively for the development of computer vision. The computer algorithms within the robotic realm have been used for inspection, for the detection of objects, people and faces.
 
-In medicine, computer vision also has an important role that has been increasing with time. This computer ability has been used for things like cell counting to culture inspection. New machine learning algorithms have been used to detect cancer in histological slides. An important example on the realm of burn injury is the use of computer vision to segment burn wounds and classify the \gls{tbsa}.
+In medicine, computer vision also has an important role that has been increasing with time. This computer ability has been used for things like cell counting to culture inspection. New machine learning algorithms have been used to detect cancer in histological slides \cite{Araujo2017_classification_breast_cancer_histology}. An important example on the realm of burn injury is the use of computer vision to segment burn wounds and classify the \gls{tbsa} \cite{Wantanajittikul2012_automatic_segmentation_degree_identification_burn_wounds}.
 
 {\color{red} Adicionar referências e mais exemplos de aplicação na robótica e medicina.}
 
@@ -163,14 +163,15 @@ In medicine, computer vision also has an important role that has been increasing
 \section{Goals} % (fold)
 \label{sec:goals}
 
-The present thesis proposes a semi-autonomous 3D positioning system for bioprinting of skin tissue directly on burn wounds. The main goal of the system is to detect burn wounds, devise a printing path, and be able to travel through that path at a certain speed. This goal encompasses several specific goals, to mention:
+The present thesis proposes a semi-autonomous 3D positioning system for bioprinting of skin tissue directly on burn wounds. The main goal of the system is to detect burn wounds, devise a printing path, and be able to travel through that path at a certain speed while dispensing bioink. This goal encompasses several specific goals, to mention:
 \begin{enumerate}
     \item Detection and segmentation of burn wounds;
-    \item Definition of wound perimeter and localisation;
+    \item Definition of wound area, perimeter and localisation;
     \item Path and Trajectory definition;
-    \item Robot manipulator control for trajectory execution.
+    \item Robot manipulator control for trajectory execution;
+    \item Print head control for bioink dispensing.
 \end{enumerate}
-The broader goals of this work are to show that using a robotic arm with more than 3 \gls{dof} is a valid option for in situ bioprinting; and using a vision system opens the possibility for printing automation. On the bigger picture of medical robotics this work intends to prove that there exists other valid use cases, aside from the common ones, for the use of robotics on surgery and treatment.
+The broader goals of this work are to show that using a robotic arm with more than 3 \gls{dof} is a valid option for in situ bioprinting; and using a vision system opens the possibility for printing automation. On the bigger picture of medical robotics this work intends to prove that there exists other valid use cases for the use of robotics in surgery and treatment.
 
 % section goals
 
@@ -191,7 +192,7 @@ The chosen system architecture aims to solve some limitations of the current 3D 
 	\label{fig:system_architecture_intro}
 \end{figure}
 
-The use of a robotic manipulator brings more \gls{dof}. This facilitates the process of bioprinting in non-planar surfaces. Using a camera makes possible to increase the autonomy of the bioprinting process. The combination of both systems facilitates the 3D bioprinting to be done in situ, as opposed to be inside the printer and then transferred to the final location.
+The use of a robotic manipulator brings more \gls{dof}. This facilitates the process of bioprinting in non-planar surfaces. Using a camera contributes to increase the autonomy of the bioprinting process. The combination of both systems facilitates the 3D bioprinting to be done in situ, as opposed to be inside the printer and then transferred to the final location.
 
 A layered structure is used to describe the system's functional architecture. Composed by seven layers (Fig. \ref{fig:system_architecture_intro}), it aims to organise the system into independent modules that communicate between adjacent layers. Each layer provides a specific \gls{api} to the next layer.
 
@@ -210,15 +211,17 @@ The document structure followed aims to guide the reader from the need of the pr
 \begin{enumerate}
     \item \textbf{Introduction}, presents the biomedical application context of the proposed tool system, which is the reality of burn injury. It is followed by a summary of the current state of three different scientific fields that contribute for the development of the proposed tool. Afterwards, the goal of the thesis and a summary of the proposed system architecture are presented. It ends with the description of the thesis document's structure.
     
-    \item \textbf{Theoretical Concepts}, introduces the fundamental concepts necessary for understanding the contents of this thesis. It focuses on concepts of robotic control and computer vision. 
+    \item \textbf{Theoretical Concepts}, introduces the fundamental concepts necessary for understanding the contents of this thesis. It focuses on concepts of 3D bioprinting, robotic control and computer vision. 
     
     \item \textbf{Literature Review}, consists on an analysis of the current literature related with 3D bioprinting using robotic manipulators, with or without vision systems.
     
-    \item \textbf{System Architecture}, is a full description of the proposed system architecture introduced on the first chapter. It starts with a description of the system requirements. Subsequently, the robotic system and the vision system are introduced. Finally, the system's interaction layers are described in detail.
+    \item \textbf{System Architecture}, is a full description of the proposed system architecture introduced on the first chapter. It starts with a description of the system requirements. Subsequently, the robotic, vision, and bioprinting systems are introduced. Finally, the system's functionality and interaction layers are described in detail.
     
     \item \textbf{Robotic System}, starts with a main overview of the robotic system. It describes the robot kinematic and dynamic characteristics. It ends with the integration of the robot with the \gls{ros} and Gazebo simulation environment.
     
     \item \textbf{Vision System}, describes the camera system used and the way it interfaces with the robot manipulator. It also describes the \gls{sdk} and the integration with \gls{ros} and Gazebo.
+    
+    \item \textbf{Print Head}, documents in detail the custom robot end-effector designed to print bioink using a syringe pump mechanism.
     
     \item \textbf{Control Architectures}, discusses several control architectures used for robot positioning and for visual servoing. Visual servoing is the use of visual input for control purposes.
     

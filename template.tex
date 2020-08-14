@@ -86,8 +86,7 @@
     %%% other options for biblatex
     maxbibnames=5,     % Never use 'et al' in the bibliography
     giveninits=true,    % render all first and middle names as initials
-    hyperref=true,       % Hyperlinks in citations: true(*) false
-    issn=false          % Hide ISSN from references
+    hyperref=true       % Hyperlinks in citations: true(*) false
   },
   memoir={              % See the 'memoir' documentation
     % showtrims,          % DEBUG
@@ -120,6 +119,7 @@
 \usepackage{comment}     % To comment blocks of text
 \usepackage{siunitx}     % Use SI units
 %\usepackage{parskip}     % To add space between paragraphs
+\usepackage{wrapfig}     % To position images and text side by side. 
 
 %% IMPORTANT (consider removing/commenting)
 %\usepackage{colortbl}    % Use colors in background of table cells
@@ -196,7 +196,7 @@
 % Advisers
 % use "\\&" if necessary to break the lines in the appropriate place
 % use [f] for female and [m] for male
-\adviser[m]{Prof. Dr. Rui Cortesão}{Professor Auxiliar com Agregação}{\\& Instituto de Sistemas e Robótica, Universidade de Coimbra} 
+\adviser[m]{Prof. Dr. Rui Cortesão}{Professor Auxiliar}{\\& Instituto de Sistemas e Robótica, Universidade de Coimbra} 
 % you may use "\newline" to force a new line
 % \adviser[m]{John Doe Male Adviser Name}{Associate\\& Professor}{Some University Somewhere}
 % \adviser[m]{John Doe Third Adviser Name}{Associate\\& Professor}{Some University Somewhere}
@@ -260,9 +260,9 @@
 % syntax: \chapterfile{file}
 \chapterfile{chapter1}
 \chapterfile{chapter2}
-\chapterfile{chapter3}
-%\chapterfile{chapter4}
-%\chapterfile{chapter5}
+%\chapterfile{chapter3}
+\chapterfile{chapter4}
+\chapterfile{chapter5}
 %\chapterfile{chapter6}
 %\chapterfile{chapter7}
 %\chapterfile{chapter8}
