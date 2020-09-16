@@ -378,7 +378,7 @@ For the complete description of the bioprinting system, refer to chapter \ref{ch
 
 Finally, the control system's architecture consists on several layers like: (a) the common layers of a personal computer, the hardware and operating system layers; (b) a middle-ware layer, \gls{ros}; and (c) an application layer, which consists on the main work of this thesis (Fig. \ref{fig:system_architecture_functional_diagram_control_system}).
 
-The application layer was built directly on top of \gls{ros} which means it is completely dependent on its existence. The reason this is done this way is because both the robot and the camera have \gls{ros} integrations. Besides, \gls{ros} uses a distributed architecture that eases the communication between the different nodes. An overview description of \gls{ros} is provided on Annex \ref{ann:ros}.
+The application layer was built directly on top of \gls{ros} which means it is completely dependent on its existence. The reason this is done this way is because both the robot and the camera have \gls{ros} integrations. Besides, \gls{ros} uses a distributed architecture that eases the communication between the different nodes. An overview description of \gls{ros} is provided on annex \ref{ann:ros}.
 
 The application itself is composed of several layers, each belonging to a specific system (Fig. \ref{fig:system_architecture_functional_diagram_control_system}). In operational terms, they all stack up, like shown on Figure \ref{fig:system_architecture_intro} (right), passing data to the top adjacent layer. Some layers belong to the same \gls{ros} package and can even belong to the same node. In general, a system is represented by a package but not necessarily.
 
@@ -459,7 +459,7 @@ The wound detection is done over the camera RGB data stream. Since we intend to 
 where $r$, $g$ and $b$ are the weights of red, green and blue channels, respectively. The algorithm applied,  OpenCV's \textbf{cvtColor} function, uses the following coefficients \cite{OpenCV2020_color_conversions, ITU2020_grayscale_conversion}: 
 $$ r = 0.299, g = 0.587, b = 0.114 $$
 
-After obtaining the grayscale image, a binarisation algorithm is applied to convert the image to black and white. The algorithm uses a threshold value chosen empirically and changes each pixel value according to it. If the pixel value is greater than the threshold it is converted to 0, otherwise to 1. This algorithm used OpenCV's \textbf{threshold} function. For more information on OpenCV functions refer to annex \ref{ann:opencv_functions}.
+After obtaining the grayscale image, a binarisation algorithm is applied to convert the image to black and white. The algorithm uses a threshold value chosen empirically and changes each pixel value according to it. If the pixel value is greater than the threshold it is converted to 0, otherwise to 1. This algorithm used OpenCV's \textbf{threshold} function. For more information on OpenCV functions refer to appendix \ref{app:opencv_functions}.
 
 Because the wound model is a black shape on a lighter background, it is easier to detect the wound contour. The detection is done with OpenCV's \textbf{findContours} function.\\
 
