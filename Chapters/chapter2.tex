@@ -419,7 +419,7 @@ For an $n$-link robot manipulator, the kinetic and potential energies are define
 
 \begin{equation}
     \label{eq:kinetic_energy}
-    K = \frac{1}{2}\dot{\boldsymbol{q}}^T D(\boldsymbol{q}) \dot{\boldsymbol{q}},
+    K = \frac{1}{2}\dot{\boldsymbol{q}}^T M(\boldsymbol{q}) \dot{\boldsymbol{q}},
 \end{equation}
 
 \begin{equation}
@@ -427,14 +427,14 @@ For an $n$-link robot manipulator, the kinetic and potential energies are define
     P = \sum^{n}_{i=1} P_i = \sum^{n}_{i=1} \boldsymbol{g}^T \boldsymbol{r}_{\text{c}i} m_i .
 \end{equation}
 
-On the definition of the kinetic energy, $D(\boldsymbol{q})$ is the \emph{inertia matrix}, which is a positive definite matrix dependent on the robot configuration. $\dot{\boldsymbol{q}}$ is the vector of the joint velocities.
+On the definition of the kinetic energy, $M(\boldsymbol{q})$ is the \emph{inertia matrix}, which is a positive definite matrix dependent on the robot configuration. $\dot{\boldsymbol{q}}$ is the vector of the joint velocities.
 The potential energy is a function of the gravity vector, $\boldsymbol{g}$, the center of mass vectors for each link, $\boldsymbol{r}_{\text{c}i}$, and the links mass $m_i$.
 
 By substituting the kinetic (\ref{eq:kinetic_energy}) and potential (\ref{eq:potential_energy}) energies on the \gls{el} equations (\ref{eq:euler_lagrange_equations}), and applying some algebraic operations, we obtain the robotic manipulator equations of motion. These equations in matrix form are defined as
 
 \begin{equation}
     \label{eq:equations_motion}
-    D(\boldsymbol{q})\ddot{\boldsymbol{q}} + C(\boldsymbol{q}, \dot{\boldsymbol{q}})\dot{\boldsymbol{q}} + \boldsymbol{g}(\boldsymbol{q}) = \boldsymbol{\tau}.
+    M(\boldsymbol{q})\ddot{\boldsymbol{q}} + C(\boldsymbol{q}, \dot{\boldsymbol{q}})\dot{\boldsymbol{q}} + \boldsymbol{g}(\boldsymbol{q}) = \boldsymbol{\tau}.
 \end{equation}
 
 $C(\boldsymbol{q}, \dot{\boldsymbol{q}})$ is a $n \times n$ matrix, with \emph{centrifugal} and \emph{Coriolis} terms. Its $k$,$j$-th element is defined as
