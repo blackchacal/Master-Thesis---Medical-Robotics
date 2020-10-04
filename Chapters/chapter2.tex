@@ -39,7 +39,7 @@ Next, the positioning systems and print heads will be described in more detail.
 
 A 3D positioning system is an electromechanical system, also called a robotic arm, that is able to precisely position the print head on 3D space. The system in place on bioprinters is a \emph{gantry} or cartesian system.
 
-A gantry is a three-axis, x, y and z, robotic arm. It has three degrees of freedom based on prismatic joints. This system allows the positioning in 3D space but it does not allow a change in orientation. The x and y axes are horizontal and parallel to the base of the printer, and the z axes is vertical and perpendicular to the base.
+A gantry is a three-axis, x, y and z, robotic arm. It has three degrees of freedom based on prismatic joints. This system allows the positioning in 3D space but it does not allow a change in orientation. The x and y axes are horizontal and parallel to the base of the printer, and the z axes is vertical and perpendicular to the base (Fig. \ref{fig:gantry_system}).
 
 Although the bioprinters have a gantry, each one has its own electromechanical implementation. For example, on some devices the print head moves in z. On others the print head is stationary and the it is printing table that moves.
 
@@ -47,7 +47,14 @@ One limitation of the gantry is the workspace, or build volume. The bioprinter c
 
 The gantry system is a common positioning system within the manufacturing realm. Its simplicity and precision capabilities makes it a good option for 2D and 3D positioning where the orientation is fixed. The setup is also good to deal with heavy payloads. Some examples of machines that use this system are: \gls{cnc} machines, laser cutters, and heavy loads transportation in factories.
 
-{\color{red}Usar imagem base do livro e fazer uma de uma bioimpressora.} 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.45\textwidth]{gantry_system_model}
+	\hspace{.1in}
+	\raisebox{.25\height}{\includegraphics[width=.45\textwidth]{gantry_system_example}}
+	\caption{Gantry positioning system. (left) System model. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}. (right) 3D bioprinter example gantry system. Adapted from \cite{ONeill2017_3d_bioprinting_directly_onto_moving_human_anatomy}}
+	\label{fig:gantry_system}
+\end{figure}
 
 % subsection positioning_system
 
@@ -57,9 +64,16 @@ The gantry system is a common positioning system within the manufacturing realm.
 
 The print head is the bioprinter component responsible for dispensing the bioink. It is the main difference between a 3D bioprinter and a 3D printer.
 
-Some printers have a single print head, while others have two or more. The most common design are single or double print heads. There exists also cases were two robotic arms are used, each one with a print head \cite{Ozbolat2014_multi_arm_bioprinter}. This is a design concept useful to improve the printing speed.
+Some printers have a single print head, while others have two or more. The most common design are single or double print heads. There exists also cases were two robotic arms are used, each one with a print head \cite{Ozbolat2014_multi_arm_bioprinter}. This design concept is useful to improve the printing speed.
 
-However, the most important aspect of the print head is the printing method it uses. Currently, there exists three main printing methods: Laser-based bioprinting (\gls{lbb}), Droplet-based bioprinting (\gls{dbb}), and Extrusion-based bioprinting (\gls{ebb}). The \gls{lbb} and \gls{dbb} methods will be only briefly introduced. The \gls{ebb} will be described more thoroughly be cause it will be the one used on this thesis.
+However, the most important aspect of the print head is the printing method it uses. Currently, there exists three main printing methods: Laser-based bioprinting (\gls{lbb}), Droplet-based bioprinting (\gls{dbb}), and Extrusion-based bioprinting (\gls{ebb}) (Fig. \ref{fig:printing_methods}). The \gls{lbb} and \gls{dbb} methods will be only briefly introduced. The \gls{ebb} will be described more thoroughly be cause it will be the one used on this thesis.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{printing_methods}
+	\caption{Three main bioprinting technologies: (a) Laser-assisted bioprinting focuses laser pulses on to the donor slide, thus creating high pressure to propel droplets of cell-laden hydrogel on to the collector slide; (b) Inkjet printing ejects droplets of biopolymer or cell-laden hydrogels through a nozzle by either thermal energy application (electrically heating to produce vapour bubbles that forces droplets to come out through the nozzle) or piezoelectric actuator (actuation of piezoelectric crystals by applying electrical energy at high frequencies); (c) Extrusion or robotic dispensing bioprinters extrude biopolymers or cell-laden hydrogels through the nozzle by applying air pressure (pneumatic) or mechanical systems (piston or screw). Adapted from \cite{Vijayavenkataraman2016_stateart_modelling_materials_processing}.}
+	\label{fig:printing_methods}
+\end{figure}
 
 % = Laser-based bioprinting =
 \subsubsection{Laser-based bioprinting}
@@ -98,15 +112,7 @@ Extrusion-based bioprinting has many advantages. The most important one is the s
 
 % subsubsection extrusion_based_bioprinting
 
-{\color{red}Usar imagem do artigo com os vários métodos de impressão.} 
-
 % subsection printing_head
-
-% = CAD and toolpath design =
-\subsection{CAD and toolpath design}
-\label{subsec:cad_toolpath_design}
-
-% subsection cad_toolpath_design
 
 % section 3d_bioprinting_systems
 
@@ -129,9 +135,16 @@ The majority of the concepts introduced in this section are based on \cite{Sicil
 \subsection{Rigid motions and homogeneous transformations}
 \label{subsec:rigid_motions_homogeneous_transformations}
 
-The first concept that must be presented is \emph{pose}. Pose is a precise description of a rigid body position and orientation in space, with respect to a reference frame.  
+The first concept that must be presented is \emph{pose}. Pose is a precise description of a rigid body position and orientation in space, with respect to a reference frame (Fig. \ref{fig:pose_concept}).  
 
 Since a robotic manipulator is a chain of connected rigid bodies, knowing the pose of each link, is important to know the robot state at any time. The main goal regarding the control of robotic manipulators is to control its end-effector. The necessary mathematical concepts to precisely describe the pose of the end-effector are rotation matrices and homogeneous transformations.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{pose_concept}
+	\caption{Concept of Pose. It consists on the position and orientation of a rigid body in relation to a reference frame. $O-xyz$ is the reference frame and $O^\prime-x^\prime y^\prime z^\prime$ is the rigid body frame. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}.}
+	\label{fig:pose_concept}
+\end{figure}
 
 % = Rotation matrices =
 \subsubsection{Rotation matrices}
@@ -317,7 +330,7 @@ Following the \gls{dh} convention, the homogeneous transformation between consec
     \end{bmatrix}
 \end{equation}
 
-$c_k$ and $s_k$ represent, respectively, the cosine of $k$ and the sine of $k$. The variables $\theta_i$, $\alpha_i$, $d_i$ and $a_i$ are the \gls{dh} parameters that define the relation between links $i-1$ and $i$. The meaning of these parameters are defined as \cite{Siciliano2009_robotics_modelling_planning_control}:
+$c_k$ and $s_k$ represent, respectively, the cosine of $k$ and the sine of $k$. The variables $\theta_i$, $\alpha_i$, $d_i$ and $a_i$ are the \gls{dh} parameters that define the relation between links $i-1$ and $i$. The meaning of these parameters are defined as (see Fig. \ref{fig:dh_parameters}) \cite{Siciliano2009_robotics_modelling_planning_control}:
 
 \begin{itemize}
     \item $a_i$ distance between the reference frames origins, $O_i$ and $O_{i'}$.
@@ -325,6 +338,13 @@ $c_k$ and $s_k$ represent, respectively, the cosine of $k$ and the sine of $k$. 
     \item $\alpha_i$ angle between axes $z_{i-1}$ and $z_i$ about axis $x_i$ to be taken positive when rotation is made counter-clockwise.
     \item $\theta_i$ angle between axes $x_{i-1}$ and $x_i$ about axis $z_{i-1}$ to be taken positive when rotation is made counter-clockwise.
 \end{itemize}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{dh_parameters}
+	\caption{Denavit-Hartenberg kinematic parameters. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}.}
+	\label{fig:dh_parameters}
+\end{figure}
 
 % subsubsection forward_kinematics
 
@@ -454,7 +474,7 @@ The terms $c_{ijk}$ are known as the \emph{Christoffel symbols} of the first kin
 
 The execution of a robot task is normally associated with movement of the end-effector in space. For proper and safe execution of the movements, obstacle avoidance and the application of the right velocities and accelerations must be considered. For this, path and trajectory planning are essential.
 
-Path and trajectory are terms commonly used interchangeably, but on this context are different. A path are the points in space that the robot should occupy while executing the task. Its merely a geometric concept. A trajectory, associates a timing law to a path, i.e., it defines velocities and accelerations. It defines how the robot should move from the start to the end of the path.
+Path and trajectory are terms commonly used interchangeably, but on this context they are different. A path consists of the points in space that the robot should occupy while executing the task. Its merely a geometric concept. A trajectory, associates a timing law to a path, i.e., it defines velocities and accelerations. It defines how the robot should move from the start to the end of the path.
 
 The main goal of path and trajectory planning is to guarantee that the robot does not violate its physical limits during the task execution. This planning can be done on the \emph{configuration space} or the \emph{operational space}. The configuration space is the space defined by the joint variables. The operational or task space is defined by the task \gls{dof}, generally, a six dimensional space (three for position and three for orientation).
 
@@ -484,6 +504,8 @@ and a linear acceleration profile
     \ddot{q}(t) = 6 a_3 t + 2 a_2\text{.}
 \end{equation}
 
+Figure \ref{fig:cubic_trajectory_planning} shows the timing law for position, velocity and acceleration for the cubic polynomial.
+
 Since four coefficients are available, it is possible to impose the initial and final positions and velocities (\ref{eq:cubic_polynomial_coefficients}). Typically the initial and final velocities are chosen to be zero.
 
 \begin{equation}
@@ -496,7 +518,54 @@ Since four coefficients are available, it is possible to impose the initial and 
     \end{aligned}
 \end{equation}
 
-{\color{red} colocar gráficos do livro}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{cubic_trajectory_planning}
+	\caption{Time history of position, velocity and acceleration with a cubic polynomial timing law. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}}
+	\label{fig:cubic_trajectory_planning}
+\end{figure}
+
+Another possible approach is to use a trapezoidal velocity profile called \gls{lspb}. The advantage of this timing law is allowing the "direct verification of whether the resulting velocities and accelerations can be supported by the physical mechanical manipulator" \cite{Siciliano2009_robotics_modelling_planning_control}. In this approach, the movement starts with a constant acceleration, followed by a cruise velocity, and ending with a constant deceleration. The trajectory obtained "is formed by a linear segment connected by two parabolic segments to the initial and final positions" \cite{Siciliano2009_robotics_modelling_planning_control}, hence the name.\\
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{lspb_profiles}
+	\caption{Time history of position, velocity and acceleration with for the \gls{lspb} timing law. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}}
+	\label{fig:lspb_profiles}
+\end{figure}
+
+Figure \ref{fig:lspb_profiles} shows the \gls{lspb} position, velocity and acceleration profiles. Both initial and final velocities are null and the segments with constant accelerations have the same time duration which means an equal magnitude $\ddot{q}_c$ in the two segments. It generates a symmetric trajectory with respect to the average point $q_m = \frac{q_f + q_i}{2}$ at $t_m = t_f / 2$.
+
+In order to ensure the transition from $q_i$ to $q_f$ in a time $t_f$ the trajectory has to satisfy some constraints. The velocity at the end of the parabolic segment must be equal to the (constant) velocity of the linear segment, i.e. \cite{Siciliano2009_robotics_modelling_planning_control},
+
+\begin{equation}
+    \label{eq:lspb_qctc}
+    \ddot{q}_c t_c = \frac{q_m - q_c}{t_m - t_c}
+\end{equation}
+
+where $q_c$ is the value attained by the joint variable at the end of the parabolic segment at time $t_c$ with constant acceleration $\ddot{q}_c$. After some mathematical manipulation and the application of the criteria $sgn (\ddot{q}_c) = sgn (q_f - q_i)$ for the acceleration, the following position polynomials are obtained \cite{Siciliano2009_robotics_modelling_planning_control}
+
+\begin{equation}
+    q(t) = \left\{ 
+    \begin{aligned}
+    & q_i + \frac{1}{2} \ddot{q}_c t^2 & 0 \leq t \leq t_c\\
+    & q_i + \ddot{q}_c t_c(t - t_c / 2) & t_c < t \leq t_f - t_c\\
+    & q_f - \frac{1}{2} \ddot{q}_c(t_f - t)^2 & t_f - t_c < t \leq t_f 
+    \end{aligned}
+    \right.
+\end{equation}
+
+with
+
+\begin{equation}
+    t_c = \frac{q_i - q_f + \dot{q}_c t_f}{\dot{q}_c}
+\end{equation}
+
+and
+
+\begin{equation}
+    \ddot{q}_c = \frac{\dot{q}_c^2}{q_i - q_f + \dot{q}_c t_f} .
+\end{equation}
 
 % subsubsection joint_space_trajectories
 
@@ -536,7 +605,7 @@ The notation used for orientation is axis/angle. The trajectory time is equal fo
 
 After the trajectories are planned, the robot must execute them and evaluate or track the execution. This is the responsibility of the control algorithm.
 
-Robot control is part of the general theory of control. Control algorithms are vital for many different type of systems, from airplanes to air conditioning systems. The control can be done in \emph{open-loop} or \emph{close-loop}. Open-loop control inputs a control signal to the system, but does not observe the system's output. It is a \emph{fire-and-forget} type of control. On the contrary, close-loop control has a feedback system where the system's output is combined with the control signal. This new signal affects the system in order for it to asymptotically reach the desired state.  
+Robot control is part of the general theory of control. Control algorithms are vital for many different type of systems, from airplanes to air conditioning systems. The control can be done in \emph{open-loop} or \emph{close-loop}. Open-loop control inputs a control signal to the system, but does not observe the system's output. It is a \emph{fire-and-forget} type of control. On the contrary, close-loop control has a feedback system where the system's output is combined with the control signal. This new signal affects the system in order for it to asymptotically reach the desired state.\\  
 
 On the case of robot manipulators, control can be related to free space motion (\emph{motion control}) or robot interaction with the environment (\emph{interaction control}) \cite{Siciliano1999_robot_force_control}. 
 
@@ -557,29 +626,52 @@ Interaction control was especially conceived to deal with interactions forces fr
 
 Computer vision is a branch of computer science that has as goal to be able to mimic the human visual capabilities. This means acquiring visual data and infer or extract information from it. It is a very broad area that deals with the hardware side of image/video/depth acquisition systems, and also the software side with the algorithms for information extraction.
 
-For the scope of this thesis, it is important to present some concepts about: (a) the hardware necessary to extract depth data; (b) the format of depth data itself; (c) image segmentation algorithms; (d) and visual servoing.
+For the scope of this thesis, it is important to present some concepts about: (a) digital image data format; (b) image segmentation algorithms; (c) the hardware necessary to extract depth data; and (d) the format of depth data itself.
 
-% = Stereo cameras =
-\subsection{Stereo cameras}
-\label{subsec:stereo_cameras}
+% = Digital Image =
+\subsection{Digital Image}
+\label{subsec:digital_image}
 
-Stereo cameras, also callled depth cameras, are dual-camera systems that mimic the human binocular vision. Binocular vision produces three dimensional information by comparing two vantage points. Depth is calculated by estimating disparities between matching key points on both images.
+An image is a 2D visual representation of a scene or concept. It is composed of several colours or a single colour. An example is a drawing or a painting.
 
-The main algorithm to produce a depth map from binocular vision is a simple triangulation problem ({\color{red} usar imagem de https://courses.cs.washington.edu/courses/cse455/09wi/Lects/lect16.pdf}). The main problem of this procedure is that it depends on finding the correspondence between the same point on both projections. The most naive algorithm to find this correspondence is the \gls{ssd}.
+With the development of computer screens it became important to represent images digitally. A digital image is represented by a matrix, $I$, where each cell is called a pixel (\ref{eq:image_matrix_representation}). Each pixel stores a number that represents the light intensity captured by a light sensible device, or produced by a computer system.
 
-The depth map obtained is an image where each area or pixel has a value corresponding to its depth. From this information it is possible to create a point cloud.
+\begin{equation}
+    \label{eq:image_matrix_representation}
+    I(x, y) = \begin{bmatrix}
+        i_{11} && i_{12} && {}\ldots{} && i_{1w} \\
+        i_{21} && i_{22} && {}\ldots{} && i_{2w} \\
+        \vdots && \vdots  && \vdots  && \vdots \\
+        i_{h1} && i_{h2} && {}\ldots{} && i_{hw}\\
+    \end{bmatrix}
+\end{equation}
 
-% subsection stereo_cameras
+where $i_{xy} \in Y$. $Y$ represents a set of numbers that depends on the image data type. The data type defines the intensity gradation. For example, a \textit{uint8} representation has 256 different intensity values, from 0 to 255.
 
-% = Point clouds =
-\subsection{Point clouds}
-\label{subsec:point_clouds}
+The number of columns and rows of the matrix $I$ represent the image width (W) and height (H), respectively. These dimensions define the image resolution (Fig. \ref{fig:image_matrix}).\\
 
-A point cloud is a 3D data format consisting on a collection of points on 3D space. This data is generated by 3D scanners, range finders and depth cameras. Point clouds have many use cases. For example it is used to produce 3D CAD models, for metrology, animation, object detection, and more.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.7\textwidth]{image_matrix}
+	\caption{Digital image matrix representation.}
+	\label{fig:image_matrix}
+\end{figure}
 
-Because each point has its three dimensional coordinates in relation to the cloud generator, it can be used to create surface meshes, estimate volumes and distances.
+An image can have different colour spaces. The three main ones are: binary, grayscale, and \gls{rgb} (Fig. \ref{fig:image_binary_grayscale_rgb}). On a binary image, each pixel can only assume two values, either 0 or 1. The value zero represents a black pixel and 1 a white pixel. A grayscale image already as a tone gradation. It goes from black all the way to white, passing by various tones of grey with increasing brightness. A \gls{rgb} image has a major difference between the other two. It has three channels instead of one (\ref{eq:rgb_image_matrix}). Each channel represents the intensity of a colour: red, green or blue. The combination of intensities of each channel defines the colour of each pixel.
 
-% subsection point_clouds
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{image_binary_grayscale_rgb}
+	\caption{Examples of color spaces. (left) a black \& white or binary image. (middle) a grayscale image. (right) an \gls{rgb} image. Adapted from \cite{Fonseca2017_acondicionamento_imagem}}
+	\label{fig:image_binary_grayscale_rgb}
+\end{figure}
+
+\begin{equation}
+\boldsymbol{I}_{RGB}(x,y) = \boldsymbol{R}(x,y) \: | \: \boldsymbol{G}(x,y) \: | \: \boldsymbol{B}(x,y)
+\label{eq:rgb_image_matrix}
+\end{equation}
+
+% subsection digital_image
 
 % = Image segmentation =
 \subsection{Image segmentation}
@@ -587,23 +679,216 @@ Because each point has its three dimensional coordinates in relation to the clou
 
 Image segmentation is a process used to separate image areas based on some criteria. Many different criteria can be used. From basic like pixel color, pixel intensity or position; to something more complex like a mathematical relation between neighbouring pixels. This process is normally used to extract some information from the image.
 
-There are many algorithms for image segmentation, each one with its unique goal and approach. Some algorithms use more statistics; others are based on machine learning techniques.
+There are many algorithms for image segmentation, each one with its unique goal and approach. Some algorithms use more statistics; others are based on machine learning techniques. Some basic and common segmentation method types are: threshold; edge-detection; and histogram.
 
-Some basic and common segmentation method types are:
+\subsubsection*{Threshold}
+\label{subsubsec:image_segmentation_threshold}
 
-\begin{itemize}
-    \item Threshold;
-    \item Clustering;
-    \item Edge-detection;
-    \item and Histogram.
-\end{itemize}
+A Threshold segmentation approach can be used on \gls{rgb} or grayscale images. It consists in evaluating each pixel value and changing it according to its relation to a threshold value. Lets assume the threshold value was 120 on a 0 to 255 scale. Any pixel below 120 would be set to 0 and above it to 1. This would create a binary image with two segmented areas, the white and the black. The new values can be anything within the data type range. Figure \ref{fig:histogram_binary_mask} (c) shows an example result of a binarisation process.
+
+% subsubsection image_segmentation_threshold
+
+\subsubsection*{Edge-detection}
+\label{subsubsec:image_segmentation_edge_detection}
+
+Segmentation by edge detection means separating an image onto different areas limited by a contour. These type of algorithms define edges as abrupt changes in pixel intensity between neighbour pixels. According to \cite{Gonzalez2008_digital_image_processing}, "edge pixels are pixels at which the intensity of an image function changes abruptly, and edges [...] are sets of connected edge pixels".
+
+There are several algorithms for edge-detection or contour enhancement. Here, only three will be mentioned. They are the simple Gradient operators, the Roberts cross-gradient operators, and Sobel operators.
+
+Lets consider a $3\times 3$ 2D mask, forming a 9-pixel area of the image, represented here by matrix (\ref{eq:3x3_image_mask}). Each cell represents a pixel.
+
+\begin{equation}
+    \label{eq:3x3_image_mask}
+    \begin{bmatrix}
+        z_1 & z_2 & z_3 \\
+        z_4 & z_5 & z_6 \\
+        z_7 & z_8 & z_9 \\
+    \end{bmatrix}
+\end{equation}
+
+Considering the pixel $z_5$ as the pixel under calculation, the simple gradient operators use the following expressions \cite{Gonzalez2008_digital_image_processing}
+
+\begin{equation}
+    \label{eq:gradient_operators_x}
+    g_x = \frac{\partial f(x,y)}{\partial y} = f(x+1,y)-f(x,y) = z_6 - z_5
+\end{equation}
+
+and
+
+\begin{equation}
+    \label{eq:gradient_operators_y}
+    g_y = \frac{\partial f(x,y)}{\partial x} = f(x,y+1)-f(x,y) = z_8 - z_5.
+\end{equation}
+
+These operators only consider horizontal and vertical directions. If diagonal edge is also important, a 2D mask is need. Roberts cross-gradient operators use a 2D mask and consider the diagonals for calculations. The expressions are \cite{Gonzalez2008_digital_image_processing}
+
+\begin{equation}
+    \label{eq:roberts_operators_x}
+    g_x = \frac{\partial f(x,y)}{\partial y} = z_9 - z_5
+\end{equation}
+
+and
+
+\begin{equation}
+    \label{eq:roberts_operators_y}
+    g_y = \frac{\partial f(x,y)}{\partial x} = z_8 - z_6.
+\end{equation}
+
+These calculations can be implemented by convoluting the image with the following masks
+
+\begin{equation}
+    g_x = \begin{bmatrix}
+        -1 & 0 \\
+        0 & 1 \\
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    g_y = \begin{bmatrix}
+        0 & -1 \\
+        1 & 0 \\
+    \end{bmatrix}
+\end{equation}
+
+Finally, the Sobel operators use a $3\times 3$ 2D mask. Because the masks "take into account the nature of the data on opposite sides of the center point", they "carry more information regarding the direction of the edge" \cite{Gonzalez2008_digital_image_processing}. The equations for $g_x$ and $g_y$ in this case are
+
+\begin{equation}
+    \label{eq:roberts_operators_x}
+    g_x = \frac{\partial f(x,y)}{\partial y} = (z_7 + 2z_8 + z_9) - (z_1 + 2z_2 + z3)
+\end{equation}
+
+and
+
+\begin{equation}
+    \label{eq:roberts_operators_y}
+    g_y = \frac{\partial f(x,y)}{\partial x} = (z_3 + 2z_6 + z_9) - (z_1 + 2z_4 + z7).
+\end{equation}
+
+The associated masks for Sobel operators are
+
+\begin{equation}
+    g_x = \begin{bmatrix}
+        -1 & 2 & 1 \\
+        0 & 0 & 0 \\
+        1 & 2 & 1 \\
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    g_y = \begin{bmatrix}
+        -1 & 0 & 1 \\
+        -2 & 0 & 2 \\
+        -1 & 0 & 1 \\
+    \end{bmatrix}
+\end{equation}
+
+Figure \ref{fig:edge_detection_comparison} shows a comparison of the three methods.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{edge_detection_comparison}
+	\caption{Comparison of the three edge-detection algorithms. The left image is simple Gradient operators. At the middle its Roberts cross-gradient operators. The right image is for Sobel operators. Adapted from \cite{Fonseca2017_acondicionamento_imagem}}
+	\label{fig:edge_detection_comparison}
+\end{figure}
+
+% subsubsection image_segmentation_edge_detection
+
+\subsubsection*{Histogram}
+\label{subsubsec:image_segmentation_histogram}
+
+An Histogram is a graphical representation of the distribution of pixel intensities. It can be represented as a bar chart where each bin represents one pixel intensity or an interval. To create the histogram, each pixel intensity is placed on the right bucket according to its value (see Fig. \ref{fig:histogram}).
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\textwidth]{histogram}
+	\caption{Histogram from a grayscale image. The y-axis represents the pixel count and the x-axis the pixel intensities from 0 to 255.}
+	\label{fig:histogram}
+\end{figure}
+
+An histogram can be used to select the threshold value for image binarization like in the Otsu algorithm. It can also be used to create a binary mask that segments part of an image for background replacement. This technique is used on the movie industry with green screen technology (Fig. \ref{fig:histogram_binary_mask}).
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{histogram_binary_mask}
+	\caption{Chroma-keying. (a) The subject against a green background; (b) a histogram of green chromaticity values; (c) the computed mask image where true is white; (d) the subject masked into
+a background scene. \cite{Corke2011_robotics_vision_control}}
+	\label{fig:histogram_binary_mask}
+\end{figure}
+
+% subsubsection image_segmentation_histogram
 
 % subsection image_segmentation
 
-% = Visual servoing =
-\subsection{Visual servoing}
-\label{subsec:visual_servoing}
+% = Stereo cameras =
+\subsection{Stereo cameras}
+\label{subsec:stereo_cameras}
 
-% subsection visual_servoing
+Stereo cameras, also callled depth cameras, are dual-camera systems that mimic the human binocular vision. Binocular vision produces three dimensional information by comparing two vantage points. Depth is calculated by estimating disparities between matching key points on both images (Fig. \ref{fig:stereo_vision_diagram}).\\
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\textwidth]{stereo_vision_diagram}
+	\caption{Depth from stereo algorithm finds disparity by matching blocks in left and right images. Adapted from \cite{IntelRealSense_basics_depth_vision}}
+	\label{fig:stereo_vision_diagram}
+\end{figure}
+
+The main algorithm to produce a depth map from binocular vision is called triangulation. Figure \ref{fig:depth_from_stereo_triangulation} presents the problem setup. From the geometry rules of similar triangles, it can be noticed that
+
+\begin{equation}
+    \label{eq:stereo_vision_triangulation_equations}
+    \frac{z}{f} = \frac{x}{x_l} \quad,\quad \frac{z}{f} = \frac{x-b}{x_r} \quad,\quad \frac{z}{f} = \frac{y}{y_l} = \frac{y}{y_r}.
+\end{equation}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.8\textwidth]{depth_from_stereo_triangulation}
+	\caption{Triangulation for depth calculation from stereo cameras. $L$ and $R$ are the left and right cameras positions, respectively. The distance $b$ between them is the baseline. $x_l$/$x_r$ are the distances between the left/right optical axis and the intersection point of the line of sight with the image planes. $f$ is the cameras focal length. The y-axis is perpendicular to the page. Adapted from \cite{Rao2009_stereo_3d_vision}}
+	\label{fig:depth_from_stereo_triangulation}
+\end{figure}
+
+"For stereo cameras with parallel optical axes, focal length $f$, baseline $b$, corresponding image points ($x_l$,$y_l$) and ($x_r$,$y_r$)" \cite{Rao2009_stereo_3d_vision}, the location of the 3D point can be derived from equations (\ref{eq:stereo_vision_triangulation_equations}), and corresponds to the following
+
+\begin{equation}
+    \left\{
+    \begin{aligned}
+    & z = \frac{f \cdot b}{x_l - x_r} = \frac{f \cdot b}{d} \\
+    & x = \frac{x_l \cdot z}{f} = b + \frac{x_r \cdot z}{f} \\
+    & y = \frac{y_l \cdot z}{f} = \frac{y_r \cdot z}{f}
+    \end{aligned}
+    \right.
+    \quad,
+\end{equation}
+
+where $d$ is called the disparity and is equal to $x_l - x_r$.\\
+
+The main problem of this procedure is that it depends on finding the correspondence between the same point on both projections. The most naive algorithm to find this correspondence is the \gls{ssd}.
+
+The depth map obtained is an image where each area or pixel has a value corresponding to its depth (Fig. \ref{fig:ssd_stereo_vision_results}). From this information it is possible to create a point cloud.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.8\textwidth]{ssd_stereo_vision_results}
+	\caption{Results from the \gls{ssd} algorithm. (a) Stereo cameras source image. (b) Depth map obtained. The blues are closer to the camera and the reds further away. Adapted from \cite{IntelRealSense_basics_depth_vision}}
+	\label{fig:ssd_stereo_vision_results}
+\end{figure}
+
+% subsection stereo_cameras
+
+% = Point clouds =
+\subsection{Point clouds}
+\label{subsec:point_clouds}
+
+A point cloud is a 3D data format consisting on a collection of points on 3D space. This data is generated by 3D scanners, range finders and depth cameras (Fig. \ref{fig:realsense_point_cloud}). Point clouds have many use cases. For example it is used to produce 3D CAD models, for metrology, animation, object detection, and more.
+
+Because each point has its three dimensional coordinates in relation to the cloud generator, it can be used to create surface meshes, estimate volumes and distances.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\textwidth]{realsense_point_cloud.png}
+	\caption{Point-cloud using Intel RealSense D415 stereo camera. Adapted from \cite{IntelRealSense_basics_depth_vision}}
+	\label{fig:realsense_point_cloud}
+\end{figure}
+
+% subsection point_clouds
 
 % section computer_vision
