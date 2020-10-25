@@ -7,3 +7,57 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Conclusions}
 \label{cha:conclusions}
+
+\begin{quotation}
+\begin{flushright}
+\itshape
+«I may not have gone where I intended to go, but I think I have ended up where I needed to be.»\\
+\textbf{- Douglas Adams}
+\end{flushright}
+\end{quotation}
+
+This last chapter summarises the whole work developed and presents the general results. It ends with some considerations for future work.
+
+% ==========================
+% = General Results =
+% ==========================
+
+\section{General Results}
+\label{sec:conclusions_general_results}
+
+This thesis aimed at developing a semi-autonomous 3D positioning system for bioprinting skin tissue construct directly on burn wounds. The main goal of the system was to detect burn wounds, define a printing path, and move through it while printing. To attain this major goal, several smaller goals were defined and pursued. The system was composed by a robotic arm for 3D positioning, a depth camera for wound assessment, and a print head for the actual printing process.
+
+First, a simple wound segmentation algorithm was developed to validate the whole concept. It used dark patches of different shapes as the wound models. With this approach, a simple binarisation algorithm was used for segmentation. The algorithm had good results and allowed the wound to be precisely segmented.
+
+From the segmentation data, some spatial information was gathered. The wound position, area, perimeter and point cloud were obtained, but with some limitations. Because the conversion between frames had problems, the whole spatial data obtained was invalid.
+
+From the segmentation contour a wound filling path was planned using three possible algorithms, ZigZag, Parallel Lines and Grid. All paths had granularity control and were able to completely cover the wound area. The z coordinate was not precise during the complete path, which meant non full conformity with wound shape. Each path was transformed on a trajectory with a 3rd order polynomial interpolation for cartesian space movement.
+
+Finally, the cartesian impedance controller with posture optimisation used provided median results for position tracking, guaranteeing at least a valid printing trajectory execution. It needs more fine tuning.
+
+The development of this work was done on a simulation environment and with real hardware. However, because of restrictions associated with COVID-19 pandemic, the whole validation process was only done on the simulation environment.
+
+Overall the goals were attained. The system was able to follow the whole chain to position the print head on a wound filling printing path. The actual printing was not done because there was no time available to develop the print head. Compared to the state of the art, this thesis corroborates some works and shows the potential of using robotic arms for in situ bioprinting in collaboration with vision/sensing systems for automation.
+
+% section conclusions_general_results
+
+% ==========================
+% = Future Work =
+% ==========================
+
+\section{Future Work}
+\label{sec:conclusions_future_work}
+
+This work provided a glimpse to the potential of automated systems for in situ 3D bioprinting. Nonetheless, it is still a small step towards a robust clinical-ready solution. With that in mind, and also from a scientific validation perspective, some more work needs to be done.
+
+First, a set of more robust burn wound segmentation algorithms should be tested. The literature review presented several works related to this. Some should be selected and validated for this particular use case. Without proper wound detection and segmentation, the whole concept is useless.
+
+The spatial data processing layer needs to be completely revised to correct the current flaws.
+
+In the case of path planning, although three algorithms were presented, more approaches should be tested. Depending on the wound profile it maybe better a spiral approach as opposed to a linear approach. Different paths may have different impact on the print construct depending on material, printing speed, wound profile, etc.
+
+On the control side, the impedance gains need to be tuned and different architectures should be implemented. The visual servoing approach was not really followed and has the potential to refine the system autonomous behaviour. By feeding the image data to the control loop, the robotic arm can inspect in real time its own printing actions.
+
+At last, the whole system must be validated on the real hardware. For proper validation of the bioprinting side, a print head should be developed. This work only validated the ability of the robot to follow a printing path. The real validation depends on the ability to actually print something. This will be the true validation of the system.
+
+% section conclusions_general_results

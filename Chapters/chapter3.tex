@@ -9,9 +9,17 @@
 \chapter{Literature Review}
 \label{cha:literature_review}
 
+\begin{quotation}
+\begin{flushright}
+\itshape
+«The man who does not read has no advantage over the man who cannot read.»\\
+\textbf{- Mark Twain}
+\end{flushright}
+\end{quotation}
+
 3D Bioprinting is a promising technology to solve the increasing demand for organ donation, full-thickness skin replacements and in vitro tissue models. However, it still faces a few limitations throughout its three stages of the bioprinting process. This work intends to propose a solution to some of the problems associated with the bioprinting stage, in particular, the way the bioprinter works.
 
-This chapter will focus on presenting the state-of-the-art on the positioning systems used for 3D bioprinting (both external and internal), and how that relates to resolution, speed and in situ bioprinting. It will also focus on the state-of-the-art of using vision and sensing systems to increase the system's autonomy by detecting the printing site or evaluating the printing process in real-time. Finally, it will discuss the state-of-the-art on path generation for 3D bioprinting.
+This chapter will focus on presenting the state-of-the-art on the positioning systems used for 3D bioprinting (both external and internal), and how that relates to resolution, speed and in situ bioprinting. It will also focus on the state-of-the-art of using vision and sensing systems to increase the system's autonomy by detecting the printing site or evaluating the printing process in real-time. It will also consider the existing wound segmentation algorithms that can be used for system automation.
 
 % ==========================
 % = 3D Positioning Systems =
@@ -84,7 +92,7 @@ Not many bioprinting systems exploit the potential for automation given by visio
 \section{Burn wound segmentation}
 \label{sec:burn_wound_segmentation}
 
-In order to provide autonomy a vision system maybe used like an RGB or depth camera. For the camera to be useful it must allow the system to detect burn wounds. Therefore, burn wound segmentation is also an important capability. Several works have been done in this field. The goal of this literature review is to show that there exists several valid approaches for burn wound segmentation that could be used. It will not go into the details of the methods. The scientific contributions analysed span the year range from 2017 to 2019. Some of the articles were not exclusively focused on burn wound segmentation but were focused on chronic wounds in general.\\
+In order to provide autonomy, a vision system maybe used like an RGB or depth camera. For the camera to be useful it must allow the system to detect burn wounds. Therefore, burn wound segmentation is also an important capability. Several works have been done in this field. The goal of this literature review is to show that there exists several valid approaches for burn wound segmentation that could be used. It will not go into the details of the methods. The scientific contributions analysed span the year range from 2017 to 2019. Some of the articles were not exclusively focused on burn wound segmentation but were focused on chronic wounds in general.\\
 
 In 2017, a team from India, sensible to health problems associated with chronic wounds, proposed an algorithm for "ulcer boundary demarcation and estimation, using optical images captured by a hand-held digital camera" \cite{ManoharDhane2017_fuzzy_spectral_clustering_chronic_wounds}. The algorithm applied some pre-processing operations to the \gls{rgb} images first, and afterwards, applied fuzzy spectral clustering to the result of pre-processing for segmentation. The algorithm performance was evaluated using five similarity metrics:
 Accuracy, Sensitivity, Specificity, Jaccard index and Dice coefficient. For this evaluation, ground-truth images were labeled by two experienced dermatologists and a surgeon. After testing on 70 images, the "FSC effectively segmented targeted ulcer boundary yielding 91.5\% segmentation accuracy, 86.7\%, Dice index and 79.0\%. Jaccard score. The sensitivity and specificity was found to be 87.3\% and 95.7\% respectively" \cite{ManoharDhane2017_fuzzy_spectral_clustering_chronic_wounds}. Some of the images used contained burn wounds and the segmentation results shown through images seem very good.

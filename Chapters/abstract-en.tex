@@ -5,20 +5,16 @@
 %%
 %% Abstract in English
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The dissertation must contain two versions of the abstract, one in the same language as the main text, another in a different language.  The package assumes that the two languages under consideration are always Portuguese and English.
 
-The package will sort the abstracts in the appropriate order. This means that the first abstract will be in the same language as the main text, followed by the abstract in the other language, and then followed by the main text. For example, if the dissertation is written in Portuguese, first will come the summary in Portuguese and then in English, followed by the main text in Portuguese. If the dissertation is written in English, first will come the summary in English and then in Portuguese, followed by the main text in English.
+Burn wounds still present a medical problem, having a substantial toll on the worldwide cause of death and disability. One of the future promises for treating extensive skin burns is to use 3D bioprinting instead of skin grafts. The printed skin constructs will replace or help to heal the injured sites.
 
-The abstract shoul not exceed one page and should answer the following questions:
+3D bioprinting has a high potential but still faces some challenges before it can be used widespread across the medical industry. One of those limitations is in situ bioprinting. The majority of the existing 3D bioprinters prints inside their build volume, later transfer the result into a bioreactor for maturation and finally into the desired site. This takes time and limits escalation. By printing in situ, the maturation can be done on site reducing the process time.
 
-\begin{itemize}
-	\item What's the problem?
-	\item Why is it interesting?
-	\item What's the solution?
-	\item What follows from the solution?
-\end{itemize}
+This work, using the burn wound problem as a use case, aims to present a possible solution for the limitations of external in situ bioprinting. The proposed system uses a robotic arm as a positioning system and a depth camera for wound detection and assessment. During system development a simplified algorithm and wound model for wound detection was used; three different wound filling paths were created; and a cartesian impedance controller was used for the robotic arm control. The system was able to detect a burn wound model, plan a wound filling path and execute it autonomously after path approval. No actual printing was executed. The system was tested in a simulation environment presenting overall good results, but with limitations on some steps.
+
+Although with some limitations, this thesis shows that it is possible to have a semi-autonomous system doing wound filling in situ 3D bioprinting.
 
 % Palavras-chave do resumo em Inglês
 \begin{keywords}
-Keywords (in English) \ldots
+3D Bioprinting, In Situ Bioprinting, Collaborative Robotics, Medical Robotics, Wound Segmentation, Path Planning, Cartesian Impedance, Automation.
 \end{keywords} 

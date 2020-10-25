@@ -11,11 +11,15 @@
 \section{Introduction}
 \label{sec:opencv_appendix_introduction}
 
+OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. Within its 20 years of history, the library has accumulated more than 2500 algorithms, both classic and state-of-the-art. These algorithms provide a huge range of applications like facial detection, object identification, classification of human actions in video, tracking moving objects, producing 3D point clouds from stereo cameras, scenery recognition with overlay markers in augmented reality, etc.
+
+OpenCV has a huge community of users and it is used extensively in big companies and startups alike, within research groups and by governmental bodies.
+
+It is written natively in C++ and has a templated interface that works seamlessly with STL containers. It also has Python, Java and MATLAB interfaces and supports Windows, Linux, Android and Mac OS. OpenCV leans mostly towards real-time vision applications.
+
+The version used on this thesis was 3.2.0.
+
 % section opencv_appendix_introduction
-
-dfdfg dsgd gdsfg dsfgdsgds
-
-OpenCV version 3.2.0.
 
 \section{Used Functions}
 \label{sec:opencv_appendix_used_functions}
@@ -48,8 +52,10 @@ The conventional ranges for R, G, and B channel values are:
     \item \textbf{code} color space conversion code (see cv::ColorConversionCodes).
     \item \textbf{dstCn} number of channels in the destination image; if the parameter is 0, the number of the channels is derived automatically from src and code.
 \end{itemize}
-   
+
+\begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
 \textbf{Source:} \url{https://docs.opencv.org/3.2.0/d7/d1b/group__imgproc__misc.html#ga397ae87e1288a81d2363b61574eb8cab}
+\end{adjustbox}
 
 \noindent\rule{\textwidth}{0.5pt}
 		
@@ -80,8 +86,10 @@ To shrink an image, it will generally look best with cv::INTER\_AREA interpolati
     \item \textbf{fy}	scale factor along the vertical axis; when it equals 0, it is computed as $$(double)dsize.height/src.rows$$
     \item \textbf{interpolation}	interpolation method, see cv::InterpolationFlags
 \end{itemize}
-   
+
+\begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
 \textbf{Source:} \url{https://docs.opencv.org/3.2.0/da/d54/group__imgproc__transform.html#ga47a974309e9102f5f08231edc7e7529d}
+\end{adjustbox}
 
 \noindent\rule{\textwidth}{0.5pt}
 
@@ -109,8 +117,10 @@ Also, the special values cv::THRESH\_OTSU or cv::THRESH\_TRIANGLE may be combine
     \item \textbf{maxval} maximum value to use with the THRESH\_BINARY and THRESH\_BINARY\_INV thresholding types.
     \item \textbf{type}	thresholding type (see the cv::ThresholdTypes).
 \end{itemize}
-   
+
+\begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
 \textbf{Source:} \url{https://docs.opencv.org/3.2.0/d7/d1b/group__imgproc__misc.html#gae8a4a146d1ca78c626a53577199e9c57}
+\end{adjustbox}
 
 \noindent\rule{\textwidth}{0.5pt}
 

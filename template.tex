@@ -256,8 +256,8 @@
 % The other lists below may be commented and omitted.
 \addlisttofrontmatter{\listoffigures}  % The List of Figures. Comment to omit.
 \addlisttofrontmatter{\listoftables}   % The List of Tables. Comment to omit.
-\addlisttofrontmatter{\lstlistoflistings}  % The List of Code Listings. Comment to omit.
-\addlisttofrontmatter{\glsnogroupskiptrue\setlength{\glsdescwidth}{0.8\textwidth}\printnoidxglossaries}  % The Glossary and List of Acrnonyms
+%\addlisttofrontmatter{\lstlistoflistings}  % The List of Code Listings. Comment to omit.
+\addlisttofrontmatter{\glsnogroupskiptrue\setlength{\glsdescwidth}{0.8\textwidth}\printnoidxglossaries}  % The Glossary and List of Acronyms
 
 
 % Text chapters
@@ -266,31 +266,31 @@
 \chapterfile{chapter2}
 \chapterfile{chapter3}
 \chapterfile{chapter4}
-%\chapterfile{chapter5}
-%\chapterfile{chapter6}
-%\chapterfile{chapter7}
-%\chapterfile{chapter8}
-%\chapterfile{chapter9}
-%\chapterfile{chapter10}
+\chapterfile{chapter5}
+\chapterfile{chapter6}
+%\chapterfile{chapter7} bioprinting system
+\chapterfile{chapter8}
+\chapterfile{chapter9}
+\chapterfile{chapter10}
 
 % Text appendixes
 % sintax: \appendixfile{file}
 % Comment if not needed
-%\appendixfile{appendix1}
-%\appendixfile{appendix2}
-%\appendixfile{appendix3}
-%\appendixfile{appendix4}
-%\appendixfile{appendix5}
-%\appendixfile{appendix6}
-%\appendixfile{appendix7}
-%\annexfile{annex1}
-%\annexfile{annex2}
-%\annexfile{annex3}
-%\annexfile{annex4}
+\appendixfile{appendix1}
+\appendixfile{appendix2}
+\appendixfile{appendix3}
+\appendixfile{appendix4}
+\appendixfile{appendix5}
+%\appendixfile{appendix6} % print head
+\appendixfile{appendix7}
+%\annexfile{annex1} % ros, not needed
+\annexfile{annex2}
+\annexfile{annex3}
+%\annexfile{annex4} % print head
 
 
 % BibTeX bibliography files. Can be used multiple times with a single file nae each time.
-\addbibfile{references.bib}
+\addbibfile{references_final.bib}
 % Remove "In" from article references.
 \renewbibmacro{in:}{%
   \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}

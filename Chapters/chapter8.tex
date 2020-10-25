@@ -11,14 +11,12 @@
 \begin{quotation}
 \begin{flushright}
 \itshape
-«Quotation»\\
-\textbf{- Author}
+«One ought to hold on to one's heart; for if one lets it go, one soon loses control of the head too.»\\
+\textbf{- Friedrich Nietzsche}
 \end{flushright}
 \end{quotation}
 
-This chapter will present the robotic control architectures used on the Panda robotic arm. Robot controllers are responsible for implementing an open/closed loop routine that controls each joint in order to move the robot to a specific position and keep it.
-
-One main control architecture was used for robot autonomous movement. During co-manipulation a simplified architecture was used only to compensate gravity.
+This chapter will present the robotic control architecture used on the Panda robotic arm. Robot controllers are responsible for implementing an open/closed loop routine that controls each joint in order to move the robot to a specific position and keep it.
 
 % ==========================
 % = Overview =
@@ -27,7 +25,7 @@ One main control architecture was used for robot autonomous movement. During co-
 \section{Overview}
 \label{sec:control_architectures_overview}
 
-For the particular application of this thesis, the robotic arm will generally move in free space while printing. Since the movement is in free space it makes sense to use a motion control strategy. However, because the task is executed close to the patient, there exists some probability of contact. When contact must be taken into consideration an interaction control strategy is more suited.\\
+The robotic arm will generally move in free space while printing, but there exists some probability of contact. When contact must be taken into consideration an interaction control strategy is desired.
 
 Since the control architecture must be able to manage robot motion along with interaction forces, a mathematical model is needed that relates them. The dynamic model of the robot provides that relation. On chapter \ref{cha:theoretical_concepts}, subsection \ref{subsec:dynamics}, it is shown that given a set of $n$ generalised coordinates $\boldsymbol{q} \in \mathbb{R}^n$ and a set of generalised torques $\boldsymbol{\tau} \in \mathbb{R}^n$
 , the manipulator
@@ -161,14 +159,14 @@ There are various interaction control architectures. The one chosen for the task
 	\begin{minipage}[b]{.48\textwidth}
 	\centering
 	\includegraphics[width=\linewidth]{impedance_control_robot_environment_model}
-	\caption{System model of robot and rigid environment: (a) without any contact between robot and environment, (b) critical point when contact occurs but $f = 0$ and (c) contact with $f \neq 0$. \cite{Duan2018_adaptive_variable_impedance_control}}
+	\caption[System model of robot and rigid environment.]{System model of robot and rigid environment: (a) without any contact between robot and environment, (b) critical point when contact occurs but $f = 0$ and (c) contact with $f \neq 0$. \cite{Duan2018_adaptive_variable_impedance_control}}
 	\label{fig:impedance_control_robot_environment_model}
 	\end{minipage}%
 	\hfill
 	\begin{minipage}[b]{.48\textwidth}
 	\centering
 	\raisebox{1.1in}{\includegraphics[width=\linewidth]{impedance_control_robot_environment_force}}
-	\caption{The diagram of robot and environment contact force. \cite{Duan2018_adaptive_variable_impedance_control}}
+	\caption[The diagram of robot and environment contact force.]{The diagram of robot and environment contact force. \cite{Duan2018_adaptive_variable_impedance_control}}
 	\label{fig:impedance_control_robot_environment_force}
 	\end{minipage}
 \end{figure*}
@@ -429,25 +427,10 @@ The diagram of the Cartesian Impedance Control with Posture Optimization is pres
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.8\textwidth]{control_architecture_diagram}
-	\caption{Control architecture diagram. A Cartesian impedance controller with posture optimisation, where Cartesian positioning is the primary task and posture optimisation is performed in the null-space. \cite{Ochoa2019_control_architecture_robotic_polishing}}
+	\caption[Control architecture diagram.]{Control architecture diagram. A Cartesian impedance controller with posture optimisation, where Cartesian positioning is the primary task and posture optimisation is performed in the null-space. \cite{Ochoa2019_control_architecture_robotic_polishing}}
 	\label{fig:control_architecture_diagram}
 \end{figure}
 
 % subsection control_architectures_cartesian_impedance_posture_optimisation_architecture
 
 % section control_architectures_cartesian_impedance_posture_optimisation
-
-\section{Gravity Compensation Controller}
-\label{sec:control_architectures_gravity_compensation}
-
-During co-manipulation, when the operator manually moves the robotic arm, a different control architecture must be used.
-
-In this particular case, a simplified approach was followed. Since the goal is for the operator to freely move the robot end-effector in space, it is important for the manipulation to be as easy as possible. The approach followed was to use the robot in gravity compensation. This means that the robot holds its position when left alone and presents no resistance when pushed/pulled.
-
-The commanded torque $\boldsymbol{\tau}_c$ for this case is
-
-\begin{equation}
-    \boldsymbol{\tau}_c = \boldsymbol{g}(\boldsymbol{q}).
-\end{equation}
-
-% section control_architectures_gravity_compensation

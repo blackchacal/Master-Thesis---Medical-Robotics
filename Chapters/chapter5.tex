@@ -25,20 +25,18 @@ This chapter's goal is to describe in detail the robotic system used on this the
 \section{Overview}
 \label{sec:robotic_system_overview}
 
-The robotic system is a robotic manipulator arm called Panda, from the german company Franka Emika GmbH (Fig. \ref{fig:franka_panda_overview}). It is an award winning robot in the category of collaborative robotics. It first won the Deutscher Zukunftspreis prize in 2017. On the following year, 2018, it also won the Time Best Inventions prize and German Innovation Award. In 2019, it won the iF Product Design Award \cite{FrankaEmikaGmbH_official_website}. 
+The robotic system is a robotic manipulator arm called Panda, from the german company Franka Emika GmbH (Fig. \ref{fig:franka_panda_overview}). 
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.3\textwidth]{franka_panda_overview}
-	\caption{Panda robotic manipulator arm from Franka Emika GmbH. Courtesy of Franka Emika GmbH, from the press kit available on \cite{FrankaEmikaGmbH_official_website}.}
+	\caption[Panda robotic manipulator arm.]{Panda robotic manipulator arm from Franka Emika GmbH. Courtesy of Franka Emika GmbH, from the press kit available on \cite{FrankaEmikaGmbH_official_website}.}
 	\label{fig:franka_panda_overview}
 \end{figure}
 
-The robot has seven degrees-of-freedom given from seven revolute joints. From a technology point-of-view, the joints are advanced mechatronic mechanisms. Each joint has a 14 bits resolution positional encoder. The motors used are a proprietary technology of brushless dc motors that are connected to strain wave gears for zero backlash. The joints also have torque sensors with 13 bits resolution. This complex joint system is controlled via real time electronics at 1 kHz rate \cite{FrankaEmikaGmbH_technology}.
+The robot has seven degrees-of-freedom given from seven revolute joints. Each joint has a 14 bits resolution positional encoder. The motors use a proprietary technology of brushless dc motors that are connected to strain wave gears for zero backlash. The joints also have torque sensors with 13 bits resolution. This complex joint system is controlled via real time electronics at 1 kHz rate \cite{FrankaEmikaGmbH_technology}.
 
-The technology used on the joints contributes for the good operational results which robot has. Regarding free space motion the robot has a pose repeatabillity error of $\pm \SI{0.1}{\milli\meter}$ and a path deviation error of $\pm \SI{1.25}{\milli\meter}$. The torque sensors provide a resolution under 0.05 N on the forces measured at the end-effector. The force accuracy is 0.8 N and it has a repeatabillity under 0.05 N. The robot can apply forces to a minimum of 0.05 N at 1 kHz. Another characteristic of the robot is its collision detection capabilities. It can detect collisions in less than 2 ms, and react to it in less than 50 ms. More details are described on annex \ref{ann:panda_datasheet}.
-
-The robot versatility allows it to be used on a broad range of tasks. In a factory setting, it can be used for parts assembly, pick-and-place, and physical manipulation of tools. In conjunction with vision systems it can be used for visual inspection, sorting, and other vision-based tasks. Outside of the factory, these skills can be used to automate other processes that require the same skills. Another important point is that being a collaborative robot, it can work safely side-by-side with a human.
+Regarding free space motion the robot has a pose repeatabillity error of $\pm \SI{0.1}{\milli\meter}$ and a path deviation error of $\pm \SI{1.25}{\milli\meter}$. The torque sensors provide a resolution under 0.05 N on the forces measured at the end-effector. The force accuracy is 0.8 N and it has a repeatabillity under 0.05 N. The robot can apply forces to a minimum of 0.05 N at 1 kHz. Another characteristic of the robot is its collision detection capabilities. It can detect collisions in less than 2 ms, and react to it in less than 50 ms. More details are described on annex \ref{ann:panda_datasheet}.
 
 Besides all the physical capabilities, on the software side, the system comes with a web-based interface called \emph{Desk} to program the robot via apps. This system simplifies the configuration of specific tasks for the robot to execute. The tasks can be saved and even distributed across various robots. For research purposes, the robot comes with a control interface, \gls{fci}, that allows the user to create custom made controllers. This is the interface used on this thesis.
 
@@ -56,7 +54,7 @@ The basic setup of the robot system is shown on Figure \ref{fig:robotic_system_b
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{panda_basic_setup}
-	\caption{Basic setup of the robotic system. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Basic setup of the robotic system.]{Basic setup of the robotic system. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:robotic_system_basic_setup}
 \end{figure}
 
@@ -68,16 +66,16 @@ The Panda Arm is the main part of the robotic system. As previously mentioned, i
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.8\textwidth]{panda_arm_components}
-	\caption{Components of the Panda Arm. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Components of the Panda Arm.]{Components of the Panda Arm. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_arm_components}
 \end{figure}
 
-The Arm has several components worth mentioning (Fig. \ref{fig:panda_arm_components}). At the base of the robot there are two LED strip lights to indicate the status of the robot. These will be explained on section \ref{sec:robotic_system_operation}. Two of the joints have special names because of their resemblance to a human arm. The second joint is called \emph{Shoulder} and the fourth joint is called \emph{Elbow}. These are common joint names for anthropomorphic-like robot arms. The last link also has a special name, it is called \emph{Pilot}. It acts as a control platform for the robot. It works in conjunction with the Desk interface. The Pilot has the \emph{Disc} which is a set of control buttons, and the \emph{Grip}, which allows the user to manually guide the robot when in \emph{interactive} or "monitored stop" mode. The Pilot is show in more detail on Figure \ref{fig:panda_pilot_topview}.
+The Arm has several components worth mentioning (Fig. \ref{fig:panda_arm_components}). At the base of the robot there are two LED strip lights to indicate the status of the robot. These will be explained on section \ref{sec:robotic_system_operation}. The last link is called \emph{Pilot}. It acts as a control platform for the robot. It works in conjunction with the Desk interface. The Pilot has the \emph{Disc} which is a set of control buttons, and the \emph{Grip}, which allows the user to manually guide the robot when in \emph{interactive} or "monitored stop" mode. The Pilot is show in more detail on Figure \ref{fig:panda_pilot_topview}.
 
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=0.8\textwidth]{panda_pilot_topview}
-	\caption{Detailed view of Panda Arm Pilot. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Detailed view of Panda Arm Pilot.]{Detailed view of Panda Arm Pilot. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_pilot_topview}
 \end{figure}
 
@@ -86,12 +84,12 @@ The Arm has several components worth mentioning (Fig. \ref{fig:panda_arm_compone
 \subsection*{Panda Hand}
 \label{subsec:robotic_system_physical_description_panda_hand}
 
-On a typical assembly of the Panda Arm, the end-effector used is the Panda Hand, which is the official end-effector. This tool is a two-finger, linear single axis robot hand (Fig. \ref{fig:panda_hand}). The Hand is powered directly from the Arm via a proprietary cable. The fingers can change positions in order to increase the span length. They can also be easily replaced by custom made fingers fitted for the task in hand. The fingertips can also be replaced in order to adapt the gripping format and strength to a specific task.
+On a typical assembly of the Panda Arm, the end-effector used is the Panda Hand, which is the official end-effector. This tool is a two-finger, linear single axis robot hand (Fig. \ref{fig:panda_hand}). The Hand is powered directly from the Arm via a proprietary cable. The fingers can change positions in order to increase the span length. They can also be easily replaced by custom-made fingers fitted for the task in hand. The fingertips can also be replaced in order to adapt the gripping format and strength to a specific task.
 
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=0.8\textwidth]{panda_hand}
-	\caption{Panda Hand. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Panda Hand.]{Panda Hand. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_hand}
 \end{figure}
 
@@ -105,7 +103,7 @@ The Control is a special computer responsible for controlling the Panda Arm (Fig
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=0.8\textwidth]{panda_control}
-	\caption{Panda Control hardware. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Panda Control hardware.]{Panda Control hardware. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_control}
 \end{figure}
 
@@ -114,15 +112,12 @@ The Control is a special computer responsible for controlling the Panda Arm (Fig
 \subsection*{Safety devices}
 \label{subsec:robotic_system_physical_description_safety_devices}
 
-The robot comes with three safety devices (Fig. \ref{fig:panda_safety_devices}) that allow the user to stop the robot immediately when needed. \\
-The emergency stop device (Fig. \ref{fig:panda_safety_devices}c) is connected between the Control and mains power. The button has two states. When pressed down it is an open switch. When the button is lifted, the switch is closed and the Control is powered. \\
-The external activation device (Fig. \ref{fig:panda_safety_devices}b) behaves similarly to the emergency stop device. When the button is pressed the robot is stopped and stays on the interactive mode. It can only be manually moved via the Grip buttons on the Pilot. When the button is lifted the robot goes to activated mode. In this mode the Desk tasks can be executed and the custom controllers can be run. If the button is pressed while the robot is moving it will stop immediately.
-Finally, the external enabling device (Fig. \ref{fig:panda_safety_devices}a) is used to bypass the activation device. If the button is half pressed it goes to the activated mode and the Desk tasks can be run. If the button is not pressed or full pressed it will stop the robot.
+The robot comes with three safety devices (Fig. \ref{fig:panda_safety_devices}) that allow the user to stop the robot immediately when needed. The emergency stop device (Fig. \ref{fig:panda_safety_devices}c) is connected between the Control and mains power. The button has two states. When pressed down it is an open switch. When the button is lifted, the switch is closed and the Control is powered. The external activation device (Fig. \ref{fig:panda_safety_devices}b) behaves similarly to the emergency stop device. When the button is pressed the robot is stopped and stays on the interactive mode. It can only be manually moved via the Grip buttons on the Pilot. When the button is lifted the robot goes to activated mode. In this mode the Desk tasks can be executed and the custom controllers can be run. If the button is pressed while the robot is moving it will stop immediately. Finally, the external enabling device (Fig. \ref{fig:panda_safety_devices}a) is used to bypass the activation device. If the button is half pressed it goes to the activated mode and the Desk tasks can be run. If the button is not pressed or full pressed it will stop the robot.
 
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{panda_safety_devices}
-	\caption{Panda safety devices. (a) External enabling device; (b) External activation device; (c) Emergency stop device. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Panda safety devices.]{Panda safety devices. (a) External enabling device; (b) External activation device; (c) Emergency stop device. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_safety_devices}
 \end{figure}
 
@@ -154,14 +149,14 @@ As previously stated, Panda is a robotic arm with seven degrees of freedom. It c
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=.55\textwidth]{panda_joint_model_representation}
-	\caption{Panda robotic arm model representation.}
+	\caption[Panda robotic arm model representation.]{Panda robotic arm model representation.}
 	\label{fig:panda_joint_model_representation}
 \end{figure}
 
 The \glsfirst{fk} chain can be defined by the \glsfirst{dh} parameters. Figure \ref{fig:panda_fci_dh_parameters} presents the reference frames locations used to obtain the \gls{dh} parameters listed on table \ref{tab:panda_dh_parameters}.
 
 \begin{table}[htbp]
-    \caption{Panda's \gls{dh} parameters. Courtesy of Franka Emika GmbH from \cite{FrankaEmikaGmbH_fci_documentation}.}
+    \caption[Panda's \gls{dh} parameters.]{Panda's \gls{dh} parameters. Courtesy of Franka Emika GmbH from \cite{FrankaEmikaGmbH_fci_documentation}.}
     \centering
     \begin{tabular}{c|c|c|c|c}
         \toprule
@@ -191,7 +186,7 @@ The \glsfirst{fk} chain can be defined by the \glsfirst{dh} parameters. Figure \
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=.8\textwidth]{panda_fci_dh_parameters}
-	\caption{Panda's kinematic chain. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
+	\caption[Panda's kinematic chain.]{Panda's kinematic chain. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
 	\label{fig:panda_fci_dh_parameters}
 \end{figure}
 
@@ -200,12 +195,12 @@ The \glsfirst{fk} chain can be defined by the \glsfirst{dh} parameters. Figure \
 \subsection{Joint \& Cartesian Limits}
 \label{robotic_system_constraints_kinematics_joint_cartesian_limits}
 
-All Panda's joint have physical limits that must be respected to conserve the robot integrity. These limits are both mechanical and kinematic. They are listed on table \ref{tab:panda_joint_limits}.
+All Panda's joints have physical limits that must be respected to conserve the robot integrity. These limits are both mechanical and kinematic. They are listed on table \ref{tab:panda_joint_limits}.
 
 Besides joint limits, movement in Cartesian space also has its limits. Table \ref{tab:panda_cartesian_limits} presents such limits for speed, acceleration and jerk, for rotation, translation and elbow movement.
 
 \begin{table}[htbp]
-    \caption{Panda's joints physical and kinematic limits. Courtesy of Franka Emika GmbH from \cite{FrankaEmikaGmbH_fci_documentation}.}
+    \caption[Panda's joints physical and kinematic limits.]{Panda's joints physical and kinematic limits. Courtesy of Franka Emika GmbH from \cite{FrankaEmikaGmbH_fci_documentation}.}
     \centering
     \begin{tabular}{c|c|c|c|c|c|c|c|c}
         \toprule
@@ -224,7 +219,7 @@ Besides joint limits, movement in Cartesian space also has its limits. Table \re
 \end{table}
 
 \begin{table}[htbp]
-    \caption{Panda's Cartesian limits, speed, acceleration and jerk. Courtesy of Franka Emika GmbH from \cite{FrankaEmikaGmbH_fci_documentation}.}
+    \caption[Panda's Cartesian limits, speed, acceleration and jerk.]{Panda's Cartesian limits, speed, acceleration and jerk. Courtesy of Franka Emika GmbH from \cite{FrankaEmikaGmbH_fci_documentation}.}
     \centering
     \begin{tabular}{c|c|c|c}
         \toprule
@@ -254,11 +249,7 @@ The Panda robotic arm can be operated in two modes. The operator can use the Des
 \subsection{Installation}
 \label{subsec:robotic_system_operation_installation}
 
-In order to guarantee proper operation the robotic arm must be installed according to specifications provided on the user manual.\\
-
-The site of installation must be: indoors; not exposed to direct sunlight; have no vibrations; and no magnetic fields. The last two are very important. 
-
-The sensitivity of the mechatronic systems demand a very stable platform to install the robotic arm. Installing it on a fragile platform can limit the robot operation or jeopardize the safety of the operator. According to the user manual the following maximum forces must be supported during static and dynamic operation (Fig. \ref{fig:panda_installation_forces}):
+In order to guarantee proper operation the robotic arm must be installed according to specifications provided on the user manual. The site of installation must be: indoors; not exposed to direct sunlight; have no vibrations; and no magnetic fields. The last two are very important. The sensitivity of the mechatronic systems demand a very stable platform to install the robotic arm. Installing it on a fragile platform can limit the robot operation or jeopardize the safety of the operator. According to the user manual the following maximum forces must be supported during static and dynamic operation (Fig. \ref{fig:panda_installation_forces}):
 
 \begin{itemize}
     \item vertical force: 410 N
@@ -270,13 +261,11 @@ The sensitivity of the mechatronic systems demand a very stable platform to inst
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=.8\textwidth]{panda_installation_forces}
-	\caption{Installation considerations for Panda robotic arm. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Installation considerations for Panda robotic arm.]{Installation considerations for Panda robotic arm. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_installation_forces}
 \end{figure}
 
-The demand for a stable platform to install the robot may also limit its mobility. A mobile platform may not be cable of supporting the forces mentioned on the previous paragraph for static and dynamic operation.
-
-The limitation of no magnetic fields on the installation site means that the robotic arm cannot be used in conjunction with MRI machines and other magnetically active devices.\\
+The demand for a stable platform to install the robot may also limit its mobility. A mobile platform may not be capable of supporting the forces mentioned on the previous paragraph for static and dynamic operation. The limitation of no magnetic fields on the installation site means that the robotic arm cannot be used in conjunction with MRI machines and other magnetically active devices.
 
 For more details on how to effectively mount the robotic arm, control, hand, and do all the connections, read the user manual which comes in the system's package.
 
@@ -285,40 +274,19 @@ For more details on how to effectively mount the robotic arm, control, hand, and
 \subsection{Safety}
 \label{subsec:robotic_system_operation_safety}
 
-Like with any robotic system, it is very important to take into consideration the system's and operator's safety. Even more when considering autonomous operation. A few aspects regarding Panda's safety will be mentioned. More in depth details are available on the user manual.
+It is very important to take into consideration the system's and operator's safety, even more when considering autonomous operation. A few aspects regarding Panda's safety will be mentioned. More in depth details are available on the user manual.
 
 \subsubsection*{Possible Dangers}
 \label{subsubsec:robotic_system_operation_safety_possible_dangers}
 
-According to the user manual, the list of possible dangers associated with the operation of Panda robotic arm are the following:
-
-\begin{itemize}
-    \item Mechanical dangers
-    \begin{itemize}
-        \item Crushing
-        \item Shearing
-        \item Impact, puncture, penetration
-    \end{itemize}
-    \item Electrical hazards
-    \begin{itemize}
-        \item Electric shock when touching live part
-    \end{itemize}
-    \item Environmental hazards
-    \begin{itemize}
-        \item Crushing, shearing, impact, puncture, penetration
-    \end{itemize}
-    \item Combined hazards
-    \begin{itemize}
-        \item Crushing, shearing, impact, puncture, penetration
-    \end{itemize}
-\end{itemize}
+According to the user manual, the list of possible dangers associated with the operation of Panda robotic arm are the following: crushing; shearing; impact; puncture; penetration; and electric shock when touching live part.
 
 % subsubsection robotic_system_operation_safety_possible_dangers
 
 \subsubsection*{Hazardous, Safe and Collaborative Areas}
 \label{subsubsec:robotic_system_operation_safety_hazardous_safe_collaborative_areas}
 
-Three important concepts regarding safety are presented on the user manual. These are \textbf{Hazardous Area}, \textbf{Safe Area} and \textbf{Collaborative Area}.\\
+Three important concepts regarding safety are presented on the user manual. These are \textit{Hazardous Area}, \textit{Safe Area} and \textit{Collaborative Area}.
 
 The Hazardous Area is the operating area in which the arm executes its tasks. It corresponds to a circular area limited by the arm's reach (Fig. \ref{fig:panda_hazardous_safe_collaborative_areas}).
 
@@ -326,27 +294,16 @@ The Safe Area is an area where humans are separated from the hazardous area by c
 
 Collaborative Area corresponds to the operating space when it is used by humans and the robot. The area is shared by both, but not used at the same time. Because the shared is not constant, normally only a small part of the operating space is used collaboratively, allowing for better safety control \ref{fig:panda_hazardous_safe_collaborative_areas}).\\
 
-In our particular application, the patient will always be inside the hazardous area. This demands a higher consideration for the safety measures. The operator may be inside the hazardous area when manipulating the robotic arm.
-
 \begin{figure}[htbp]
     \centering
 	\raisebox{-0.5\height}{\includegraphics[width=.5\textwidth]{panda_hazardous_safe_areas}}
 	\hspace{0.1in}
 	\raisebox{-0.35\height}{\includegraphics[width=.45\textwidth]{panda_collaborative_space}}
-	\caption{Panda Hazardous, Safe and Collaborative Areas. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Panda Hazardous, Safe and Collaborative Areas.]{Panda Hazardous, Safe and Collaborative Areas. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_hazardous_safe_collaborative_areas}
 \end{figure}
 
 % subsubsection robotic_system_operation_safety_hazardous_safe_collaborative_areas
-
-\subsubsection*{Stopping Mechanisms}
-\label{subsubsec:robotic_system_operation_safety_stopping_mechanisms}
-
-Panda comes with three safety stop mechanisms: the external enabling device; external activation device; and emergency stop device. These were previously described on section \ref{sec:robotic_system_physical_description} and shown on Figure \ref{fig:panda_safety_devices}.
-
-The emergency stop device cuts power from the robotic arm and control. It is the best safety mechanism to completely deactivate the system. The other two mechanisms provide some safety control during robot operation. They should always be used and be in proximity of the operator to be accessed immediately if needed.
-
-% subsubsection robotic_system_operation_safety_stopping_mechanisms
 
 \subsubsection*{Fail Safe Locking System}
 \label{subsubsec:robotic_system_operation_safety_fail_safe_locking_system}
@@ -358,14 +315,12 @@ The last important safety mechanism to mention is the fail safe locking system. 
 \subsubsection*{Status Indicators}
 \label{subsec:robotic_system_operation_safety_status_indicators}
 
-During operation it is important to have feedback on the system status. Panda comes with two LED status indicators, one on the robot base and the other on the Pilot.
-
-The different status are distinguished by their color and activity. Figure \ref{fig:panda_status_indicators} shows the relation between the LED colors and robot state.
+During operation it is important to have feedback on the system status. Panda comes with two LED status indicators, one on the robot base and the other on the Pilot. The different status are distinguished by their color and activity. Figure \ref{fig:panda_status_indicators} shows the relation between the LED colors and robot state.
 
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{panda_status_indicators}
-	\caption{Panda status indicators color chart. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Panda status indicators color chart.]{Panda status indicators color chart. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_status_indicators}
 \end{figure}
 
@@ -381,11 +336,11 @@ Desk is a web application that allows the operator to control the robot arm with
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{panda_desk_interface}
-	\caption{Desk user interface. (1) Timeline area where apps are lined up to build up the task. (2) Task area. (3) App Area. The list of available apps are displayed here and can be placed on the timeline via Drag-and-Drop. (4) Side Bar. It is possible to select the pilot and guiding modes. It also shows the robot status and task execution control. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
+	\caption[Desk user interface.]{Desk user interface. (1) Timeline area where apps are lined up to build up the task. (2) Task area. (3) App Area. The list of available apps are displayed here and can be placed on the timeline via Drag-and-Drop. (4) Side Bar. It is possible to select the pilot and guiding modes. It also shows the robot status and task execution control. Courtesy of Franka Emika GmbH and adapted from Panda user handbook of 2018.}
 	\label{fig:panda_desk_interface}
 \end{figure}
 
-Because Desk was not used during these thesis the complete operation procedure will not be explained. For more details, refer to the user manual.
+Because Desk was not used during this thesis the complete operation procedure will not be explained. For more details, refer to the user manual.
 
 % subsection robotic_system_operation_desk
 
@@ -426,8 +381,6 @@ To control Panda robotic arm, the \gls{fci} was used. Franka control interface a
 \section{Integration with Gazebo}
 \label{sec:robotic_system_integration_gazebo}
 
-Gazebo is robotics simulator commonly used with \gls{ros} to create various types of simulation environments. By using a simulator, various algorithms can be tested on a sandbox environment before testing with the real systems. This helps the development process and reduces the potential for hardware faults related to programming errors.\\
-
-For this thesis, Gazebo was important to simulate the robotic arm and the depth camera. The whole system was tested on a simulated environment and also with real hardware. The integration details are described on appendix \ref{app:gazebo_setup}.
+Gazebo is a robotics simulator commonly used with \gls{ros} to create various types of simulation environments. By using a simulator, various algorithms can be tested on a sandbox environment before testing with the real systems. For this thesis, Gazebo was important to simulate the robotic arm and the depth camera. The whole system was tested on a simulated environment. The integration details are described on appendix \ref{app:gazebo_setup}.
 
 % section robotic_system_integration_gazebo

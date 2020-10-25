@@ -11,8 +11,8 @@
 \begin{quotation}
 \begin{flushright}
 \itshape
-«Quotation»\\
-\textbf{- Author}
+«Vision is the art of seeing things invisible.»\\
+\textbf{- Jonathan Swift}
 \end{flushright}
 \end{quotation}
 
@@ -25,11 +25,7 @@ The vision system is a vital component of the whole system's architecture. On th
 \section{Overview}
 \label{sec:vision_system_overview}
 
-The vision system is composed by an Intel\textregistered RealSense\texttrademark{} D415 depth camera. It provides not only \gls{rgb} data but also \glsfirst{ir} and depth data.\\
-
-The camera is small, lightweight, low cost, and it is suitable for indoor or outdoor environments. It has high resolution in both \gls{rgb} and depth data, and up to 90 \gls{fps} of frame rate for depth data. It features a range from 0.16 to 10 \si{\meter}.
-
-It has self-calibration capabilities controlled via its open source \gls{sdk}. The \gls{sdk} has wrappers for several languages and platforms, including \gls{ros}.
+The vision system is composed by an Intel\textregistered RealSense\texttrademark{} D415 depth camera. It provides not only \gls{rgb} data but also \glsfirst{ir} and depth data. The camera is small, lightweight, low cost, and it is suitable for indoor or outdoor environments. It has high resolution in both \gls{rgb} and depth data, and up to 90 \gls{fps} of frame rate for depth data. It features a range from 0.16 to 10 \si{\meter}. It has self-calibration capabilities controlled via its open source \gls{sdk}. The \gls{sdk} has wrappers for several languages and platforms, including \gls{ros}.
 
 % section vision_system_overview
 
@@ -40,23 +36,23 @@ It has self-calibration capabilities controlled via its open source \gls{sdk}. T
 \section{Physical Description}
 \label{sec:vision_system_physical_description}
 
-D415 depth camera has a small form factor of $29 \times 20 \times 23$ \si{\milli\meter} (Length $\times$ Depth $\times$ Height). Inside, it has an Intel\textregistered{} RealSense\texttrademark{} Vision Processor D4 and a Depth Module. The vision processor is common among the D400 camera series. The depth module for this camera features an \gls{ir} projector, two imagers (left and right) for stereo vision, and an \gls{rgb} camera (Fig. \ref{fig:camera_physical_description}).\\
+D415 depth camera has a small form factor of $29 \times 20 \times 23$ \si{\milli\meter} (Length $\times$ Depth $\times$ Height). Inside, it has an Intel\textregistered{} RealSense\texttrademark{} Vision Processor D4 and a Depth Module. The vision processor is common among the D400 camera series. The depth module for this camera features an \gls{ir} projector, two imagers (left and right) for stereo vision, and an \gls{rgb} camera (Fig. \ref{fig:camera_physical_description}).
 
-The camera has USB-C connector and comes with a USB-C/USB-A cable to connect the camera to a computer. It comes with 3 mounting points, two M3 thread holes on the back of the camera, and one 1/4‑20 UNC thread mounting point on the bottom, not visible on Figure \ref{fig:camera_physical_description}. A tripod stand is also supplied to be assembled on the 1/4-20 UNC mounting point. It also features an external sensor sync connector on the top side.
+The camera has USB-C connector and comes with a USB-C/USB-A cable to connect the camera to a computer. The casing comes with 3 mounting points, two M3 thread holes on the back, and one 1/4‑20 UNC thread mounting point on the bottom, not visible on Figure \ref{fig:camera_physical_description}. A tripod stand is also supplied to be assembled on the 1/4-20 UNC mounting point. It also features an external sensor sync connector on the top side.
 
 The most important technical specifications are presented on table \ref{tab:camera_tech_specs}.\\
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{camera_physical_description}
-	\caption{Intel\textregistered{} RealSense\texttrademark{} D415 camera's physical description. Courtesy of Intel\textregistered{} and adapted from \cite{IntelRealSense_depth_camera_d415}.}
+	\caption[Intel\textregistered{} RealSense\texttrademark{} D415 camera's physical description.]{Intel\textregistered{} RealSense\texttrademark{} D415 camera's physical description. Courtesy of Intel\textregistered{} and adapted from \cite{IntelRealSense_depth_camera_d415}.}
 	\label{fig:camera_physical_description}
 \end{figure}
 
 More detailed technical information about the camera is available on the camera datasheet which is partially available as annex \ref{ann:d415_datasheet}.
 
 \begin{table}[htbp]
-    \caption{Intel\textregistered{} RealSense\texttrademark{} D415 camera technical specifications. Courtesy of Intel\textregistered{} and adapted from \cite{IntelRealSense_depth_camera_d415}.}
+    \caption[Intel\textregistered{} RealSense\texttrademark{} D415 camera technical specifications.]{Intel\textregistered{} RealSense\texttrademark{} D415 camera technical specifications. Courtesy of Intel\textregistered{} and adapted from \cite{IntelRealSense_depth_camera_d415}.}
     \centering
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{c|l|l}
@@ -105,21 +101,19 @@ On this section, the camera operation will be briefly explained. The camera's de
 
 The \gls{ir} projector is only needed in scenes with low texture to improve depth accuracy. It accomplishes this improvement by projecting a static IR pattern (Fig. \ref{fig:camera_stereo_vision_mechanism}).
 
-The role of the imagers is to capture the scene and send it to the depth imaging (vision) processor. This processor is responsible for generating the depth data "by correlating points on the left image to the right image and via shift between a point on the Left image and the Right image" \cite{} {\color{red} falta citar! tem que ser manualmente. usar tipo @manual} (Fig. \ref{fig:camera_stereo_vision_mechanism}). The set of data for all the pixels forms a depth frame, and a set of depth frames forms a depth video stream.\\
-
-A clarification must be done on the concept of depth. There is a difference between depth and range. Range is the linear distance between the observed object and the camera. Depth, is the perpendicular distance between the object and the camera's lens plane (Fig. \ref{fig:camera_depth_vs_range}). The depth distance is less than or equal to the range.
+The role of the imagers is to capture the scene and send it to the depth imaging (vision) processor. This processor is responsible for generating the depth data by correlating points on the left image to the right image and via shift between a point on each image (Fig. \ref{fig:camera_stereo_vision_mechanism}). The set of data for all the pixels forms a depth frame, and a set of depth frames forms a depth video stream. The difference between depth and range is shown in Figure \ref{fig:camera_depth_vs_range}.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.7\textwidth]{camera_stereo_vision_mechanism}
-	\caption{Camera Stero Vision Technology. (1) Left and Right imagers capture the scene while the \gls{ir} projects a static pattern. (2) The images from both imagers are correlated pixel by pixel and their shifts calculated. (3) Depth data is obtained from these correlated shifts.}  
+	\caption[Camera Stero Vision Technology.]{Camera Stero Vision Technology. (1) Left and Right imagers capture the scene while the \gls{ir} projects a static pattern. (2) The images from both imagers are correlated pixel by pixel and their shifts calculated. (3) Depth data is obtained from these correlated shifts.}  
 	\label{fig:camera_stereo_vision_mechanism}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.7\textwidth]{camera_depth_vs_range}
-	\caption{Difference between Depth and Range. Range is the linear distance from the object to the camera. Depth is the perpendicular distance between the object and the camera's lens plane.}
+	\caption[Difference between Depth and Range.]{Difference between Depth and Range. Range is the linear distance from the object to the camera. Depth is the perpendicular distance between the object and the camera's lens plane.}
 	\label{fig:camera_depth_vs_range}
 \end{figure}
 
@@ -132,32 +126,28 @@ A clarification must be done on the concept of depth. There is a difference betw
 \section{Camera Attachment to Robot}
 \label{sec:vision_system_camera_attachment}
 
-The way the system was projected established a camera-robot relationship of the type eye-in-hand, which means the camera is attached to the robot. This section will describe the attachment mechanism and location of the camera on the robot.\\
-
-Because the goal of the camera was to assess the patient wounds, it was important for the camera to be place close to, or directly on the end-effector. By placing at that position the camera \gls{fov} could be adjusted by robot movement to optimise the wound assessment.
+The way the system was projected established a camera-robot relationship of the type eye-in-hand, which means the camera is attached to the robot. Because the goal of the camera was to assess the patient wounds, it was important for the camera to be placed close to, or directly on the end-effector. By placing at that position the camera \gls{fov} could be adjusted by robot movement to optimise the wound assessment.
 
 The choice was to attach it to the Pilot, on an existent groove above the Pilot's Grip (Fig. \ref{fig:camera_attachment_site}). This particular placement allows the camera to see the area in front of the end-effector.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.8\textwidth]{camera_attachment_site}
-	\caption{Camera attachment site on the robotic arm. The camera holder is attached to the Pilot's groove above the Grip. The fixation mechanism is by compression force. The camera is fixed on the holder by two M3 thread screws.}
+	\caption[Camera attachment site on the robotic arm.]{Camera attachment site on the robotic arm. The camera holder is attached to the Pilot's groove above the Grip. The fixation mechanism is by compression forces. The camera is fixed on the holder by two M3 thread screws.}
 	\label{fig:camera_attachment_site}
 \end{figure}
 
 \subsection{Camera Holder}
 \label{subsec:vision_system_camera_attachment_holder}
 
-In order to attach the camera to the robot a custom-made holder was designed using \gls{cad} tools and 3D printed in PLA thermoplastic. 
+To attach the camera to the robot a custom-made holder was designed using \gls{cad} tools and 3D printed in PLA thermoplastic. 
 
-The goal of the design was for the holder to embrace the Pilot's groove and stay fixed only through compression forces. This way the camera is statically fixed but has some leeway to adjust its orientation. The holder used the M3 mounting points to secure the camera, because M3 thread screws are more easily available than 1/4‑20 UNC thread screws.
-
-Figure \ref{fig:camera_holder_render} shows a 3D model render of the camera holder. For mechanical specifications consult appendix \ref{app:camera_holder_mechanical_drawings}.
+The goal of the design was for the holder to embrace the Pilot's groove and stay fixed only through compression forces. This way the camera is statically fixed but has some leeway to adjust its orientation. The holder used the M3 mounting points to secure the camera, because M3 thread screws are more easily available than 1/4‑20 UNC thread screws. Figure \ref{fig:camera_holder_render} shows a 3D model render of the camera holder. For mechanical specifications consult appendix \ref{app:camera_holder_mechanical_drawings}.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{camera_holder_render}
-	\caption{Camera holder 3D model render.}
+	\caption[Camera holder 3D model render.]{Camera holder 3D model render.}
 	\label{fig:camera_holder_render}
 \end{figure}
 
@@ -172,19 +162,7 @@ Figure \ref{fig:camera_holder_render} shows a 3D model render of the camera hold
 
 Whenever there is a system composed by a robot and a camera that work together, a calibration must be done. In general, the calibration serves to obtain the camera \textit{intrinsic} and \textit{extrinsic} parameters. The intrinsic parameters are related to the camera optical system, while the extrinsic parameters are related to the camera coordinates in relation to a reference frame.
 
-In this thesis, the intrinsic parameters are not calculated because the camera has self-calibration capabilities. However, the extrinsic parameters are needed. They allow the calculation of the transformation matrix, $\boldsymbol{H}^b_c$, between the camera frame and robot base frame.
-
-Without this calibration, an approximation of the transformation matrix can be obtained in \gls{ros}. By defining the approximate position of the joint between the camera model and robot model, \textbf{tf} package can provide a transformation matrix.
-
-\subsection{Calibration Procedure}
-\label{subsec:vision_system_camera_calibration_procedure}
-
-% subsection vision_system_camera_calibration_procedure
-
-\subsection{Calibration Results}
-\label{subsec:vision_system_camera_calibration_results}
-
-% subsection vision_system_camera_calibration_results
+In this thesis, the intrinsic parameters are not calculated because the camera has self-calibration capabilities. However, the extrinsic parameters are needed. They allow the calculation of the transformation matrix, $\boldsymbol{H}^b_c$, between the camera frame and robot base frame. Because the tests were only done in simulation, an approximation of the transformation matrix was obtained in \gls{ros}. By defining the approximate position of the joint between the camera model and robot model, \textbf{tf} package can provide a transformation matrix.
 
 % section vision_system_camera_calibration
 
@@ -212,6 +190,6 @@ On appendix \ref{app:ros_setup}, section \ref{sec:ros_setup_camera}, all the set
 
 In order to use the camera on the simulated environment, a specific configuration must be done. The models provided on \textit{realsense2\_description} can be used to visualise the camera on Gazebo, but they cannot provide data. For that, a few changes must be done to create a Gazebo camera plugin to simulate all three data streams, \gls{rgb}, \gls{ir} and depth. The description files also need to be updated to attach the camera on the robot at the right place.
 
-All the changes needed to properly simulate the camera are addressed on appendix \ref{app:gazebo_setup}, section \ref{sec:vision_system_integration_gazebo}.
+All the changes needed to properly simulate the camera are addressed on appendix \ref{app:gazebo_setup}, section \ref{sec:gazebo_setup_camera}.
 
 % section vision_system_integration_gazebo

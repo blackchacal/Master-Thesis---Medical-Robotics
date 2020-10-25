@@ -11,7 +11,15 @@
 \section{Introduction}
 \label{sec:ros_setup_introduction}
 
-For more information about \gls{ros}, please refer to annex \ref{ann:ros}.
+The Robot Operating System (ROS) is a flexible framework for writing robot software. It is a collection of tools, libraries, and conventions that aim to simplify the task of creating complex and robust robot behavior across a wide variety of robotic platforms.
+
+There are three core components that provide the robust environment for robotic development. These are its communication infrastructure at the low level; a set of robot-specific features; and some tools that ease the development process and debugging.
+
+On the communication side we have message passing, message recording and playback, remote procedure call, and a distributed parameter system.
+
+The robot-specific features are: standard robot messages; robot geometry library; robot description language; preemptable remote procedure calls; pose estimation, localisation and navigation; and diagnostics.
+
+Regarding the tools, \gls{ros} comes with three powerful tools. It comes with command-line tools which give full control of the whole system, from compilation to code execution. Another tool is RViz which provides general purpose, three-dimensional visualisation of many sensor data types and any URDF-described robot. Finally, it also comes with rqt which is a Qt-based framework for developing graphical interfaces for the robot.
 
 \section{Robot Setup}
 \label{sec:ros_setup_robot}
@@ -98,7 +106,7 @@ In order for the \gls{fci} to work, proper communication between the robot and t
 The Control and Host PC must be on the same network. For that, static IP addresses will be used. The IP configuration is provided on table \ref{tab:communicaton_setup_ips}.
 
 \begin{table}[htbp]
-    \caption{Control-Host PC network configuration values for static IP address and netmask.}
+    \caption[Control-Host PC network configuration values for static IP address and netmask.]{Control-Host PC network configuration values for static IP address and netmask.}
     \centering
     \begin{tabular}{l|c|c}
         \toprule
@@ -125,7 +133,7 @@ Both IPs must be configured. To configure the Control's IP go to the browser and
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{panda_desk_top_menu}
-	\caption{Desk interface top right menu. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
+	\caption[Desk interface top right menu.]{Desk interface top right menu. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
 	\label{fig:panda_desk_top_menu}
 \end{figure}
 
@@ -134,7 +142,7 @@ To configure the host PC static IP, please refer to the specific \gls{os} instru
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{panda_desk_settings_network_page}
-	\caption{Desk settings network page. The red box highlights the address text box where the new static IP for the control should be introduced. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
+	\caption[Desk settings network page.]{Desk settings network page. The red box highlights the address text box where the new static IP for the control should be introduced. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
 	\label{fig:panda_desk_settings_network_page}
 \end{figure}
 
@@ -149,7 +157,7 @@ where \textbf{<fci-ip>} is the Control's static IP address. If everything is pro
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{panda_fci_network_config_example_output}
-	\caption{Proper network configuration test output example. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
+	\caption[Desk settings network page.]{Proper network configuration test output example. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
 	\label{fig:panda_fci_network_config_example_output}
 \end{figure}
 
@@ -174,7 +182,7 @@ Figure \ref{fig:panda_fci_libfranka_overview} presents a schematic overview of \
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{panda_fci_libfranka_overview}
-	\caption{Schematic overview of \textit{libfranka}. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
+	\caption[Schematic overview of \textit{libfranka}.]{Schematic overview of \textit{libfranka}. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
 	\label{fig:panda_fci_libfranka_overview}
 \end{figure}
 
@@ -201,7 +209,7 @@ For more information about \textit{libfranka} refer to \cite{FrankaEmikaGmbH_fci
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{panda_fci_frankaros_overview}
-	\caption{Schematic overview of \textit{franka\_ros} packages. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
+	\caption[Schematic overview of \textit{franka\_ros} packages.]{Schematic overview of \textit{franka\_ros} packages. Courtesy of Franka Emika GmbH and adapted from \cite{FrankaEmikaGmbH_fci_documentation}.}
 	\label{fig:panda_fci_frankaros_overview}
 \end{figure}
 
@@ -215,7 +223,7 @@ This package contains the Panda Arm and Hand description in terms of "kinematics
 \subsubsection*{franka\_gripper}
 \label{subsubsec:ros_setup_robotic_system_integration_ros_franka_ros_franka_gripper}
 
-This package implements a \gls{ros} node for interfacing a gripper from \gls{ROS}. This allows the user to control Hand with \gls{ros} commands. The node publishes the state of the gripper and also provides several action servers.
+This package implements a \gls{ros} node for interfacing a gripper from \gls{ros}. This allows the user to control Hand with \gls{ros} commands. The node publishes the state of the gripper and also provides several action servers.
 
 % subsubsection ros_setup_robotic_system_integration_ros_franka_ros_franka_gripper
 
@@ -243,14 +251,14 @@ This package is used only for visualisation. It publishes the robot and gripper 
 \subsubsection*{franka\_example\_controllers}
 \label{subsubsec:ros_setup_robotic_system_integration_ros_franka_ros_franka_example_controllers}
 
-To introduce the user to the control capabilities of Panda, this package provides "a set of example controllers for controlling the robot via \gls{ros} are implemented. The controllers depict the variety of interfaces offered ... and according usage" \cite{FrankaEmikaGmbH_fci_documentation}. To ease the controllers testing, each example comes with "a stand-alone launch file that starts the controller ... and visualizes it" \cite{FrankaEmikaGmbH_fci_documentation}.
+To introduce the user to the control capabilities of Panda, this package provides "a set of example controllers for controlling the robot via \gls{ros}. The controllers depict the variety of interfaces offered ... and according usage" \cite{FrankaEmikaGmbH_fci_documentation}. To ease the controllers testing, each example comes with "a stand-alone launch file that starts the controller ... and visualizes it" \cite{FrankaEmikaGmbH_fci_documentation}.
 
 % subsubsection ros_setup_robotic_system_integration_ros_franka_ros_franka_example_controllers
 
 \subsubsection*{franka\_msgs}
 \label{subsubsec:ros_setup_robotic_system_integration_ros_franka_ros_franka_msgs}
 
-This package "contains message, service and action types that are primarily used the packages franka\_hw and franka\_control to publish robot states or to expose the libfranka API in the \gls{ros} ecosystem" \cite{FrankaEmikaGmbH_fci_documentation}.
+This package "contains message, service and action types that are primarily used by the packages franka\_hw and franka\_control to publish robot states or to expose the libfranka API in the \gls{ros} ecosystem" \cite{FrankaEmikaGmbH_fci_documentation}.
 
 % subsubsection ros_setup_robotic_system_integration_ros_franka_ros_franka_msgs
 
@@ -266,9 +274,84 @@ This package provides integration with \gls{ros} MoveIt!.\\
 \section{Camera Setup}
 \label{sec:ros_setup_camera}
 
+This sections describes how to integrate the Intel\textregistered RealSense\texttrademark{} D415 depth camera into \gls{ros}. It starts with the installation process and follows with some custom setup and usage.
+
+\subsection{Camera Installation}
+\label{subsec:ros_setup_camera_installation}
+
+The Intel\textregistered RealSense\texttrademark{} D400 product family \gls{sdk} comes with a port to \gls{ros}, consisting of two packages. These packages, \textit{realsense2\_camera} and \textit{realsense2\_description} are responsible for handling the data streams and making them available through \gls{ros} topics and defining the camera model for visualisation.\\
+
+To install, we need to download the packages from RealSense-ROS github page at \url{https://github.com/IntelRealSense/realsense-ros/releases}. The release used was build v2.33.1.
+
+The package folder should then be copied to \gls{ros} catkin workspace. Once there, just run the following commands on the terminal:
+
+\begin{verbatim}
+cd catkin_ws
+catkin_make
+\end{verbatim}
+
+% subsection ros_setup_camera_installation
+
+\subsection{Camera Customisation and Usage}
+\label{subsec:ros_setup_camera_customisation_usage}
+
+The \textit{realsense2\_camera} package comes with several launch files for several uses. The one we need to use is the \textbf{rs\_camera.launch}. It comes with many configuration options to customise the camera to our needs. The ones customised are the following:
+
+\begin{itemize}
+    \item camera: smalldrop/vision/camera/
+    \item tf\_prefix: camera
+    \item initial\_reset: true
+    \item color\_width: 640
+    \item color\_height: 480
+    \item depth\_fps: 6
+    \item color\_fps: 6
+    \item enable\_pointcloud: true
+    \item filters: pointcloud
+    \item align\_depth: true
+\end{itemize}
+
+When running this launch file, it will start communication with the camera and stream the data via \gls{ros} topics:
+
+\begin{itemize}
+    \item /smalldrop/vision/camera/color/camera\_info
+    \item /smalldrop/vision/camera/color/image\_raw
+    \item /smalldrop/vision/camera/infra1/camera\_info
+    \item /smalldrop/vision/camera/infra1/image\_raw
+    \item /smalldrop/vision/camera/infra1/camera\_info
+    \item /smalldrop/vision/camera/infra1/image\_raw
+    \item /smalldrop/vision/camera/depth/camera\_info
+    \item /smalldrop/vision/camera/depth/image\_raw
+    \item /smalldrop/vision/camera/depth/color/points
+\end{itemize}
+
+% subsection ros_setup_camera_customisation_usage
+
 % section ros_setup_camera
 
 \section{Custom Code Structure}
 \label{sec:ros_setup_custom_code}
+
+All the code for this thesis is available on github: \url{https://github.com/blackchacal/smalldrop}. The whole code base is contained inside a \gls{ros} metapackage called \textit{smalldrop}. Within this metapackage, there are several other packages for specific tasks. The packages are:
+
+\begin{itemize}
+    \item \textit{smalldrop}: Project metapackage.
+    \item \textit{smalldrop\_bioprint}: Responsible for controlling the whole system.
+    \item \textit{smalldrop\_robot\_arm}: Responsible for the robot arm control for the real robot and Gazebo simulation.
+    \item \textit{smalldrop\_msgs}: Responsible for declaring all messages, services and actions for the project.
+    \item \textit{smalldrop\_rviz}: Responsible for handling rviz configurations and visualisation displays.
+    \item \textit{smalldrop\_teleoperation}: Responsible for providing an interface for remote controllers for teleoperation. It provides a standard remote controller (Space Mouse Compact from 3Dconnexion).
+    \item \textit{smalldrop\_toolpath}: Provides cartesian and joint path/trajectory planners.
+    \item \textit{smalldrop\_state}: Responsible for declaring exceptions and provides a SystemState class that has general publishers and subscribers to be used by the other packages.
+    \item \textit{smalldrop\_segmentation}: Responsible for providing wound segmentation algorithms for co-manipulation or camera segmentation.
+    \item \textit{smalldrop\_vision}: responsible for controlling the camera.
+\end{itemize}
+
+As dependencies, there are the following packages or metapackages:
+
+\begin{itemize}
+    \item \textit{franka\_ros}
+    \item \textit{realsense-ros}
+    \item \textit{realsense\_gazebo\_plugin}
+\end{itemize}
 
 % section ros_setup_custom_code

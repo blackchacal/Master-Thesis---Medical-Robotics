@@ -16,9 +16,9 @@
 \end{flushright}
 \end{quotation}
 
-On this chapter, the fundamental theorical concepts necessary to understand this thesis work will be presented.
+On this chapter, the fundamental theoretical concepts necessary to understand this thesis work will be presented.
 
-It will start by introducing the basic concepts about 3D bioprinting systems. It continues with robotics concepts like kinematics, dynamics, trajectory planning and control theory. Afterwards, computer vision concepts will be exposed. From camera systems, image processing and segmentation, all the way to visual servoing control.
+It will start by introducing the basic concepts about 3D bioprinting systems. It continues with robotics concepts like kinematics, dynamics, trajectory planning and control theory. Afterwards, computer vision concepts will be exposed like camera systems, image processing and segmentation.
 
 % ==========================
 % = 3D Bioprinting Systems =
@@ -29,7 +29,7 @@ It will start by introducing the basic concepts about 3D bioprinting systems. It
 
 Three dimensional bioprinting systems, also known as bioprinters, are the workhorses of the bioprinting revolution. They are the machines responsible for carrying out the actual organ or tissue bioprinting. 
 
-The first bioprinter, developed in 1988, was an adaptation of an inkjet printer used for micro-positioning biologics including collagen and fibronecti \cite{Klebe1988_first_bioprinter}. Nowadays, the typical design is similar to a consumer-grade desktop 3D printer used to print thermoplastics. The main concept is having a \emph{print head} coupled to a 3D \emph{positioning system}. The bioprinters are basically 3D printers with a print head prepared to print bioinks, as opposed to thermoplastics. Lately, a few different concepts have emerged that use different positioning systems and print heads. 
+The first bioprinter, developed in 1988, was an adaptation of an inkjet printer used for micro-positioning biologics including collagen and fibronectin \cite{Klebe1988_first_bioprinter}. Nowadays, the typical design is similar to a consumer-grade desktop 3D printer used to print thermoplastics. The main concept is having a \emph{print head} coupled to a 3D \emph{positioning system}. The bioprinters are basically 3D printers with a print head prepared to print bioinks, as opposed to thermoplastics. Lately, a few different concepts have emerged that use different positioning systems and print heads. 
 
 Next, the positioning systems and print heads will be described in more detail.
 
@@ -52,7 +52,7 @@ The gantry system is a common positioning system within the manufacturing realm.
 	\includegraphics[width=.45\textwidth]{gantry_system_model}
 	\hspace{.1in}
 	\raisebox{.25\height}{\includegraphics[width=.45\textwidth]{gantry_system_example}}
-	\caption{Gantry positioning system. (left) System model. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}. (right) 3D bioprinter example gantry system. Adapted from \cite{ONeill2017_3d_bioprinting_directly_onto_moving_human_anatomy}}
+	\caption[Gantry positioning system.]{Gantry positioning system. (left) System model. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}. (right) 3D bioprinter example gantry system. Adapted from \cite{ONeill2017_3d_bioprinting_directly_onto_moving_human_anatomy}}
 	\label{fig:gantry_system}
 \end{figure}
 
@@ -66,14 +66,17 @@ The print head is the bioprinter component responsible for dispensing the bioink
 
 Some printers have a single print head, while others have two or more. The most common design are single or double print heads. There exists also cases were two robotic arms are used, each one with a print head \cite{Ozbolat2014_multi_arm_bioprinter}. This design concept is useful to improve the printing speed.
 
-However, the most important aspect of the print head is the printing method it uses. Currently, there exists three main printing methods: Laser-based bioprinting (\gls{lbb}), Droplet-based bioprinting (\gls{dbb}), and Extrusion-based bioprinting (\gls{ebb}) (Fig. \ref{fig:printing_methods}). The \gls{lbb} and \gls{dbb} methods will be only briefly introduced. The \gls{ebb} will be described more thoroughly be cause it will be the one used on this thesis.
+However, the most important aspect of the print head is the printing method it uses. Currently, there exists three main printing methods: \gls{lbb}, \gls{dbb}, and \gls{ebb} (Fig. \ref{fig:printing_methods}). The \gls{lbb} and \gls{dbb} methods will be only briefly introduced. The \gls{ebb} will be described more thoroughly because it will be the one used on this thesis.
 
 \begin{figure}[htbp]
 	\centering
+	\begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
 	\includegraphics[width=\textwidth]{printing_methods}
-	\caption{Three main bioprinting technologies: (a) Laser-assisted bioprinting focuses laser pulses on to the donor slide, thus creating high pressure to propel droplets of cell-laden hydrogel on to the collector slide; (b) Inkjet printing ejects droplets of biopolymer or cell-laden hydrogels through a nozzle by either thermal energy application (electrically heating to produce vapour bubbles that forces droplets to come out through the nozzle) or piezoelectric actuator (actuation of piezoelectric crystals by applying electrical energy at high frequencies); (c) Extrusion or robotic dispensing bioprinters extrude biopolymers or cell-laden hydrogels through the nozzle by applying air pressure (pneumatic) or mechanical systems (piston or screw). Adapted from \cite{Vijayavenkataraman2016_stateart_modelling_materials_processing}.}
+	\end{adjustbox}
+	\caption[Three main bioprinting technologies.]{Three main bioprinting technologies: (a) Laser-assisted bioprinting focuses laser pulses on to the donor slide, thus creating high pressure to propel droplets of cell-laden hydrogel on to the collector slide; (b) Inkjet printing ejects droplets of biopolymer or cell-laden hydrogels through a nozzle by either thermal energy application (electrically heating to produce vapour bubbles that forces droplets to come out through the nozzle) or piezoelectric actuator (actuation of piezoelectric crystals by applying electrical energy at high frequencies); (c) Extrusion or robotic dispensing bioprinters extrude biopolymers or cell-laden hydrogels through the nozzle by applying air pressure (pneumatic) or mechanical systems (piston or screw). Adapted from \cite{Vijayavenkataraman2016_stateart_modelling_materials_processing}.}
 	\label{fig:printing_methods}
 \end{figure}
+
 
 % = Laser-based bioprinting =
 \subsubsection{Laser-based bioprinting}
@@ -96,7 +99,7 @@ Inkjet bioprinting is an adaptation from inkjet printing technology. It can be \
 \gls{ehdj} applies a high voltage (\numrange{0.6}{20} \si{\kilo\volt}) "between the nozzle and the substrate as a back-pressure supply delivers the bioink to the nozzle tip" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. This method's greatest advantage is the high resolution. "A nano-scale resolution of \textasciitilde 100 \si{\nano\meter} had been achieved using this method" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}. It can also bioprint very high viscosity bioinks (up to 20 \% w/v). One limitation is the cell viability on the long-term because of the high voltage applied. Another is the fact that it produces continuous stream of droplets limiting the precision of spatial placement \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
 Acoustic bioprinting can eject bioink droplets on demand using an acoustic actuator. The advantages of this method are high resolution (\textasciitilde 37 \si{\micro\meter}) and high printing speed (up to 10,000 droplets per second). Another advantage is the fact that "the
-bioink is an open pool rather than in a nozzle, thus eliminating the exposure of cells to detrimental stressors such as heat, high pressure, and high voltage" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
+bioink is in an open pool rather than in a nozzle, thus eliminating the exposure of cells to detrimental stressors such as heat, high pressure, and high voltage" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
 Microvalve-based bioprinting uses an electromechanical or solenoid valve to control the ejection of bioink droplets. Some limitations of this method are its moderate printing speeds of up to 1000 droplets per second, and nozzle clogging. The nozzle problem is such a challenge that limits the bioink viscosity to a range of \numrange{1}{200} \si{\milli\pascal\second} and a cell concentration less than 106 \si{\per\milli\litre}. Its greatest advantage is the ability of synchronising different print heads, in case multiple are used. This aids "in the printing of co-culture, and multi-culture tissue constructs" \cite{Vijayavenkataraman2018_bioprinting_tissues_organs_regen_med}.
 
@@ -127,7 +130,7 @@ There exists many types of robotics systems in use today. On this thesis, the to
 
 A robotic manipulator is an electromechanical device composed of a sequence of rigid bodies, or \emph{links}, by means of articulations called \emph{joints}. The mobility of the manipulator is conferred by the number of its joints. At the end of the manipulator a tool can be coupled for a specific task. This tool is also known as the robot \emph{end-effector} \cite{Siciliano2009_robotics_modelling_planning_control}.
 
-To correctly control a robotic manipulator it is important to have a model capable of describing the robot state, movement and dynamics. First, the mathematical tools and concepts necessary to model the robot will be presented. Afterwards, the analysis of robot kinematics, i.e., position and velocity, will be presented. It will be followed the the dynamic model, were forces and torques are considered. The concepts continue through path and trajectory planning, and end with control concepts for free space movement and movement with environment interaction.
+To correctly control a robotic manipulator it is important to have a model capable of describing the robot state, movement and dynamics. First, the mathematical tools and concepts necessary to model the robot will be presented. Afterwards, the analysis of robot kinematics, i.e., position and velocity, will be presented. It will be followed by the dynamic model, were forces and torques are considered. The concepts continue through path and trajectory planning, and end with control concepts for free space movement and movement with environment interaction.
 
 The majority of the concepts introduced in this section are based on \cite{Siciliano2009_robotics_modelling_planning_control}. When other sources are used they will be explicitly cited.
 
@@ -142,7 +145,7 @@ Since a robotic manipulator is a chain of connected rigid bodies, knowing the po
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{pose_concept}
-	\caption{Concept of Pose. It consists on the position and orientation of a rigid body in relation to a reference frame. $O-xyz$ is the reference frame and $O^\prime-x^\prime y^\prime z^\prime$ is the rigid body frame. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}.}
+	\caption[Concept of Pose.]{Concept of Pose. It consists on the position and orientation of a rigid body in relation to a reference frame. $O-xyz$ is the reference frame and $O^\prime-x^\prime y^\prime z^\prime$ is the rigid body frame. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}.}
 	\label{fig:pose_concept}
 \end{figure}
 
@@ -150,7 +153,7 @@ Since a robotic manipulator is a chain of connected rigid bodies, knowing the po
 \subsubsection{Rotation matrices}
 \label{subsubsec:rotation_matrices}
 
-A rotation matrix, is a geometrical tool, heavily used in computer graphics and robotics, that represents the rotation between two different reference frames. On 3D space it is a $3\times3$ matrix, with each column representing the x, y and z vectors of one frame represented on another frame. If $\boldsymbol{R}$ is a rotation matrix then
+A rotation matrix, is a geometrical tool, heavily used in computer graphics and robotics, that represents the rotation between two different reference frames. On 3D space it is a $3\times3$ matrix, with the columns representing the x, y and z vectors, respectively, of one frame represented on another frame. If $\boldsymbol{R}$ is a rotation matrix then
 
 \begin{equation}
     \boldsymbol{R} = \begin{bmatrix} \boldsymbol{x'} & \boldsymbol{y'} & \boldsymbol{z'}\end{bmatrix} = \begin{bmatrix} r_{11} & r_{12} & r_{13}\\
@@ -231,7 +234,7 @@ if the rotation are in relation to the \emph{current frame}, or
 
 if they are in relation to a fixed frame.
 
-Finally, sometimes its is convenient to use a simplified representation of rotations based on less parameters. There are exist four representations commonly used:
+Finally, sometimes its is convenient to use a simplified representation of rotations based on less parameters. There exist four representations commonly used:
 
 \begin{itemize}
     \item Euler angles
@@ -257,7 +260,7 @@ To properly represent the position and orientation of a rigid body we use the po
     0 & 0 & 0 & 1\end{bmatrix}
 \end{equation}
 
-In general, homogeneous transformation matrix is not orthogonal so 
+In general, the homogeneous transformation matrix is not orthogonal so 
 \begin{equation}
     \boldsymbol{H}^{T} \neq \boldsymbol{H}^{-1}.
 \end{equation}
@@ -316,7 +319,7 @@ This open chain homogeneous transformation (\ref{eq:homogeneous_transformation_b
 
 $\boldsymbol{H}^{\text{b}}_{\text{0}}$ and $\boldsymbol{H}^{\text{n}}_{\text{e}}$ represent transformations between the first chain link and the base frame, and the last chain link and the end-effector frame, respectively. These two transformations are typically constant.
 
-Although equation (\ref{eq:homogeneous_transformation_b_e}) mathematically defines the way to compute the transformation between the end-effector frame and the base frame, the actual process is highly dependent on the way the reference frames for each link are defined. Because there is freedom on the choice of the reference frames, sometimes the process becomes too laborious when the choice is not convenient. Taking this into consideration the \gls{dh} convention was created. This convention defines a systematic approach to the process of choosing the reference frames. Despite that fact that it eases the process, it still does not present a unique solution. It is possible to have various different reference frame choices still valid according to the \gls{dh} rules.
+Although equation (\ref{eq:homogeneous_transformation_b_e}) mathematically defines the way to compute the transformation between the end-effector frame and the base frame, the actual process is highly dependent on the way the reference frames for each link are defined. Because there is freedom on the choice of the reference frames, sometimes the process becomes too laborious when the choice is not convenient. Taking this into consideration the \glsfirst{dh} convention was created. This convention defines a systematic approach to the process of choosing the reference frames. Despite that fact that it eases the process, it still does not present a unique solution. It is possible to have various different reference frame choices still valid according to the \gls{dh} rules.
 
 Following the \gls{dh} convention, the homogeneous transformation between consecutive links is given by (\ref{eq:homogeneous_transformation_dh}).
 
@@ -342,27 +345,17 @@ $c_k$ and $s_k$ represent, respectively, the cosine of $k$ and the sine of $k$. 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{dh_parameters}
-	\caption{Denavit-Hartenberg kinematic parameters. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}.}
+	\caption[Denavit-Hartenberg kinematic parameters.]{Denavit-Hartenberg kinematic parameters. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}.}
 	\label{fig:dh_parameters}
 \end{figure}
 
 % subsubsection forward_kinematics
 
-% = Inverse Kinematics =
-\subsubsection{Inverse kinematics}
-\label{subsubsec:inverse_kinematics}
-
-Inverse kinematics has the inverse goal of direct kinematics. It intends to define the joint variables, or robot posture, based on the end-effector pose. This is generally a problem with a non-unique solution, which is its greatest limitation.
-
-Because this thesis does not use \gls{ik}, its theoretical concepts will not be further developed.
-
-% subsubsection inverse_kinematics
-
 % = Differential Kinematics =
 \subsubsection{Differential kinematics}
 \label{subsubsec:differential_kinematics}
 
-Differential kinematics establishes the relation between joint velocities and end-effector linear and angular velocities. The mapping between velocities described by a matrix, \emph{geometric jacobian}, or jacobian for short. This matrix depends on the posture of the robot. The jacobian matrix is very important tool to characterise a robotic manipulator. Some examples of its application are to find \emph{singularities}, analyse \emph{redundancy}, for inverse kinematics, and to relate joint torques to end-effector forces.
+Differential kinematics establishes the relation between joint velocities and end-effector linear and angular velocities. The mapping between velocities described by a matrix, \emph{geometric jacobian}, or jacobian for short. This matrix depends on the posture of the robot. The jacobian matrix is a very important tool to characterise a robotic manipulator. Some examples of its application are to find \emph{singularities}, analyse \emph{redundancy}, for inverse kinematics, and to relate joint torques to end-effector forces.
 
 Defining $\boldsymbol{v}_e$ as the end-effector velocity, the jacobian is defined by the following equation
 
@@ -474,11 +467,9 @@ The terms $c_{ijk}$ are known as the \emph{Christoffel symbols} of the first kin
 
 The execution of a robot task is normally associated with movement of the end-effector in space. For proper and safe execution of the movements, obstacle avoidance and the application of the right velocities and accelerations must be considered. For this, path and trajectory planning are essential.
 
-Path and trajectory are terms commonly used interchangeably, but on this context they are different. A path consists of the points in space that the robot should occupy while executing the task. Its merely a geometric concept. A trajectory, associates a timing law to a path, i.e., it defines velocities and accelerations. It defines how the robot should move from the start to the end of the path.
+A path consists of the points in space that the robot should occupy while executing the task. A trajectory, associates a timing law to a path, i.e., it defines velocities and accelerations. It defines how the robot should move from the start to the end of the path.
 
 The main goal of path and trajectory planning is to guarantee that the robot does not violate its physical limits during the task execution. This planning can be done on the \emph{configuration space} or the \emph{operational space}. The configuration space is the space defined by the joint variables. The operational or task space is defined by the task \gls{dof}, generally, a six dimensional space (three for position and three for orientation).
-
-Besides the space used, another option for planning is to use \emph{point-to-point motion}, or \emph{motion through a sequence of points}. Both will be briefly discussed later.
 
 % = Joint space trajectories =
 \subsubsection{Joint space trajectories}
@@ -521,51 +512,9 @@ Since four coefficients are available, it is possible to impose the initial and 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{cubic_trajectory_planning}
-	\caption{Time history of position, velocity and acceleration with a cubic polynomial timing law. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}}
+	\caption[Time history of position, velocity and acceleration with a cubic polynomial timing law.]{Time history of position, velocity and acceleration with a cubic polynomial timing law. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}}
 	\label{fig:cubic_trajectory_planning}
 \end{figure}
-
-Another possible approach is to use a trapezoidal velocity profile called \gls{lspb}. The advantage of this timing law is allowing the "direct verification of whether the resulting velocities and accelerations can be supported by the physical mechanical manipulator" \cite{Siciliano2009_robotics_modelling_planning_control}. In this approach, the movement starts with a constant acceleration, followed by a cruise velocity, and ending with a constant deceleration. The trajectory obtained "is formed by a linear segment connected by two parabolic segments to the initial and final positions" \cite{Siciliano2009_robotics_modelling_planning_control}, hence the name.\\
-
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=\textwidth]{lspb_profiles}
-	\caption{Time history of position, velocity and acceleration with for the \gls{lspb} timing law. Adapted from \cite{Siciliano2009_robotics_modelling_planning_control}}
-	\label{fig:lspb_profiles}
-\end{figure}
-
-Figure \ref{fig:lspb_profiles} shows the \gls{lspb} position, velocity and acceleration profiles. Both initial and final velocities are null and the segments with constant accelerations have the same time duration which means an equal magnitude $\ddot{q}_c$ in the two segments. It generates a symmetric trajectory with respect to the average point $q_m = \frac{q_f + q_i}{2}$ at $t_m = t_f / 2$.
-
-In order to ensure the transition from $q_i$ to $q_f$ in a time $t_f$ the trajectory has to satisfy some constraints. The velocity at the end of the parabolic segment must be equal to the (constant) velocity of the linear segment, i.e. \cite{Siciliano2009_robotics_modelling_planning_control},
-
-\begin{equation}
-    \label{eq:lspb_qctc}
-    \ddot{q}_c t_c = \frac{q_m - q_c}{t_m - t_c}
-\end{equation}
-
-where $q_c$ is the value attained by the joint variable at the end of the parabolic segment at time $t_c$ with constant acceleration $\ddot{q}_c$. After some mathematical manipulation and the application of the criteria $sgn (\ddot{q}_c) = sgn (q_f - q_i)$ for the acceleration, the following position polynomials are obtained \cite{Siciliano2009_robotics_modelling_planning_control}
-
-\begin{equation}
-    q(t) = \left\{ 
-    \begin{aligned}
-    & q_i + \frac{1}{2} \ddot{q}_c t^2 & 0 \leq t \leq t_c\\
-    & q_i + \ddot{q}_c t_c(t - t_c / 2) & t_c < t \leq t_f - t_c\\
-    & q_f - \frac{1}{2} \ddot{q}_c(t_f - t)^2 & t_f - t_c < t \leq t_f 
-    \end{aligned}
-    \right.
-\end{equation}
-
-with
-
-\begin{equation}
-    t_c = \frac{q_i - q_f + \dot{q}_c t_f}{\dot{q}_c}
-\end{equation}
-
-and
-
-\begin{equation}
-    \ddot{q}_c = \frac{\dot{q}_c^2}{q_i - q_f + \dot{q}_c t_f} .
-\end{equation}
 
 % subsubsection joint_space_trajectories
 
@@ -605,11 +554,11 @@ The notation used for orientation is axis/angle. The trajectory time is equal fo
 
 After the trajectories are planned, the robot must execute them and evaluate or track the execution. This is the responsibility of the control algorithm.
 
-Robot control is part of the general theory of control. Control algorithms are vital for many different type of systems, from airplanes to air conditioning systems. The control can be done in \emph{open-loop} or \emph{close-loop}. Open-loop control inputs a control signal to the system, but does not observe the system's output. It is a \emph{fire-and-forget} type of control. On the contrary, close-loop control has a feedback system where the system's output is combined with the control signal. This new signal affects the system in order for it to asymptotically reach the desired state.\\  
+Robot control is part of general control theory. Control algorithms are vital for many different type of systems, from airplanes to air conditioning systems. The control can be done in \emph{open-loop} or \emph{close-loop}. Open-loop control inputs a control signal to the system, but does not observe the system's output. It is a \emph{fire-and-forget} type of control. On the contrary, close-loop control has a feedback system where the system's output is combined with the control signal. This new signal affects the system in order for it to asymptotically reach the desired state.\\  
 
 On the case of robot manipulators, control can be related to free space motion (\emph{motion control}) or robot interaction with the environment (\emph{interaction control}) \cite{Siciliano1999_robot_force_control}. 
 
-Motion control should only be used on task were the robot is moving in free space. If this approach is used when the robot is in interaction with environment, a small tracking error can lead to high forces and eventually damage to the robot and/or environment. 
+Motion control should only be used on a task where the robot is moving in free space. If this approach is used when the robot is in interaction with environment, a small tracking error can lead to high forces and eventually damage to the robot and/or environment. 
 
 Interaction control was especially conceived to deal with interactions forces from the environment. This control also subdivides into {indirect force control} and {direct force control}. The difference between the two, is that the former achieves force control via motion control. The latter controls the contact force directly \cite{Siciliano1999_robot_force_control}.
 
@@ -653,16 +602,16 @@ The number of columns and rows of the matrix $I$ represent the image width (W) a
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.7\textwidth]{image_matrix}
-	\caption{Digital image matrix representation.}
+	\caption[Digital image matrix representation.]{Digital image matrix representation.}
 	\label{fig:image_matrix}
 \end{figure}
 
-An image can have different colour spaces. The three main ones are: binary, grayscale, and \gls{rgb} (Fig. \ref{fig:image_binary_grayscale_rgb}). On a binary image, each pixel can only assume two values, either 0 or 1. The value zero represents a black pixel and 1 a white pixel. A grayscale image already as a tone gradation. It goes from black all the way to white, passing by various tones of grey with increasing brightness. A \gls{rgb} image has a major difference between the other two. It has three channels instead of one (\ref{eq:rgb_image_matrix}). Each channel represents the intensity of a colour: red, green or blue. The combination of intensities of each channel defines the colour of each pixel.
+An image can have different colour spaces. The three main ones are: binary, grayscale, and \gls{rgb} (Fig. \ref{fig:image_binary_grayscale_rgb}). On a binary image, each pixel can only assume two values, either 0 or 1. The value zero represents a black pixel and 1 a white pixel. A grayscale image already as a tone gradation. It goes from black all the way to white, passing by various tones of grey with increasing brightness. An \gls{rgb} image has a major difference between the other two. It has three channels instead of one (\ref{eq:rgb_image_matrix}). Each channel represents the intensity of a colour: red, green or blue. The combination of intensities of each channel defines the colour of each pixel.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{image_binary_grayscale_rgb}
-	\caption{Examples of color spaces. (left) a black \& white or binary image. (middle) a grayscale image. (right) an \gls{rgb} image. Adapted from \cite{Fonseca2017_acondicionamento_imagem}}
+	\caption[Examples of color spaces.]{Examples of color spaces. (left) a black \& white or binary image. (middle) a grayscale image. (right) an \gls{rgb} image. Adapted from \cite{Fonseca2017_acondicionamento_imagem}}
 	\label{fig:image_binary_grayscale_rgb}
 \end{figure}
 
@@ -677,14 +626,12 @@ An image can have different colour spaces. The three main ones are: binary, gray
 \subsection{Image segmentation}
 \label{subsec:image_segmentation}
 
-Image segmentation is a process used to separate image areas based on some criteria. Many different criteria can be used. From basic like pixel color, pixel intensity or position; to something more complex like a mathematical relation between neighbouring pixels. This process is normally used to extract some information from the image.
-
-There are many algorithms for image segmentation, each one with its unique goal and approach. Some algorithms use more statistics; others are based on machine learning techniques. Some basic and common segmentation method types are: threshold; edge-detection; and histogram.
+Image segmentation is a process used to separate image areas based on some criteria. Many different criteria can be used. From basic like pixel color, pixel intensity or position; to something more complex like a mathematical relation between neighbouring pixels. This process is normally used to extract some information from the image. There are many algorithms for image segmentation, each one with its unique goal and approach. Some algorithms use more statistics; others are based on machine learning techniques. Some basic and common segmentation method types are: threshold; edge-detection; and histogram.
 
 \subsubsection*{Threshold}
 \label{subsubsec:image_segmentation_threshold}
 
-A Threshold segmentation approach can be used on \gls{rgb} or grayscale images. It consists in evaluating each pixel value and changing it according to its relation to a threshold value. Lets assume the threshold value was 120 on a 0 to 255 scale. Any pixel below 120 would be set to 0 and above it to 1. This would create a binary image with two segmented areas, the white and the black. The new values can be anything within the data type range. Figure \ref{fig:histogram_binary_mask} (c) shows an example result of a binarisation process.
+A threshold segmentation approach can be used on \gls{rgb} or grayscale images. It consists in evaluating each pixel value and changing it according to its relation to a threshold value. Lets assume the threshold value was 120 on a 0 to 255 scale. Any pixel below 120 would be set to 0 and above it to 1. This would create a binary image with two segmented areas, the white and the black. The new values can be anything within the data type range. Figure \ref{fig:histogram_binary_mask} (c) shows an example result of a binarisation process.
 
 % subsubsection image_segmentation_threshold
 
@@ -787,7 +734,7 @@ Figure \ref{fig:edge_detection_comparison} shows a comparison of the three metho
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{edge_detection_comparison}
-	\caption{Comparison of the three edge-detection algorithms. The left image is simple Gradient operators. At the middle its Roberts cross-gradient operators. The right image is for Sobel operators. Adapted from \cite{Fonseca2017_acondicionamento_imagem}}
+	\caption[Comparison of the three edge-detection algorithms.]{Comparison of the three edge-detection algorithms. The left image is simple Gradient operators. At the middle its Roberts cross-gradient operators. The right image is for Sobel operators. Adapted from \cite{Fonseca2017_acondicionamento_imagem}}
 	\label{fig:edge_detection_comparison}
 \end{figure}
 
@@ -801,7 +748,7 @@ An Histogram is a graphical representation of the distribution of pixel intensit
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.5\textwidth]{histogram}
-	\caption{Histogram from a grayscale image. The y-axis represents the pixel count and the x-axis the pixel intensities from 0 to 255.}
+	\caption[Histogram from a grayscale image.]{Histogram from a grayscale image. The y-axis represents the pixel count and the x-axis the pixel intensities from 0 to 255.}
 	\label{fig:histogram}
 \end{figure}
 
@@ -810,7 +757,7 @@ An histogram can be used to select the threshold value for image binarization li
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{histogram_binary_mask}
-	\caption{Chroma-keying. (a) The subject against a green background; (b) a histogram of green chromaticity values; (c) the computed mask image where true is white; (d) the subject masked into
+	\caption[Chroma-keying.]{Chroma-keying. (a) The subject against a green background; (b) a histogram of green chromaticity values; (c) the computed mask image where true is white; (d) the subject masked into
 a background scene. \cite{Corke2011_robotics_vision_control}}
 	\label{fig:histogram_binary_mask}
 \end{figure}
@@ -823,12 +770,12 @@ a background scene. \cite{Corke2011_robotics_vision_control}}
 \subsection{Stereo cameras}
 \label{subsec:stereo_cameras}
 
-Stereo cameras, also callled depth cameras, are dual-camera systems that mimic the human binocular vision. Binocular vision produces three dimensional information by comparing two vantage points. Depth is calculated by estimating disparities between matching key points on both images (Fig. \ref{fig:stereo_vision_diagram}).\\
+Stereo cameras, also callled depth cameras, are dual-camera systems that mimic the human binocular vision. Binocular vision produces three dimensional information by comparing two vantage points. Depth is calculated by estimating disparities between matching key points on both images (Fig. \ref{fig:stereo_vision_diagram}).
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.5\textwidth]{stereo_vision_diagram}
-	\caption{Depth from stereo algorithm finds disparity by matching blocks in left and right images. Adapted from \cite{IntelRealSense_basics_depth_vision}}
+	\caption[Depth from stereo algorithm finds disparity by matching blocks in left and right images.]{Depth from stereo algorithm finds disparity by matching blocks in left and right images. Adapted from \cite{IntelRealSense_basics_depth_vision}}
 	\label{fig:stereo_vision_diagram}
 \end{figure}
 
@@ -842,7 +789,7 @@ The main algorithm to produce a depth map from binocular vision is called triang
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.8\textwidth]{depth_from_stereo_triangulation}
-	\caption{Triangulation for depth calculation from stereo cameras. $L$ and $R$ are the left and right cameras positions, respectively. The distance $b$ between them is the baseline. $x_l$/$x_r$ are the distances between the left/right optical axis and the intersection point of the line of sight with the image planes. $f$ is the cameras focal length. The y-axis is perpendicular to the page. Adapted from \cite{Rao2009_stereo_3d_vision}}
+	\caption[Triangulation for depth calculation from stereo cameras.]{Triangulation for depth calculation from stereo cameras. $L$ and $R$ are the left and right cameras positions, respectively. The distance $b$ between them is the baseline. $x_l$/$x_r$ are the distances between the left/right optical axis and the intersection point of the line of sight with the image planes. $f$ is the cameras focal length. The y-axis is perpendicular to the page. Adapted from \cite{Rao2009_stereo_3d_vision}}
 	\label{fig:depth_from_stereo_triangulation}
 \end{figure}
 
@@ -859,16 +806,14 @@ The main algorithm to produce a depth map from binocular vision is called triang
     \quad,
 \end{equation}
 
-where $d$ is called the disparity and is equal to $x_l - x_r$.\\
+where $d$ is called the disparity and is equal to $x_l - x_r$.
 
-The main problem of this procedure is that it depends on finding the correspondence between the same point on both projections. The most naive algorithm to find this correspondence is the \gls{ssd}.
-
-The depth map obtained is an image where each area or pixel has a value corresponding to its depth (Fig. \ref{fig:ssd_stereo_vision_results}). From this information it is possible to create a point cloud.
+The main problem of this procedure is that it depends on finding the correspondence between the same point on both projections. The most naive algorithm to find this correspondence is the \glsfirst{ssd}. The depth map obtained is an image where each area or pixel has a value corresponding to its depth (Fig. \ref{fig:ssd_stereo_vision_results}). From this information it is possible to create a point cloud.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.8\textwidth]{ssd_stereo_vision_results}
-	\caption{Results from the \gls{ssd} algorithm. (a) Stereo cameras source image. (b) Depth map obtained. The blues are closer to the camera and the reds further away. Adapted from \cite{IntelRealSense_basics_depth_vision}}
+	\caption[Results from the \gls{ssd} algorithm.]{Results from the \gls{ssd} algorithm. (a) Stereo cameras source image. (b) Depth map obtained. The blues are closer to the camera and the reds further away. Adapted from \cite{IntelRealSense_basics_depth_vision}}
 	\label{fig:ssd_stereo_vision_results}
 \end{figure}
 
@@ -878,14 +823,12 @@ The depth map obtained is an image where each area or pixel has a value correspo
 \subsection{Point clouds}
 \label{subsec:point_clouds}
 
-A point cloud is a 3D data format consisting on a collection of points on 3D space. This data is generated by 3D scanners, range finders and depth cameras (Fig. \ref{fig:realsense_point_cloud}). Point clouds have many use cases. For example it is used to produce 3D CAD models, for metrology, animation, object detection, and more.
-
-Because each point has its three dimensional coordinates in relation to the cloud generator, it can be used to create surface meshes, estimate volumes and distances.
+A point cloud is a 3D data format consisting on a collection of points on 3D space. This data is generated by 3D scanners, range finders and depth cameras (Fig. \ref{fig:realsense_point_cloud}). Point clouds have many use cases. For example it is used to produce 3D CAD models, for metrology, animation, object detection, and more. Because each point has its three dimensional coordinates in relation to the cloud generator, it can be used to create surface meshes, estimate volumes and distances.
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{realsense_point_cloud.png}
-	\caption{Point-cloud using Intel RealSense D415 stereo camera. Adapted from \cite{IntelRealSense_basics_depth_vision}}
+	\caption[Point-cloud using Intel RealSense D415 stereo camera.]{Point-cloud using Intel RealSense D415 stereo camera. Adapted from \cite{IntelRealSense_basics_depth_vision}}
 	\label{fig:realsense_point_cloud}
 \end{figure}
 
